@@ -11,7 +11,7 @@ namespace BugTracker.Models
         public string Name { get; set; }
 
 
-        public virtual ICollection<Ticket> TicketTypeId { get; set; }
+        public virtual ICollection<Ticket> Ticket{ get; set; }
 
         //public TicketType()
         //{

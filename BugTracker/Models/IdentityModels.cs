@@ -10,7 +10,6 @@ namespace BugTracker.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DisplayName { get; set; }
@@ -21,11 +20,9 @@ namespace BugTracker.Models
         public virtual ICollection<TicketAttachment> Attachment { get; set; }
         public virtual ICollection<TicketHistory> History { get; set; }
         public virtual ICollection<TicketNotification> Notification { get; set; }
-        //public virtual ICollection<Ticket> Ticket { get; set; }
-        public virtual ICollection<Ticket> OwnerUser { get; set; }
-        public virtual ICollection<Ticket> AssignedToUser { get; set; }
-
-       
+        //public virtual ICollection<Ticket> Ticket { get; set; } would create extra user underscore IDs
+        //public virtual ICollection<Ticket> OwnerUser { get; set; } Don't need this one!!!!
+        //public virtual ICollection<Ticket> AssignedToUser { get; set; }   Don't need this one!!!!    
 
         public User()
         {
@@ -34,11 +31,10 @@ namespace BugTracker.Models
             Attachment = new HashSet<TicketAttachment>();
             History = new HashSet<TicketHistory>();
             Notification = new HashSet<TicketNotification>();
-            OwnerUser = new HashSet<Ticket>();
-            AssignedToUser = new HashSet<Ticket>();
+            //OwnerUser = new HashSet<Ticket>();
+            //AssignedToUser = new HashSet<Ticket>();
             //Ticket = new HashSet<Ticket>();
         }
-
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
@@ -61,5 +57,17 @@ namespace BugTracker.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<TicketComment> Comment { get; set; }
+        public DbSet<TicketAttachment> Attachment { get; set; }
+        public DbSet<TicketHistory> History { get; set; }
+        public DbSet<TicketNotification> Notification { get; set; }
+        public DbSet<TicketType> Type { get; set; }
+        public DbSet<TicketStatus> Status { get; set; }
+        public DbSet<TicketPriority> Priority { get; set; }
+        public DbSet<Project> Project { get; set; }
+
+
     }
 }
