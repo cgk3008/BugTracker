@@ -17,5 +17,6 @@ namespace BugTracker.Models
 
 
         public virtual Ticket Ticket { get; set; }
+        public virtual User User { get; set; }
     }
 }
