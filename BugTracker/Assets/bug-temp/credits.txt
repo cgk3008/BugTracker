@@ -1,0 +1,24 @@
+**Credits:**
+
+- Bootstrap - http://getbootstrap.com
+- jQuery - http://jquery.com
+- HTML5Shiv - @afarkas @jdalton @jon_neal @rem
+- Respond - Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas.
+- Pattern - http://subtlepatterns.com/
+- Font awesome icon - http://fortawesome.github.io/Font-Awesome/
+- Photos - http://pixabay.com
+- prettyPhoto - http://www.no-margin-for-errors.com
+- Botstrap Datetimepicker - http://www.eyecon.ro/bootstrap-datepicker
+- Bootstrap-wysihtml5 - http://jhollingworth.github.io/bootstrap-wysihtml5/
+- FullCalendar - http://arshaw.com/fullcalendar/
+- DataTables - http://datatables.net/license_gpl2
+- Knob - http://www.gnu.org/licenses/gpl.html
+- onoff - https://github.com/timmywil/jquery.onoff
+- Rateit - http://rateit.codeplex.com
+- SlimScroll - http://www.opensource.org/licenses/mit-license.php
+- Sparkline - http://omnipotent.net/jquery.sparkline/ 
+- Steps - http://www.jquery-steps.com
+- Validation - http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+- JQuery UI - http://jqueryui.com
+- Flot - http://www.flotcharts.org
+- Gritter - http://boedesign.com/demos/gritter/

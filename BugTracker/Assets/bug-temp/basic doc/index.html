@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Title here -->
+		<title>Documentation</title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description">
+		<meta name="keywords" content="Your,Keywords">
+		<meta name="author" content="ResponsiveWebInc">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Font awesome CSS -->
+		<link href="css/font-awesome.min.css" rel="stylesheet">		
+		<!-- Custom CSS -->
+		<link href="css/style.css" rel="stylesheet">
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="#">
+	</head>
+	
+	<body>
+
+		
+		<div class="container">
+			<div class="main">
+				<div class="row">
+					<div class="col-md-2">
+					
+						<div class="sidebar">
+							<!-- Project name -->
+							<h3>Barnie</h3>
+							<ul>
+								<li><a href="#home">Home</a></li>
+								<li><a href="#files">File Structure</a></li>
+								<li><a href="#editing">Editing</a></li>
+								<li><a href="#add-colors">Add Colors</a></li>
+								<li><a href="#fonts">Fonts & Icons</a></li>
+								<li><a href="#add-page">Add New Page</a></li>
+								<li><a href="#navigation">Navigation</a></li>
+								<li><a href="#logo">Logo</a></li>
+								<li><a href="#main">Main Content</a></li>
+								<li><a href="#footer">Footer</a></li>
+								<li><a href="#elements">Elements</a></li>
+								<li><a href="#plugins">Plugins</a></li>
+								<li><a href="#changelog">Changelog</a></li>
+							</ul>
+						</div>
+						
+					</div>
+					<div class="col-md-10">
+					
+						<div class="mainbar">
+						
+						
+						
+							<!-- Home -->
+							<h3 id="home">Documentation Overview</h3>
+								
+								<p>To edit this theme, basic knowledge about HTML, CSS, JS & Bootstrap is required. You can learn HTML, CSS and JS from <a href="http://www.w3schools.com/">W3Schools</a>. You can learn Bootstrap by visiting <a href="http://getbootstrap.com/">official site</a>.</p>
+								
+								
+								<div class="alert alert-danger"><strong>Note:</strong> Before you make any changes, take a backup of all files and folders.</div>
+							
+								
+							<hr />
+							
+
+
+<!----------------------------------------------------------------------------------------------------------->														
+							
+							
+							
+							<!-- File structure -->
+							<h3 id="files">File Structure</h3>
+							
+								<p>Theme consists of 3 main folders namely <em>css, img & js</em>. <br />
+								Inside <em>css</em> folder you will find styles used in this theme. <em>style.css</em> is the main stylesheet. <br />
+								Inside <em>img</em> folder you will find all images used in the theme.<br />
+								Inside <em>js</em> folder you will find all Javascript files. <em>custom.js</em> is the main js file.
+								</p>
+							
+							<hr />
+							
+
+
+<!----------------------------------------------------------------------------------------------------------->							
+
+							
+							
+							<!-- Editing -->
+							<h3 id="editing">Editing</h3>
+							
+								<p>To edit files you need any code editor. I recommend using Notepad++.</p>
+								
+								<strong>Add Custom Styles</strong>
+								<p>To add custom styles, create new style sheet in <em>css</em> folder. Include the style file before the closing tag of <code>&lt;head&gt;</code>. Make sure that you are including this new file after <em>style.css</em></p>
+								<p>If you want to add any extra CSS files, copy the file to <em>css</em> folder and link it before <em>style.css</em>.</p>
+								
+								<pre>
+&lt;link href=&quot;css/FILE-NAME.css&quot; rel=&quot;stylesheet&quot;&gt;									
+								</pre>
+								
+								<hr />
+								
+								<strong>Add Custom JavaScript</strong>
+								<p>To add JS, just create a new java script file in <em>js</em> folder. Include the newly created js file before the closing tag of <code>&lt;body&gt;</code>. Make sure that you are including this new file after <em>custom.js</em>. Alternatively you can also include Javascript code directly to the html file by enclosing the code in <code>&lt;script&gt; ...your code... &lt;/script&gt;</code> and adding this above the closing tag of <code>&lt;body&gt;</code></p>
+								<p>If you want to add any extra JS files, copy the file to <em>js</em> folder and link it before <em>custom.js</em>.</p>
+
+								<pre>
+&lt;script src=&quot;js/FILE-NAME.js&quot;&gt;&lt;/script&gt;								
+								</pre>
+							
+								<hr />
+								
+								<strong>Editing HTML</strong>
+								<p>Almost all html codes in this theme are neatly commented. All you need to do is to read the comment and modify the content based on your need.</p>
+								
+								<hr />
+							
+								<!-- XXXXXXXXXXXXXXXXXX -->
+								<!-- If the theme doesn't support LESS, then remove the blow para -->
+								<strong>LESS</strong>
+								<p>This theme supports LESS. To edit LESS, go to <em>less</em> folder, open <em>less-style.less</em> in your code editor. Make changes. Once done compile the file. You can use <em>WinLess</em> application (for Windows) to comple less files. <em>less-style.css</em> file will be generated as a result of compilation. You just need to copy this file to <em>css</em> folder replacing old file. </p>							
+							
+								<hr />
+								
+								
+							
+<!----------------------------------------------------------------------------------------------------------->
+
+
+							<!-- Add Colors -->
+							<!-- XXXXXXXXXXXXXXXXX -->
+							<!-- If the theme don't support multiple colors, remove this block -->
+							<h3 id="add-colors">Add Colors</h3>
+							
+								<p>This theme supports some multiple colors which you can add to texts and backgrounds. Here are the list of colors which this theme supports.</p>
+								<p><strong>White, Grey, Black, Red, Light Blue (lblue), Blue, Green, Orange, Purple, Rose, Brown, Yellow.</strong></p>
+
+								<p>Add color to the text, specify color name to the <em>class</em> - <code>&lt;span class="lblue"&gt; ...Some Text... &lt;/span&gt;</code></p>
+								
+								<p>Add color to the background, specify color name along with the prefix <em>br-</em> to the <em>class</em> - <code>&lt;span class="br-lblue"&gt; ...Some Text... &lt;/span&gt;</code></p>
+
+								<hr />
+								
+<!----------------------------------------------------------------------------------------------------------->
+														
+			
+							<!-- Fonts -->
+							<h3 id="fonts">Fonts</h3>
+							
+								<p>This theme uses <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome Icons</a> for Icons and <a href="http://www.google.com/fonts">Google Web Fonts</a> for Fonts.</p>
+								
+								<!-- Icon font -->
+								<strong>Icon Font</strong>
+								<p>Refer <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome Icons</a> for list of fonts. To use any fonts in the theme, you need to use the following code.</p>
+								
+								<pre>
+/* Latest version */
+&lt;i class=&quot;fa fa-XXXX&quot;&gt;&lt;/i&gt;
+
+/* Old version */
+&lt;i class=&quot;icon icon-XXXX&quot;&gt;&lt;/i&gt;
+								</pre>
+								
+								
+								<hr />
+							
+							
+							
+<!----------------------------------------------------------------------------------------------------------->	
+
+
+
+							<!-- XXXXXXXXXXXXXXXXXXXX -->
+							<!-- If the theme is single page theme, then remove this. -->
+							<h3 id="add-page">Add New Page</h3>
+								<p>This theme comes with <em>0-base.html</em> file. This is the base file using which you can create you own page. Create a copy of the page, rename it and open in Text editor. Edit the title in <code>&lt;title&gt;</code> section. Change heading and add your content. Done.</p>
+								
+								<strong>Add Heading</strong>
+								<pre>
+&lt;!-- Heading --&gt;
+&lt;div class=&quot;single-head&quot;&gt;
+	&lt;!-- Heading --&gt;
+	&lt;h3 class=&quot;pull-left&quot;&gt;&lt;i class=&quot;fa fa-<b>XXXX</b> <b>lblue</b>&quot;&gt;&lt;/i&gt; <b>Your Heading</b>&lt;/h3&gt;
+&lt;/div&gt;
+								</pre>
+								
+								<strong>Add Content</strong>
+								<pre>
+&lt;div class=&quot;main-content&quot;&gt;						
+	&lt;div class=&quot;page-content&quot;&gt;
+	
+		&lt;!-- Heading --&gt;
+		&lt;!-- Heading end --&gt;
+		
+		<b>&lt;!-- Add Your Content Here --&gt;</b>
+		
+	&lt;/div&gt;
+&lt;/div&gt;
+								</pre>
+								
+								<hr />
+							
+							
+<!----------------------------------------------------------------------------------------------------------->
+
+
+							<!-- Logo -->
+							<h3 id="logo">Logo</h3>
+								<p>Below code shows the markup of <em>Logo</em> area. You can also use images for logo. Just play with HTML. I reommend using PNG images for logo.</p>
+								
+								<pre>
+&lt;!-- Logo --&gt;
+&lt;div class=&quot;logo&quot;&gt;
+	&lt;h1&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-desktop br-red&quot;&gt;&lt;/i&gt; <b>YOUR LOGO</b> &lt;span&gt;<b>Some Content</b>&lt;/span&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+								</pre>
+								
+								<hr />
+
+<!----------------------------------------------------------------------------------------------------------->
+
+
+							<!-- Navigation -->
+							<h3 id="navigation">Navigation</h3>
+								<p>Below code shows the markup of <em>Navigation</em> bar.</p>
+								
+								<pre>
+&lt;div class=&quot;side-nav-block&quot;&gt;
+	&lt;!-- Sidebar heading --&gt;
+	&lt;h4&gt;Main&lt;/h4&gt;
+	&lt;!-- Sidebar links --&gt;
+	&lt;ul class=&quot;list-unstyled&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-desktop&quot;&gt;&lt;/i&gt; <b>LINK1</b>&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-signal&quot;&gt;&lt;/i&gt; <b>LINK2</b> &lt;span class=&quot;badge badge-info pull-right&quot;&gt;5&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;!-- Mainmenu with submenu --&gt;
+		&lt;li class=&quot;has_submenu&quot;&gt;
+			&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-file&quot;&gt;&lt;/i&gt; <b>MAIN LINK</b> &lt;span class=&quot;nav-caret fa fa-caret-down&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+			&lt;!-- Submenu --&gt;
+			&lt;ul class=&quot;list-unstyled&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt; <b>SUB LINK1</b>&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt; <b>SUB LINK2</b>&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt; <b>SUB LINK3</b>&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+								</pre>
+								
+								<strong>Navigation Dropdown</strong>
+								<p>Below code shows the markup of Dropdown menu for navigation bar.</p>
+							
+								<pre>
+&lt;!-- Mainmenu with submenu --&gt;
+&lt;li class=&quot;has_submenu&quot;&gt;
+	&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-file&quot;&gt;&lt;/i&gt; <b>MAIN LINK</b> &lt;span class=&quot;nav-caret fa fa-caret-down&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+	&lt;!-- Submenu --&gt;
+	&lt;ul class=&quot;list-unstyled&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt; <b>SUB LINK1</b>&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt; <b>SUB LINK2</b>&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;<b>#</b>&quot;&gt;&lt;i class=&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt; <b>SUB LINK3</b>&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/li&gt;
+								</pre>
+								
+								<hr />
+
+
+
+<!----------------------------------------------------------------------------------------------------------->
+
+
+							<!-- Main content -->
+							<h3 id="main">Main Content</h3>
+								<p>Below code shows the markup of <em>Main Content</em> area.</p>
+								
+								<pre>
+&lt;div class=&quot;main-content&quot;&gt;						
+	&lt;div class=&quot;page-content&quot;&gt;
+	
+		&lt;!-- Heading --&gt;
+		&lt;div class=&quot;single-head&quot;&gt;
+			&lt;!-- Heading --&gt;
+			&lt;h3 class=&quot;pull-left&quot;&gt;&lt;i class=&quot;fa fa-<b>XXXX</b> <b>lblue</b>&quot;&gt;&lt;/i&gt; <b>Your Heading</b>&lt;/h3&gt;
+		&lt;/div&gt;
+		
+		<b>&lt;!-- Add Your Main Content Here --&gt;</b>
+		
+	&lt;/div&gt;
+&lt;/div&gt;
+								
+								</pre>
+								
+								<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+								<!-- Admin widgets. If the theme doesn't support Admin widgets remove this. -->
+								<strong>Widgets</strong>
+								<p>Below code shows the markup of <em>Widgets</em>.</p>
+								
+								<pre>
+&lt;!-- Widget Markup --&gt;
+
+&lt;div class=&quot;widget widget-<b>NAME</b>&quot;&gt;
+	&lt;!-- Widget head --&gt;
+	&lt;div class=&quot;widget-head br-<b>COLOR</b>&quot;&gt;
+		&lt;!-- Widget heading icon and name --&gt;
+		&lt;h3&gt;&lt;i class=&quot;fa fa-<b>XXXX</b>&quot;&gt;&lt;/i&gt; <b>WIDGET HEADING</b>&lt;/h3&gt;
+	&lt;/div&gt;
+	
+	&lt;!-- Widget body --&gt;
+	&lt;div class=&quot;widget-body&quot;&gt;
+		<b>&lt;!-- Type Your Widget Body Content --&gt;</b>
+	&lt;/div&gt;
+	
+	&lt;!-- Widget foot --&gt;
+	&lt;div class=&quot;widget-foot&quot;&gt;
+		<b>&lt;!-- Type Your Widget Footer Content --&gt;</b>
+	&lt;/div&gt;
+&lt;/div&gt;
+								</pre>
+
+								<hr />
+
+<!----------------------------------------------------------------------------------------------------------->
+
+
+							<!-- Elements -->
+							
+							<h3 id="elements">Elements</h3>
+								<p>Here are the customization information for some complex elements.</p>
+								
+								<strong>Notification</strong>
+								<p>Code for notification javascript.</p>
+								<img src="img/notification.png" class="img-responsive" alt="" />
+								<pre>
+  setTimeout(function() {
+
+	var unique_id = $.gritter.add({
+		// (string | mandatory) the heading of the notification
+		title: '<b>Howdy! User</b>',
+		// (string | mandatory) the text inside the notification
+		text: '<b>Today you got some messages and new members. Please check it out!</b>',
+		// (string | optional) the image to display on the left
+		image: '<b>IMAGE_LINK</b>',
+		// (bool | optional) if you want it to fade out on its own or just sit there
+		sticky: false,
+		// (int | optional) the time you want it to be alive for before fading out
+		time: '',
+		// (string | optional) the class name you want to apply to that specific message
+		class_name: 'gritter-custom'
+	});
+
+	// You can have it return a unique id, this can be used to manually remove it later using
+	setTimeout(function () {
+		$.gritter.remove(unique_id, {
+			fade: true,
+			speed: 'slow'
+		});
+	}, 100000000);
+
+  }, 4000);
+								</pre>
+								
+								<hr />
+								
+								<strong>Switch</strong>
+								<p>Code for switch input tag.</p>
+								<img src="img/switch.png" class="img-responsive" alt="" />
+								<pre>
+&lt;!-- HTML --&gt;
+
+&lt;div class=&quot;sw-<b>COLOR</b>&quot;&gt;
+	&lt;input type=&quot;checkbox&quot; class=&quot;<b>checkboxes</b>&quot; checked /&gt;
+&lt;/div&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	$(document).ready(function() {
+	  $('<b>.checkboxes</b>').onoff();
+	});
+&lt;/script&gt;
+
+								</pre>
+								
+								<hr />
+								
+								<strong>Date Picker</strong>
+								<p>Code for date picker input tag.</p>
+								<img src="img/date-picker.png" class="img-responsive" alt="" />
+								<pre>
+&lt;!-- JavaScript --&gt;
+$(function() {
+	$('<b>#datetimepicker1</b>').datetimepicker({
+		pickTime: false
+	});
+});
+								</pre>
+								
+								<hr />
+								
+								<strong>Time Picker</strong>
+								<p>Code for time picker input tag.</p>
+								<img src="img/time-picker.png" class="img-responsive" alt="" />
+								<pre>
+&lt;!-- JavaScript --&gt;
+$(function() {
+	$('<b>#datetimepicker2</b>').datetimepicker({
+		pickDate: false
+	});
+});
+								</pre>
+								
+								<hr />
+								<strong>Horizontal & Vertical Slider</strong>
+								<p>Code for horizontal & vertical slider.</p>
+								<img src="img/hv-slider.png" class="img-responsive" alt="" />
+								<pre>
+&lt;!-- HTML --&gt;
+&lt;div id=&quot;<b>master4</b>&quot; class=&quot;slider-<b>COLOR</b>&quot;&gt;&lt;/div&gt;
+
+&lt;!-- JavaScript --&gt;
+$(function() {
+	// slider
+	$( &quot;<b>#master4</b>&quot; ).slider({
+		value: 60,
+		orientation: &quot;<b>horizontal</b>&quot;,
+		range: &quot;min&quot;,
+		animate: true
+	});
+});
+								</pre>
+								
+								<hr />
+								
+								<strong>Star Rating</strong>
+								<p>Code for star rate.</p>
+								<img src="img/rateit.png" class="img-responsive" alt="" />
+								<pre>
+&lt;!-- Rate it Plugin --&gt;
+&lt;div class=&quot;rateit&quot; <b>data-rateit-resetable=&quot;false&quot;</b>&gt;&lt;/div&gt;
+								</pre>
+								
+								<hr />
+								
+								<strong>Form Validation</strong>
+								<p>Java script code for form validation on submit</p>
+								<img src="img/form-validate.png" class="img-responsive" alt="" />
+								<pre>
+// validate signup form on keyup and submit
+	$(&quot;#signupForm&quot;).validate({
+		rules: {
+			<b>firstname</b>: &quot;required&quot;,
+			<b>username</b>: {
+				required: true,
+				minlength: 2
+			}
+		},
+		messages: {
+			<b>firstname</b>: &quot;<b>Please enter your firstname</b>&quot;,
+			<b>username</b>: {
+				required: &quot;<b>Please enter a username</b>&quot;,
+				minlength: &quot;<b>Your username must consist of at least 2 characters</b>&quot;
+			}
+		}
+	});
+								</pre>
+								
+								<hr />
+								
+								<strong>Gallery Item</strong>
+								<p>Code for gallery page items.</p>
+								<img src="img/gallery.png" class="img-responsive" alt="" />
+								<pre>
+&lt;div class=&quot;element&quot;&gt;
+	&lt;!-- Gallery image --&gt;
+	&lt;a href=&quot;<b>IMAGE_LINK</b>&quot; class=&quot;prettyphoto&quot;&gt;
+		&lt;img src=&quot;<b>IMAGE_LINK</b>&quot; class=&quot;img-responsive&quot; alt=&quot;&quot;/&gt;
+	&lt;/a&gt;
+	&lt;!-- Gallery caption --&gt;
+	&lt;div class=&quot;gall-caption&quot;&gt;
+		<b>&lt;!-- Your Content --&gt;</b>
+	&lt;/div&gt;
+&lt;/div&gt;
+								</pre>
+								
+								<hr />
+
+
+<!----------------------------------------------------------------------------------------------------------->
+
+
+							
+							<!-- XXXXXXXXXXXXXXXXXXXX -->
+							<!-- Remove the plugins which are not used in this theme -->
+							<!-- Plugins used -->
+							<h3 id="plugins">Plugins</h3>
+							
+								<p>This theme uses following plugins. To customize the plugins, you need to refer the official Plugin documentation found in below links.</p>
+								<ul>
+									<li><a href="http://getbootstrap.com">Bootstrap</a> - Whole theme is made using Bootstrap.</li>
+									
+									<li><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesom Icon</a> - For Vector Icons.</li>
+									
+									<li><a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/">PrettyPhoto</a> - Gallery & Portfolio section Photos lightbox.</li>
+																		
+									<li><a href="http://www.flotcharts.org/">Flot Charts</a> - For Charts - Bar, Pie, Line, Real Time, Curve.</li>
+									
+									<li><a href="http://omnipotent.net/jquery.sparkline/">Sparklines</a> - For Mini Charts.</li>
+									
+									<li><a href="http://arshaw.com/fullcalendar/">Full Calendar</a> - Google Calendar Plugin.</li>
+									
+									<li><a href="http://rateit.codeplex.com/">RateIt</a> - jQuery Star Rating Plugin.</li>
+									
+									<li><a href="http://boedesign.com/demos/gritter/">Gritter</a> - Notification Plugin.</li>
+									
+									<li><a href="http://anthonyterrien.com/knob/">Knob</a> - Knob Style Data Plugin.</li>
+									
+									<li><a href="https://datatables.net/">DataTables</a> - Dynamic Table</li>
+									
+									<li><a href="http://rocha.la/jQuery-slimScroll">Slim Scroll</a> - Slim Scroll Bar</li>
+									
+									<li><a href="http://www.eyecon.ro/bootstrap-datepicker">Botstrap Datetimepicker</a> - Date-Time Picker for pick date and time.</li>
+									
+									<li><a href="http://jhollingworth.github.io/bootstrap-wysihtml5/">Bootstrap-wysihtml5</a> - Plugin use for text editor.</li>
+									
+									<li><a href="https://github.com/timmywil/jquery.onoff">onoff</a> - Transform checkbox into toggle switches.</li>
+									
+									<li><a href="http://www.jquery-steps.com">Steps</a> - Simple wizard plugin.</li>
+									
+									<li><a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">Validation</a> - Simple client side form validation.</li>
+									
+								</ul>
+								
+								<hr />
+							
+							
+<!----------------------------------------------------------------------------------------------------------->														
+							
+							
+							<!-- Changelog -->
+							<h3 id="changelog">Changelog</h3>
+								
+								<strong>Version 1.1:</strong>
+								<ul>
+									<li>Bug fix - sidebar menu in form-wizard page and 0-base page.(style.css)</li>
+									<li>Bug fix - search box in head bar - all pages.(style.css)</li>
+									<li>Added pagination in inbox page.(inbox.html)</li>
+									<li>Bug fix - head bar notification drop down in all pages.(style.css)</li>
+									<li>Updated the sidebar navigation menu list in all pages.(all .html files)</li>
+								</ul>
+							
+								<strong>Version 1.0:</strong>
+								<ul>
+									<li>Initial Release.</li>
+								</ul>
+							
+							
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="footer text-center">
+				Copyright 2013 - <a href="http://responsivewebinc.com">Responsive Web Inc</a>
+			</div>
+		</div>
+		
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="js/jquery.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="js/respond.min.js"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="js/html5shiv.js"></script>
+		<!-- Custom JS -->
+		<script src="js/custom.js"></script>
+	</body>	
+</html>

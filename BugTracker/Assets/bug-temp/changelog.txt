@@ -1,0 +1,59 @@
+**Changelog:**
+
+**Version 1.7.5:**
+
+- Updated Bootstrap to version 3.3.7 (both css and js file)
+- Updated font awesome icon to version 4.7.0 (font files and css file)
+
+**Version 1.7:**
+
+- Updated Bootstrap to version 3.3.6.
+- Updated Font awesome icon to version 4.6.1.
+- Updated full calendar to 2.6.1.
+- Updated data tables to 1.10.11.
+- Updated jquery Validate plugin to 1.15.
+
+**Version 1.6:**
+
+- Updated bootstrap css and js files from 3.3.4 to 3.3.50.
+- Updated jquery from 1.11.2 to 1.11.3.
+- Updated HTML5Shiv from 3.7.2 to 3.7.3.
+- Minor style changes (style.css).
+- Updated full calendar plutin to version 2.3.2 and included one more js file moment.min.js. (All HTML files)
+- Updated data tables plugin to 1.10.7.
+- Updated flot charts to 0.8.3. 
+- Updated prettyphoto to 3.1.6.
+- Updated jQuery UI to 1.11.4. 
+
+**Version 1.5:**
+
+- Updated Bootstrap to version 3.3.2.
+- Updated JQuery to version 1.11.2.
+- Updated HTML5Shiv to version 3.7.2.
+- Updated Fonts Awesome CSS to version 4.3.0.
+- Updated fonts folder to version 4.3.0.
+- Updated DataTables JQuery Plugin to version 1.10.5.
+- Updated RateIt JQuery Plugin to version 1.0.22.
+- Updated On-Off Switch JQuery Plugin to version 3.3.2.
+- Updated Knob JQuery Plugin to version 1.2.11.
+- Updated SlimScroll JQuery Plugin to version 1.3.0.
+- Updated UI JQuery Plugin to version 1.11.3.
+- Updated Steps JQuery Plugin to version 1.1.0.
+- Updated Validate JQuery Plugin to version 1.13.1.
+- From wizard bug fix (custom.js)
+- Minor design updates (style.css)
+- Updated bootstrap (css and js), updates jQuery, updated font awesome icon (css and fonts folder), Updates html5shiv and respond js.
+- Updated checkbox and radio button bug in form-validate page, font wizard page. 
+- Nav tabs bug fix. (less-style.less, style.css)
+
+**Version 1.1:**
+
+- Bug fix - sidebar menu in form-wizard page and 0-base page.(style.css)
+- Bug fix - search box in head bar - all pages.(style.css)
+- Added pagination in inbox page.(inbox.html)
+- Bug fix - head bar notification drop down in all pages.(style.css)
+- Updated the sidebar navigation menu list in all pages.(all .html files)
+
+**Version 1.0:**
+
+- Initial Release
