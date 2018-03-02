@@ -2,6 +2,8 @@ namespace BugTracker.Migrations
 {
     
     using BugTracker.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -16,109 +18,120 @@ namespace BugTracker.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //var store = new RoleStore<IdentityRole>(context);
-            //var manager = new RoleManager<IdentityRole>(store);
-            //var role = new IdentityRole();
+            var store = new RoleStore<IdentityRole>(context);
+            var manager = new RoleManager<IdentityRole>(store);
+            var role = new IdentityRole();
 
-            //if (!context.Roles.Any(r => r.Name == "Admin"))
-            //{
-            //    role = new IdentityRole { Name = "Admin" };
-            //    manager.Create(role);
-            //}
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                role = new IdentityRole { Name = "Admin" };
+                manager.Create(role);
+            }
 
-            //if (!context.Roles.Any(r => r.Name == "Developer"))
-            //{
-            //    role = new IdentityRole { Name = "Developer" };
-            //    manager.Create(role);
-            //}
+            if (!context.Roles.Any(r => r.Name == "Developer"))
+            {
+                role = new IdentityRole { Name = "Developer" };
+                manager.Create(role);
+            }
 
-            //if (!context.Roles.Any(r => r.Name == "Submitter"))
-            //{
-            //    role = new IdentityRole { Name = "Submitter" };
-            //    manager.Create(role);
-            //}
+            if (!context.Roles.Any(r => r.Name == "Submitter"))
+            {
+                role = new IdentityRole { Name = "Submitter" };
+                manager.Create(role);
+            }
 
-            //if (!context.Roles.Any(r => r.Name == "ProjectManager"))
-            //{
-            //    role = new IdentityRole { Name = "ProjectManager" };
-            //    manager.Create(role);
-            //}
+            if (!context.Roles.Any(r => r.Name == "ProjectManager"))
+            {
+                role = new IdentityRole { Name = "ProjectManager" };
+                manager.Create(role);
+            }
 
-            //var userStore = new UserStore<User>(context);
-            //var userManager = new UserManager<User>(userStore);
+            var userStore = new UserStore<User>(context);
+            var userManager = new UserManager<User>(userStore);
 
-            //if (!context.Users.Any(u => u.Email == "admin@demo.com"))
-            //{
-            //    var user = new User
-            //    {
-            //        UserName = "admin@demo.com",
-            //        Email = "admin@demo.com",
-            //        FirstName = "Administrator",
-            //        LastName = "Role",
-            //        DisplayName = "ADMIN"
-            //    };
+            if (!context.Users.Any(u => u.Email == "cgk3008.ck@gmail.com"))
+            {
+                var user = new User /*userManager.Create(new User*/
+                {
+                    UserName = "cliffkoenig",
+                    Email = "cgk3008.ck@gmail.com",
+                    FirstName = "Cliff",
+                    LastName = "Koenig",
+                    DisplayName = "ADMIN"
+                }/*, "Redd12!")*/;
+                //Add password above????
 
-            //    userManager.Create(user, "Abc&123!");
+                userManager.Create(user, "cliffkoenig");
 
-            //    userManager.AddToRoles(user.Id,
-            //        new string[] {
-            //            "Admin"
-            //        });
-            //}
-            //if (!context.Users.Any(u => u.Email == "manager@demo.com"))
-            //{
-            //    var user = new User
-            //    {
-            //        UserName = "manager@demo.com",
-            //        Email = "manager@demo.com",
-            //        FirstName = "Manager",
-            //        LastName = "Role",
-            //        DisplayName = "MANGR"
-            //    };
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "Admin"
+                    });
+            }
 
-            //    userManager.Create(user, "Abc&123!");
+            //var userId = userManager.FindByEmail("cgk3008.ck@gmail.com").Id;  
+            //userManager.AddToRole(userId, "Admin");
 
-            //    userManager.AddToRoles(user.Id,
-            //        new string[] {
-            //            "ProjectManager"
-            //        });
-            //}
-            //if (!context.Users.Any(u => u.Email == "developer@demo.com"))
-            //{
-            //    var user = new User
-            //    {
-            //        UserName = "developer@demo.com",
-            //        Email = "developer@demo.com",
-            //        FirstName = "Developer",
-            //        LastName = "Role",
-            //        DisplayName = "DEVPR"
-            //    };
+            if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
+            {
+                var user = new User /*userManager.Create(new User*/
+                {
+                    UserName = "moderator",
+                    Email = "moderator@coderfoundry.com",
+                    FirstName = "Antonio",
+                    LastName = "Raynor",
+                    DisplayName = "MANAGER"
+                }/*, "Redd12!")*/;
+                //Add password above????
 
-            //    userManager.Create(user, "Abc&123!");
+                userManager.Create(user, "Abc&123!");
 
-            //    userManager.AddToRoles(user.Id,
-            //        new string[] {
-            //            "Developer"
-            //        });
-            //}
-            //if (!context.Users.Any(u => u.Email == "submitter@demo.com"))
-            //{
-            //    var user = new User
-            //    {
-            //        UserName = "submitter@demo.com",
-            //        Email = "submitter@demo.com",
-            //        FirstName = "Submitter",
-            //        LastName = "Role",
-            //        DisplayName = "SUBMT"
-            //    };
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "ProjectManager"
+                    });
+            }
 
-            //    userManager.Create(user, "Abc&123!");
+            //var userId = userManager.FindByEmail("moderator@coderfoundry.com").Id;  
+            //userManager.AddToRole(userId, "ProjectManager");
 
-            //    userManager.AddToRoles(user.Id,
-            //        new string[] {
-            //            "Submitter"
-            //        });
-            //}
+
+            if (!context.Users.Any(u => u.Email == "developer@demo.com"))
+            {
+                var user = new User
+                {
+                    UserName = "developer@demo.com",
+                    Email = "developer@demo.com",
+                    FirstName = "Developer",
+                    LastName = "Role",
+                    DisplayName = "DEVPR"
+                };
+
+                userManager.Create(user, "Abc&123!");
+
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "Developer"
+                    });
+            }
+            if (!context.Users.Any(u => u.Email == "submitter@demo.com"))
+            {
+                var user = new User
+                {
+                    UserName = "submitter@demo.com",
+                    Email = "submitter@demo.com",
+                    FirstName = "Submitter",
+                    LastName = "Role",
+                    DisplayName = "SUBMT"
+                };
+
+                userManager.Create(user, "Abc&123!");
+
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "Submitter"
+                    });
+            }
 
 
             //if (!context.TicketPriorities.Any(u => u.Name == "High"))
