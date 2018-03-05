@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace BugTracker.Models.Helper
 {
@@ -91,21 +92,50 @@ namespace BugTracker.Models.Helper
 
 
         //public ICollection<User> ListRolesForUser(string UserId)
-
         //{
-        //  try
-        //    {
-        //        return userManager.GetRoles(UserId);
-
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
+        //    return userManager.GetRoles(UserId);
         //}
 
-        //Need list of roles not assigned to user
+
+
+        //{
+        //    List<User> users = new List<User>();
+        //    List<User> roleUsers = userManager.GetRoles(UserId);
+
+        //    foreach (var u in roleUsers)
+        //    {
+        //        if (IsUserInRole(u.Role, UserId))
+        //        {
+        //            users.Add(u);
+        //        }
+        //    }
+        //    return users;
+        //}
+
+
+
+
+
+
+        //     Need list of roles not assigned to user
+
+        //public ICollection<User> ListRolesNotForUser(string Role)
+        //{
+        //    List<User> roleUsers = new List<User>();
+        //    List<User> users = userManager.Users.ToList();
+
+        //    foreach (var u in users)
+        //    {
+        //        if (IsUserInRole(u.Id, Role))
+        //        {
+        //            roleUsers.Add(u);
+        //        }
+        //    }
+        //    return roleUsers;
+        //}
+
 
 
     }
+
 }

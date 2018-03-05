@@ -2464,3 +2464,8 @@ form label.error {
 	border-width: 1px !important;
 	padding: 6px 11px;
 }
+
+.Important {
+	font-size: large;
+	color: Red;
+}

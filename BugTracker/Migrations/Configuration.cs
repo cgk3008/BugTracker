@@ -1,6 +1,5 @@
 namespace BugTracker.Migrations
 {
-    
     using BugTracker.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -8,6 +7,7 @@ namespace BugTracker.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+
 
     internal sealed class Configuration : DbMigrationsConfiguration<BugTracker.Models.ApplicationDbContext>
     {
@@ -51,49 +51,51 @@ namespace BugTracker.Migrations
 
             if (!context.Users.Any(u => u.Email == "cgk3008.ck@gmail.com"))
             {
-                var user = new User /*userManager.Create(new User*/
+                /*var user = new User*/
+                userManager.Create(new User
                 {
                     UserName = "cliffkoenig",
                     Email = "cgk3008.ck@gmail.com",
                     FirstName = "Cliff",
                     LastName = "Koenig",
                     DisplayName = "ADMIN"
-                }/*, "Redd12!")*/;
+                }, "Redd12!");
                 //Add password above????
 
-                userManager.Create(user, "cliffkoenig");
+                //userManager.Create(user, "cliffkoenig");
 
-                userManager.AddToRoles(user.Id,
-                    new string[] {
-                        "Admin"
-                    });
+                //userManager.AddToRoles(user.Id,
+                //    new string[] {
+                //        "Admin"
+                //    });
             }
 
-            //var userId = userManager.FindByEmail("cgk3008.ck@gmail.com").Id;  
-            //userManager.AddToRole(userId, "Admin");
+            var userId = userManager.FindByEmail("cgk3008.ck@gmail.com").Id;
+            userManager.AddToRole(userId, "Admin");
 
             if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
             {
-                var user = new User /*userManager.Create(new User*/
+                /* var user = new User*/
+                userManager.Create(new User
                 {
                     UserName = "moderator",
                     Email = "moderator@coderfoundry.com",
                     FirstName = "Antonio",
                     LastName = "Raynor",
                     DisplayName = "MANAGER"
-                }/*, "Redd12!")*/;
+                }, "Password-1");
                 //Add password above????
 
-                userManager.Create(user, "Abc&123!");
+                //userManager.Create(user, "Abc&123!");
 
-                userManager.AddToRoles(user.Id,
-                    new string[] {
-                        "ProjectManager"
-                    });
+                //userManager.AddToRoles(user.Id,
+                //    new string[] {
+                //        "ProjectManager"
+                //    });
             }
 
-            //var userId = userManager.FindByEmail("moderator@coderfoundry.com").Id;  
-            //userManager.AddToRole(userId, "ProjectManager");
+            var userIdMod = userManager.FindByEmail("moderator@coderfoundry.com").Id;
+            userManager.AddToRole(userIdMod, "ProjectManager");
 
 
             if (!context.Users.Any(u => u.Email == "developer@demo.com"))
@@ -107,12 +109,12 @@ namespace BugTracker.Migrations
                     DisplayName = "DEVPR"
                 };
 
-                userManager.Create(user, "Abc&123!");
+                //userManager.Create(user, "Abc&123!");
 
-                userManager.AddToRoles(user.Id,
-                    new string[] {
-                        "Developer"
-                    });
+                //userManager.AddToRoles(user.Id,
+                //    new string[] {
+                //        "Developer"
+                //    });
             }
             if (!context.Users.Any(u => u.Email == "submitter@demo.com"))
             {

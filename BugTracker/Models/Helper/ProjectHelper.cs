@@ -11,10 +11,10 @@ namespace BugTracker.Models.Helper
         //        Your project helper class should include but is not limited to...
 
         //IsUserOnProject
-        //ListUserProjects-done?
-        //AddUserToProjectdone?
-        //RemoveUserFromProject-done?
-        //UsersOnProject-done?
+        //ListUserProjects-done
+        //AddUserToProject-done
+        //RemoveUserFromProject-done
+        //UsersOnProject-done
         //UserNotOnProject(edited)-done?
 
 
