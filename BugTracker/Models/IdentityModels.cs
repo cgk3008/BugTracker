@@ -26,6 +26,10 @@ namespace BugTracker.Models
 
         public User()
         {
+       
+
+
+
             Project = new HashSet<Project>();
             Comment = new HashSet<TicketComment>();
             Attachment = new HashSet<TicketAttachment>();

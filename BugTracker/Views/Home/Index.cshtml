@@ -1,3 +1,15 @@
+@*@using PagedList;
+@using PagedList.Mvc;
+
+
+@model IPagedList<BugTracker.Models.BugTracker>*@
+
+
+@{
+	ViewBag.Title = "Index";
+}
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -332,39 +344,27 @@
 			</div>
 
 			<!-- Mainbar head ends -->
+			@*<input disabled type="submit" value="Submit Comment" class="btn btn-default" />*@
 
 
+			@*@Html.DropDownListFor(m => m.RoleName, new *@
 
+			UserRolesHelper
 
-			<h3>
+			AddUserToRole(string UserId, string Role)
 
+			RemoveUserFromRole(string UserId, string Role)
 
+			IsUserInRole(string UserId, string Role)
 
-				@*<input disabled type="submit" value="Submit Comment" class="btn btn-default" />*@
+			ListUsersInRole(string Role)
 
-				<p align="center">
+			ListUsersNotInRole(string Role)
 
-					<asp:Label ID="ActionStatus" runat="server" CssClass="Important"></asp:Label>
-				</p>
+			ListRolesForUser(string UserId)
 
+			<br />
 
-
-				UserRolesHelper
-
-				AddUserToRole(string UserId, string Role)
-
-				RemoveUserFromRole(string UserId, string Role)
-
-				IsUserInRole(string UserId, string Role)
-
-				ListUsersInRole(string Role)
-
-				ListUsersNotInRole(string Role)
-
-				ListRolesForUser(string UserId)
-
-				<br />
-			</h3>
 
 
 
@@ -1354,13 +1354,13 @@
 				});
 
 
-							<!--Actual plotting -- >
+								<!--Actual plotting -- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-						 <!--Line chart ends -- >
+							 <!--Line chart ends -- >
 
-						 <!--Bar chart starts -- >
+							 <!--Bar chart starts -- >
 
 			$(function () {
 
@@ -1415,10 +1415,10 @@
 
 			});
 
-						<!--Bar chart ends -- >
+							<!--Bar chart ends -- >
 
 
-						<!--Realtime chart starts -- >
+							<!--Realtime chart starts -- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -1496,9 +1496,9 @@
 
 			});
 
-						<!--Realtime charts ends -- >
+							<!--Realtime charts ends -- >
 
-						<!--Pie chart start -- >
+							<!--Pie chart start -- >
 
 			$(function () {
 
@@ -1534,7 +1534,7 @@
 
 
 			});
-						<!--Pie chart ends -- >
+							<!--Pie chart ends -- >
 
 			/* ****************************************** */
 			/* Main area sparkline */

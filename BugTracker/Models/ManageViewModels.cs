@@ -39,6 +39,25 @@ namespace BugTracker.Models
         public string ConfirmPassword { get; set; }
     }
 
+    //public class ChangeFirstNameViewModel
+    //{
+    //    [Required]
+    //    [DataType(DataType.FirstName)]
+    //    [Display(Name = "Current First Name")]
+    //    public string OldName { get; set; }
+
+    //    [Required]
+    //    [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+    //    [DataType(DataType.FirstName)]
+    //    [Display(Name = "New First Name")]
+    //    public string NewName { get; set; }
+
+    //    [DataType(DataType.FirstName)]
+    //    [Display(Name = "Confirm New First Name")]
+    //    [Compare("New First Name", ErrorMessage = "The new name and confirmation password do not match.")]
+    //    public string ConfirmName { get; set; }
+    //}
+
     public class ChangePasswordViewModel
     {
         [Required]

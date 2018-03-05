@@ -214,6 +214,38 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
+        ////
+        //// GET: /Manage/ChangeName
+        //public ActionResult ChangeFirstName()
+        //{
+        //    return View();
+        //}
+
+        ////
+        //// POST: /Manage/ChangeFirstName
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> ChangeFirstName(ChangeFirstNameViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+        //    var result = await UserManager.ChangeFirstNameAsync(User.Identity.GetUserId(), model.OldFirstName, model.NewFirstName);
+        //    if (result.Succeeded)
+        //    {
+        //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //        if (user != null)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //        }
+        //        return RedirectToAction("Index", new { Message = ManageMessageId.ChangeFirstNameSuccess });
+        //    }
+        //    AddErrors(result);
+        //    return View(model);
+        //}
+
+
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
