@@ -14,21 +14,21 @@ namespace BugTracker.Models.Helper
         //ListUserProjects-done
         //AddUserToProject-done
         //RemoveUserFromProject-done
-        //UsersOnProject-done
+        //UsersOnProject-donedB
         //UserNotOnProject(edited)-done?
 
 
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext dB = new ApplicationDbContext();
 
         public Exception AddUserToProject(string userId, int projectId)
         {
             try
             {
-                var prj = db.Project.Find(projectId);
-                var usr = db.Users.Find(userId);
+                var prj = dB.Project.Find(projectId);
+                var usr = dB.Users.Find(userId);
                 prj.User.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
-                db.SaveChanges();
+                dB.SaveChanges();
                 return null;
             }
             catch (Exception ex)
@@ -41,10 +41,10 @@ namespace BugTracker.Models.Helper
         {
             try
             {
-                var prj = db.Project.Find(projectId);
-                var usr = db.Users.Find(userId);
+                var prj = dB.Project.Find(projectId);
+                var usr = dB.Users.Find(userId);
                 prj.User.Remove(usr);
-                db.SaveChanges();
+                dB.SaveChanges();
                 return null;
             }
             catch (Exception ex)
@@ -56,15 +56,15 @@ namespace BugTracker.Models.Helper
         public ICollection<Project> ListProjectsForUser(string userId)
         {
 
-            return db.Users.Find(userId).Project.ToList();
+            return dB.Users.Find(userId).Project.ToList();
 
             //all this code simplified above
-            //var usr = db.Users.Find(userId);
+            //var usr = dB.Users.Find(userId);
             //List<Project> ProjUsers = new List<Project>();
 
             //try
             //{
-            //    var prj = db.Project.ToList();
+            //    var prj = dB.Project.ToList();
             //    foreach (var p in prj)
             //    {
             //        if(p.Users.Contains(usr))
@@ -85,49 +85,50 @@ namespace BugTracker.Models.Helper
 
         //IsUserOnProject
 
-        //public bool IsUserOnProject(string userId, int projectId)
-        //{
-        //    try
-        //    {
-        //        var prj = db.Project.Find(projectId);
-        //        var usr = db.Users.Find(userId);
-        //        prj.User.Find(usr);
+        public bool IsUserOnProject(string userId, int projectId)
+        {
+            try
+            {
+                var prj = dB.Project.Find(projectId);
+                var usr = dB.Users.Find(userId);
+                //prj.User.Find(usr);
 
-        //        var result = db.Users.Find(userId);
-        //        if (
-        //        result != null)
-        //            return true;
-        //    }
+                //var result = dB.Users.Find(userId);
+                if (prj.User != null)
+                {
 
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex);
-        //        return false;
-        //    }
-        //}
+                }
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
 
         public ICollection<User> ListUsersOnProject(int projectId)
         {
-            return db.Project.Find(projectId).User.ToList();
+            return dB.Project.Find(projectId).User.ToList();
         }
 
         //UserNotOnProject(edited)
 
-        //    public ICollection<User> ListUsersNotOnProject(int projectId)
-        //    {
-        //        List<User> projectUsers = new List<User>();
-        //        List<User> users = db.Users.ToList();
+        public ICollection<string> ListUsersNotOnProject(int projectId)
+        {
+            List<string> usersNotProj = new List<string>();
+            var users = dB.Users;
 
-        //        foreach (var u in users)
-        //        {
-        //            if (!IsUserOnProject(u.Id, projectId))
-        //            {
-        //                projectUsers.Add(u);
-        //            }
-        //        }
-        //        return projectUsers;
-        //    }
-
+            foreach (var u in users)
+            {
+                if (!IsUserOnProject(u.Id, projectId))
+                {
+                    usersNotProj.Add(u.DisplayName);
+                }
+            }
+            return usersNotProj;
+        }
 
     }
 }

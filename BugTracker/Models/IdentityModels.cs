@@ -26,11 +26,8 @@ namespace BugTracker.Models
         //public virtual ICollection<Ticket> AssignedToUser { get; set; }   Don't need this one!!!!    
 
         public User()
-        {
-       
-
-
-
+        {   
+                        
             Project = new HashSet<Project>();
             Comment = new HashSet<TicketComment>();
             Attachment = new HashSet<TicketAttachment>();

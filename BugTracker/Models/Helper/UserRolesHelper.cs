@@ -60,6 +60,7 @@ namespace BugTracker.Models.Helper
             }
         }
 
+        //modify this? see ListRolesNotForUser, string not "User"
         public ICollection<User> ListUsersInRole(string Role)
         {
             List<User> roleUsers = new List<User>();
@@ -75,6 +76,7 @@ namespace BugTracker.Models.Helper
             return roleUsers;
         }
 
+        //modify this? see ListRolesNotForUser, string not "User"
         public ICollection<User> ListUsersNotInRole(string Role)
         {
             List<User> roleUsers = new List<User>();
@@ -89,28 +91,27 @@ namespace BugTracker.Models.Helper
             }
             return roleUsers;
         }
+        
+        public ICollection<string> ListRolesForUser(string UserId)
+        {
+            return userManager.GetRoles(UserId);
+        }
 
 
-        //public ICollection<User> ListRolesForUser(string UserId)
-        //{
-        //    return userManager.GetRoles(UserId);
-        //}
 
-
-
-        //{
-        //    List<User> users = new List<User>();
-        //    List<User> roleUsers = userManager.GetRoles(UserId);
-
-        //    foreach (var u in roleUsers)
-        //    {
-        //        if (IsUserInRole(u.Role, UserId))
         //        {
-        //            users.Add(u);
-        //        }
-        //    }
-        //    return users;
+        //            List<User> users = new List<User>();
+        //        List<User> roleUsers = userManager.GetRoles(UserId);
+
+        //            foreach (var u in roleUsers)
+        //            {
+        //                if (IsUserInRole(u.Role, UserId))
+        //                {
+        //                    users.Add(u);
+        //                }
         //}
+        //            return users;
+        //        }
 
 
 
@@ -119,20 +120,20 @@ namespace BugTracker.Models.Helper
 
         //     Need list of roles not assigned to user
 
-        //public ICollection<User> ListRolesNotForUser(string Role)
-        //{
-        //    List<User> roleUsers = new List<User>();
-        //    List<User> users = userManager.Users.ToList();
+        public ICollection<string> ListRolesNotForUser(string UserId)
+        {
+            List<string> userRoles = new List<string>();
+            var roles = dB.Roles;
 
-        //    foreach (var u in users)
-        //    {
-        //        if (IsUserInRole(u.Id, Role))
-        //        {
-        //            roleUsers.Add(u);
-        //        }
-        //    }
-        //    return roleUsers;
-        //}
+            foreach (var u in roles)
+            {
+                if (!IsUserInRole(u.Id, UserId))
+                {
+                    userRoles.Add(u.Name);
+                }
+            }
+            return userRoles;
+        }
 
 
 
