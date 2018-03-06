@@ -397,8 +397,9 @@
     <Content Include="Assets\bug-temp\theme\inbox.html" />
     <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
     <Content Include="Views\Account\ConfirmationSent.cshtml" />
-    <Content Include="Views\AdminIndex\Index.cshtml" />
-    <Content Include="Views\AdminIndex\EditUser.cshtml" />
+    <Content Include="Views\AdminIndexViews\Index.cshtml" />
+    <Content Include="Views\AdminIndexViews\EditUser.cshtml" />
+    <Content Include="Views\AdminUserViews\Index.cshtml" />
     <None Include="Views\Home\index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />

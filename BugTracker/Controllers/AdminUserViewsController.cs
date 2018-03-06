@@ -16,15 +16,14 @@ namespace BugTracker.Controllers
 
         public ActionResult Index()
         {
-            //private UserManager<User> userManager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
-       
 
-        List<AdminIndexViewModel> model = new List<AdminIndexViewModel>();
+            List<AdminIndexViewModel> model = new List<AdminIndexViewModel>();
             UserRolesHelper helper = new UserRolesHelper();
+
             foreach (var User in dB.Users)
             {
                 AdminIndexViewModel vm = new AdminIndexViewModel();
-                    vm.User =User;
+                vm.User = User;
                 vm.Roles = helper.ListRolesForUser(User.Id);
                 model.Add(vm);
             }
@@ -37,13 +36,12 @@ namespace BugTracker.Controllers
             AdminUserViewModel AdminModel = new AdminUserViewModel();
             UserRolesHelper helper = new UserRolesHelper();
             var selected = helper.ListRolesForUser(id);
-            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name"          );
+            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name");
             AdminModel.User.Id = user.Id;
             AdminModel.User.FullName = user.FullName;
             return View(AdminModel);
 
         }
-
 
         //POST: EditUser
         [HttpPost]
@@ -62,10 +60,6 @@ namespace BugTracker.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
-
-
 
     }
 }
