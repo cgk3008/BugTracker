@@ -27,7 +27,7 @@ namespace BugTracker.Controllers
                 vm.Roles = helper.ListRolesForUser(User.Id);
                 model.Add(vm);
             }
-            return View(dB.Users.ToList());
+            return View(model);
         }
 
         public ActionResult EditUser(string id)
