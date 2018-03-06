@@ -1,17 +1,19 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-//namespace BugTracker.Models
-//{
-//    public class AdminUserViewModel
-//    {
+namespace BugTracker.Models
+{
+    public class AdminUserViewModel
+    {
 
-//        public User User { get; set; }
-//        //public List<string> Roles { get; set; }  revise
+        public User User { get; set; }
+        public List<string> Roles { get; set; }
 
 
+    }
+}
 
 
 

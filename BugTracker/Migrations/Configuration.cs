@@ -138,35 +138,35 @@ namespace BugTracker.Migrations
             }
 
 
-            if (!context.TicketPriorities.Any(u => u.Name == "High"))
-            { context.TicketPriorities.Add(new TicketPriority { Name = "High" }); }
+            if (!context.Priority.Any(u => u.Name == "High"))
+            { context.Priority.Add(new TicketPriority { Name = "High" }); }
 
-            if (!context.TicketPriorities.Any(u => u.Name == "Medium"))
-            { context.TicketPriorities.Add(new TicketPriority { Name = "Medium" }); }
+            if (!context.Priority.Any(u => u.Name == "Medium"))
+            { context.Priority.Add(new TicketPriority { Name = "Medium" }); }
 
-            if (!context.TicketPriorities.Any(u => u.Name == "Low"))
-            { context.TicketPriorities.Add(new TicketPriority { Name = "Low" }); }
+            if (!context.Priority.Any(u => u.Name == "Low"))
+            { context.Priority.Add(new TicketPriority { Name = "Low" }); }
 
-            if (!context.TicketPriorities.Any(u => u.Name == "Urgent"))
-            { context.TicketPriorities.Add(new TicketPriority { Name = "Urgent" }); }
+            if (!context.Priority.Any(u => u.Name == "Urgent"))
+            { context.Priority.Add(new TicketPriority { Name = "Urgent" }); }
 
-            if (!context.TicketTypes.Any(u => u.Name == "Production Fix"))
-            { context.TicketTypes.Add(new TicketType { Name = "Production Fix" }); }
+            if (!context.Type.Any(u => u.Name == "Production Fix"))
+            { context.Type.Add(new TicketType { Name = "Production Fix" }); }
 
-            if (!context.TicketTypes.Any(u => u.Name == "Project Task"))
-            { context.TicketTypes.Add(new TicketType { Name = "Project Task" }); }
+            if (!context.Type.Any(u => u.Name == "Project Task"))
+            { context.Type.Add(new TicketType { Name = "Project Task" }); }
 
-            if (!context.TicketTypes.Any(u => u.Name == "Software Update"))
-            { context.TicketTypes.Add(new TicketType { Name = "Software Update" }); }
+            if (!context.Type.Any(u => u.Name == "Software Update"))
+            { context.Type.Add(new TicketType { Name = "Software Update" }); }
 
-            if (!context.TicketStatuses.Any(u => u.Name == "New"))
-            { context.TicketStatuses.Add(new TicketStatus { Name = "New" }); }
+            if (!context.Status.Any(u => u.Name == "New"))
+            { context.Status.Add(new TicketStatus { Name = "New" }); }
 
-            if (!context.TicketStatuses.Any(u => u.Name == "In Development"))
-            { context.TicketStatuses.Add(new TicketStatus { Name = "In Development" }); }
+            if (!context.Status.Any(u => u.Name == "In Development"))
+            { context.Status.Add(new TicketStatus { Name = "In Development" }); }
 
-            if (!context.TicketStatuses.Any(u => u.Name == "Completed"))
-            { context.TicketStatuses.Add(new TicketStatus { Name = "Completed" }); }
+            if (!context.Status.Any(u => u.Name == "Completed"))
+            { context.Status.Add(new TicketStatus { Name = "Completed" }); }
 
 
         }

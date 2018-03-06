@@ -17,7 +17,7 @@ namespace BugTracker.Controllers
         // GET: TicketHistories
         public ActionResult Index()
         {
-            var ticketHistories = db.TicketHistories.Include(t => t.Ticket).Include(t => t.User);
+            var ticketHistories = db.History.Include(t => t.Ticket).Include(t => t.User);
             return View(ticketHistories.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TicketHistory ticketHistory = db.TicketHistories.Find(id);
+            TicketHistory ticketHistory = db.History.Find(id);
             if (ticketHistory == null)
             {
                 return HttpNotFound();
@@ -53,7 +53,7 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TicketHistories.Add(ticketHistory);
+                db.History.Add(ticketHistory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TicketHistory ticketHistory = db.TicketHistories.Find(id);
+            TicketHistory ticketHistory = db.History.Find(id);
             if (ticketHistory == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TicketHistory ticketHistory = db.TicketHistories.Find(id);
+            TicketHistory ticketHistory = db.History.Find(id);
             if (ticketHistory == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TicketHistory ticketHistory = db.TicketHistories.Find(id);
-            db.TicketHistories.Remove(ticketHistory);
+            TicketHistory ticketHistory = db.History.Find(id);
+            db.History.Remove(ticketHistory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

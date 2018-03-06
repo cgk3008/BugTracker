@@ -17,7 +17,7 @@ namespace BugTracker.Controllers
         // GET: TicketNotifications
         public ActionResult Index()
         {
-            var ticketNotifications = db.TicketNotifications.Include(t => t.Ticket).Include(t => t.User);
+            var ticketNotifications = db.Notification.Include(t => t.Ticket).Include(t => t.User);
             return View(ticketNotifications.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TicketNotification ticketNotification = db.TicketNotifications.Find(id);
+            TicketNotification ticketNotification = db.Notification.Find(id);
             if (ticketNotification == null)
             {
                 return HttpNotFound();
@@ -53,7 +53,7 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TicketNotifications.Add(ticketNotification);
+                db.Notification.Add(ticketNotification);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TicketNotification ticketNotification = db.TicketNotifications.Find(id);
+            TicketNotification ticketNotification = db.Notification.Find(id);
             if (ticketNotification == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TicketNotification ticketNotification = db.TicketNotifications.Find(id);
+            TicketNotification ticketNotification = db.Notification.Find(id);
             if (ticketNotification == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TicketNotification ticketNotification = db.TicketNotifications.Find(id);
-            db.TicketNotifications.Remove(ticketNotification);
+            TicketNotification ticketNotification = db.Notification.Find(id);
+            db.Notification.Remove(ticketNotification);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
