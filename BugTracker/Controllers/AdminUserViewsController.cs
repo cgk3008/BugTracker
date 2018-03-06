@@ -12,21 +12,23 @@ namespace BugTracker.Controllers
 {
     public class AdminUserViewsController : Controller
     {
+        private ApplicationDbContext dB = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             //private UserManager<User> userManager = new UserManager<User>(new UserStore<User>(new ApplicationDbContext()));
-        private ApplicationDbContext dB = new ApplicationDbContext();
+       
 
         List<AdminIndexViewModel> model = new List<AdminIndexViewModel>();
             UserRolesHelper helper = new UserRolesHelper();
             foreach (var User in dB.Users)
             {
-                AdminIndexViewModel vm = new AdminIndexViewModel()
-                    vm.User = user;
-                vm.Roles = helper.ListUserRoles(user.Id);
+                AdminIndexViewModel vm = new AdminIndexViewModel();
+                    vm.User =User;
+                vm.Roles = helper.ListRolesForUser(User.Id);
                 model.Add(vm);
             }
-            return View(db.Users.ToList());
+            return View(dB.Users.ToList());
         }
 
         public ActionResult EditUser(string id)
@@ -34,8 +36,8 @@ namespace BugTracker.Controllers
             var user = dB.Users.Find(id);
             AdminUserViewModel AdminModel = new AdminUserViewModel();
             UserRolesHelper helper = new UserRolesHelper();
-            var selected = helper.ListUserRoles(id);
-            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name",          )
+            var selected = helper.ListRolesForUser(id);
+            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name"          );
             AdminModel.User.Id = user.Id;
             AdminModel.User.FullName = user.FullName;
             return View(AdminModel);
@@ -58,7 +60,7 @@ namespace BugTracker.Controllers
             {
                 helper.AddUserToRole(model.User.Id, roleadd);
             }
-            return RediretToAction("Index");
+            return RedirectToAction("Index");
         }
 
 

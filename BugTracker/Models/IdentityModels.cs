@@ -13,6 +13,7 @@ namespace BugTracker.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DisplayName { get; set; }
+        public string FullName { get; set; }
         //public string Password { get; set; }
 
         //public virtual Project Project { get; set; }

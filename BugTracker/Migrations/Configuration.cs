@@ -58,12 +58,12 @@ namespace BugTracker.Migrations
                     Email = "cgk3008.ck@gmail.com",
                     FirstName = "Cliff",
                     LastName = "Koenig",
-                    DisplayName = "ADMIN"
-                    //Password = "Redd12!"
+                    DisplayName = "ADMIN",
+                    FullName = "Cliff Koenig"
                 }/*, "Redd12!")*/;
                 //Add password above????
 
-                userManager.Create(user, "cliffkoenig");
+                userManager.Create(user, "Redd12!");
 
                 userManager.AddToRoles(user.Id,
                     new string[] {
@@ -83,7 +83,8 @@ namespace BugTracker.Migrations
                     Email = "moderator@coderfoundry.com",
                     FirstName = "Antonio",
                     LastName = "Raynor",
-                    DisplayName = "MANAGER"
+                    DisplayName = "MANAGER",
+                    FullName = "Antonio Raynor"
                     //Password = "Password-1"
                 }/*, "Password-1")*/;
                 //Add password above????
@@ -108,7 +109,8 @@ namespace BugTracker.Migrations
                     Email = "developer@demo.com",
                     FirstName = "Developer",
                     LastName = "Role",
-                    DisplayName = "DEVPR"
+                    DisplayName = "DEVPR",
+                    FullName = "Dev Role"
                 };
 
                 userManager.Create(user, "Abc&123!");
@@ -126,7 +128,8 @@ namespace BugTracker.Migrations
                     Email = "submitter@demo.com",
                     FirstName = "Submitter",
                     LastName = "Role",
-                    DisplayName = "SUBMT"
+                    DisplayName = "SUBMT",
+                    FullName = "Submit Role"
                 };
 
                 userManager.Create(user, "Abc&123!");

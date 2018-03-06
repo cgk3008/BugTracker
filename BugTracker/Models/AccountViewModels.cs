@@ -76,6 +76,9 @@ namespace BugTracker.Models
         [Display(Name = "Display Name")]
         public string DisplayName { get; set; }
 
+        [Required]
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
 
         [Required]
         [EmailAddress]
