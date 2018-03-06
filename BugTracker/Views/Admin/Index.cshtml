@@ -6,15 +6,17 @@
 
 <h2>Index</h2>
 
-@*@foreach (var mod in Model)
+@foreach (var mod in Model)
 {
 	<p>@mod.User.FirstName @mod.User.LastName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
 	<ul>
 		@foreach (var name in mod.Roles)
 		{
+
 			<li>
-				@role
+				@name
 			</li>
 		}
-	</ul>*@
+	</ul>
 
+}

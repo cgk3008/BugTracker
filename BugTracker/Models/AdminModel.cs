@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BugTracker.Models
 {
-    public class AdminUserViewModel
+    public class AdminModel
     {
         //[Key]
         //public int Id { get; set; }

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace BugTracker.Controllers
 {
-    public class AdminUserViewsController : Controller
+    public class AdminController : Controller
     {
         private ApplicationDbContext dB = new ApplicationDbContext();
 
@@ -33,7 +33,7 @@ namespace BugTracker.Controllers
         public ActionResult EditUser(string id)
         {
             var user = dB.Users.Find(id);
-            AdminUserViewModel AdminModel = new AdminUserViewModel();
+            AdminModel AdminModel = new AdminModel();
             UserRolesHelper helper = new UserRolesHelper();
             var selected = helper.ListRolesForUser(id);
             AdminModel.Roles = new MultiSelectList(dB.Roles, "Name");
@@ -46,7 +46,7 @@ namespace BugTracker.Controllers
         //POST: EditUser
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser(AdminUserViewModel model)
+        public ActionResult EditUser(AdminModel model)
         {
             //var user = dB.Users.Find(model.id);
             UserRolesHelper helper = new UserRolesHelper();
