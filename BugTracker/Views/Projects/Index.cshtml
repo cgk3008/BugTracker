@@ -34,6 +34,15 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.Name)
 
+				<ul>
+					@foreach (var u in item.User)
+					{
+						<li>
+							@u.FirstName @u.LastName
+						</li>
+					}
+				</ul>
+
 				@*@Html.DisplayFor.ListProjectsForUser((string userId)(modelItem => item.Name))*@
 
 			</td>

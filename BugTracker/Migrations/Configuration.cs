@@ -51,51 +51,53 @@ namespace BugTracker.Migrations
 
             if (!context.Users.Any(u => u.Email == "cgk3008.ck@gmail.com"))
             {
-                /*var user = new User*/
-                userManager.Create(new User
+                var user = new User
+                //userManager.Create(new User
                 {
                     UserName = "cliffkoenig",
                     Email = "cgk3008.ck@gmail.com",
                     FirstName = "Cliff",
                     LastName = "Koenig",
                     DisplayName = "ADMIN"
-                }, "Redd12!");
+                    //Password = "Redd12!"
+                }/*, "Redd12!")*/;
                 //Add password above????
 
-                //userManager.Create(user, "cliffkoenig");
+                userManager.Create(user, "cliffkoenig");
 
-                //userManager.AddToRoles(user.Id,
-                //    new string[] {
-                //        "Admin"
-                //    });
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "Admin"
+                    });
             }
 
-            var userId = userManager.FindByEmail("cgk3008.ck@gmail.com").Id;
-            userManager.AddToRole(userId, "Admin");
+            //var userId = userManager.FindByEmail("cgk3008.ck@gmail.com").Id;
+            //userManager.AddToRole(userId, "Admin");
 
             if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
             {
-                /* var user = new User*/
-                userManager.Create(new User
+                var user = new User
+                //userManager.Create(new User
                 {
                     UserName = "moderator",
                     Email = "moderator@coderfoundry.com",
                     FirstName = "Antonio",
                     LastName = "Raynor",
                     DisplayName = "MANAGER"
-                }, "Password-1");
+                    //Password = "Password-1"
+                }/*, "Password-1")*/;
                 //Add password above????
 
-                //userManager.Create(user, "Abc&123!");
+                userManager.Create(user, "Abc&123!");
 
-                //userManager.AddToRoles(user.Id,
-                //    new string[] {
-                //        "ProjectManager"
-                //    });
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "ProjectManager"
+                    });
             }
 
-            var userIdMod = userManager.FindByEmail("moderator@coderfoundry.com").Id;
-            userManager.AddToRole(userIdMod, "ProjectManager");
+            //var userIdMod = userManager.FindByEmail("moderator@coderfoundry.com").Id;
+            //userManager.AddToRole(userIdMod, "ProjectManager");
 
 
             if (!context.Users.Any(u => u.Email == "developer@demo.com"))
@@ -109,12 +111,12 @@ namespace BugTracker.Migrations
                     DisplayName = "DEVPR"
                 };
 
-                //userManager.Create(user, "Abc&123!");
+                userManager.Create(user, "Abc&123!");
 
-                //userManager.AddToRoles(user.Id,
-                //    new string[] {
-                //        "Developer"
-                //    });
+                userManager.AddToRoles(user.Id,
+                    new string[] {
+                        "Developer"
+                    });
             }
             if (!context.Users.Any(u => u.Email == "submitter@demo.com"))
             {
@@ -136,35 +138,35 @@ namespace BugTracker.Migrations
             }
 
 
-            //if (!context.TicketPriorities.Any(u => u.Name == "High"))
-            //{ context.TicketPriorities.Add(new TicketPriority { Name = "High" }); }
+            if (!context.TicketPriorities.Any(u => u.Name == "High"))
+            { context.TicketPriorities.Add(new TicketPriority { Name = "High" }); }
 
-            //if (!context.TicketPriorities.Any(u => u.Name == "Medium"))
-            //{ context.TicketPriorities.Add(new TicketPriority { Name = "Medium" }); }
+            if (!context.TicketPriorities.Any(u => u.Name == "Medium"))
+            { context.TicketPriorities.Add(new TicketPriority { Name = "Medium" }); }
 
-            //if (!context.TicketPriorities.Any(u => u.Name == "Low"))
-            //{ context.TicketPriorities.Add(new TicketPriority { Name = "Low" }); }
+            if (!context.TicketPriorities.Any(u => u.Name == "Low"))
+            { context.TicketPriorities.Add(new TicketPriority { Name = "Low" }); }
 
-            //if (!context.TicketPriorities.Any(u => u.Name == "Urgent"))
-            //{ context.TicketPriorities.Add(new TicketPriority { Name = "Urgent" }); }
+            if (!context.TicketPriorities.Any(u => u.Name == "Urgent"))
+            { context.TicketPriorities.Add(new TicketPriority { Name = "Urgent" }); }
 
-            //if (!context.TicketTypes.Any(u => u.Name == "Production Fix"))
-            //{ context.TicketTypes.Add(new TicketType { Name = "Production Fix" }); }
+            if (!context.TicketTypes.Any(u => u.Name == "Production Fix"))
+            { context.TicketTypes.Add(new TicketType { Name = "Production Fix" }); }
 
-            //if (!context.TicketTypes.Any(u => u.Name == "Project Task"))
-            //{ context.TicketTypes.Add(new TicketType { Name = "Project Task" }); }
+            if (!context.TicketTypes.Any(u => u.Name == "Project Task"))
+            { context.TicketTypes.Add(new TicketType { Name = "Project Task" }); }
 
-            //if (!context.TicketTypes.Any(u => u.Name == "Software Update"))
-            //{ context.TicketTypes.Add(new TicketType { Name = "Software Update" }); }
+            if (!context.TicketTypes.Any(u => u.Name == "Software Update"))
+            { context.TicketTypes.Add(new TicketType { Name = "Software Update" }); }
 
-            //if (!context.TicketStatuses.Any(u => u.Name == "New"))
-            //{ context.TicketStatuses.Add(new TicketStatus { Name = "New" }); }
+            if (!context.TicketStatuses.Any(u => u.Name == "New"))
+            { context.TicketStatuses.Add(new TicketStatus { Name = "New" }); }
 
-            //if (!context.TicketStatuses.Any(u => u.Name == "In Development"))
-            //{ context.TicketStatuses.Add(new TicketStatus { Name = "In Development" }); }
+            if (!context.TicketStatuses.Any(u => u.Name == "In Development"))
+            { context.TicketStatuses.Add(new TicketStatus { Name = "In Development" }); }
 
-            //if (!context.TicketStatuses.Any(u => u.Name == "Completed"))
-            //{ context.TicketStatuses.Add(new TicketStatus { Name = "Completed" }); }
+            if (!context.TicketStatuses.Any(u => u.Name == "Completed"))
+            { context.TicketStatuses.Add(new TicketStatus { Name = "Completed" }); }
 
 
         }

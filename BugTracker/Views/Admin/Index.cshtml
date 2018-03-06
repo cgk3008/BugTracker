@@ -1,0 +1,27 @@
+﻿@*@model IEnumerable<BugTracker.Models.AdminIndexViewModel>
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach(var mod in Model)
+{
+<p>@mod.User.FirstName @mod.User.LastName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
+<ul>
+	@foreach(var name in mod.Roles)
+	{
+<li>
+	@role
+</li>
+	}
+</ul>
+
+
+
+
+
+
+
+
+	//similar for projects, no view model needed for list of projects, just a db.projects.....to list on view*@
+

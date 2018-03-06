@@ -509,7 +509,8 @@ namespace BugTracker.Controllers
         public ActionResult ConfimationSent()
         {
             return View();
-        }
+        }
+
 
     }
 }

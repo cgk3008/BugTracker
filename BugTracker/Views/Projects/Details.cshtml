@@ -1,14 +1,14 @@
 ﻿@model BugTracker.Models.Project
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Project</h4>
-    <hr />
+	<h4>Project</h4>
+	<hr />
 	<dl class="dl-horizontal">
 		<dt>
 			@Html.DisplayNameFor(model => model.Name)
@@ -17,6 +17,9 @@
 		<dd>
 			@Html.DisplayFor(model => model.Name)
 		</dd>
+
+
+
 
 
 		ProjectHelper
@@ -29,9 +32,66 @@
 
 	</dl>
 </div>
+
+@using (Html.BeginForm("Create", "BlogComments")) //this doesn't refer to anything
+{
+	@Html.AntiForgeryToken()
+	@Html.Hidden("PostId", Model.Id) @*alternative method to utilize Id of post, likely need to modify or comment out <input name="Body"  ......*@
+	<div class="form-horizontal">
+		<h4>Comments</h4>
+		<hr />
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		@foreach (var comm in Model.Comments)
+
+		{
+			<div class="col-md-offset-2 col-md-10 border">
+				
+			
+
+				<h4>@Html.DisplayFor(model => comm.Body)</h4>
+
+			</div>
+
+		}
+
+		@*@Html.Partial("_CommentsPartial", new BlogComment() { PostId = Model.Id }) this is showing comments from a partial view, alternative method, may be incomplete*@
+
+		@*<input name="PostId" value="@Model.Id" hidden />*@
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-12">
+
+		
+
+				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-12">
+				@if (Request.IsAuthenticated)
+				{
+					<input type="submit" value="Submit Comment" class="btn btn-default" />
+
+			
+				}
+				else
+				{ <h4>LOGIN OR REGISTER TO ASSIGN ROLE</h4>
+					<input disabled type="submit" value="Add to User to Project" class="btn btn-default" />
+				}
+
+			</div>
+		</div>
+	</div>
+
+
+}
+
+
+
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Back to List", "Index")
 </p>
 
 
