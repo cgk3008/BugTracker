@@ -19,6 +19,9 @@ namespace BugTracker.Models.Helper
 
 
 
+            //dB.Project.Any (p => p.) "Any" returns a boolean??
+
+
         private ApplicationDbContext dB = new ApplicationDbContext();
 
         public Exception AddUserToProject(string userId, int projectId)

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BugTracker.Models.Project>
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@foreach (var chg in Model)
+{
+	<p>@chg.Name | @Html.ActionLink("Edit Users on Project", "EditProject", new { id = chg.Id })</p>
+	<ul>
+		@foreach (var user in chg.User)
+		{
+
+			<li>
+				@user.FullName
+			</li>
+		}
+	</ul>
+
+}

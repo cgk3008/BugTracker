@@ -1,0 +1,21 @@
+﻿@model BugTracker.Models.AdminProject
+@{
+	ViewBag.Title = "EditProject";
+}
+
+<h2>EditProject</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+
+	@Html.HiddenFor(m => m.Project.Id)
+
+
+	//Model.User or Model.Users
+
+	@Html.ListBox("SelectedUsers", Model.Users, new { @class = "control-label col-md-2" }) 
+	<p><input type="submit" class="btn btn-info" /></p>
+
+}

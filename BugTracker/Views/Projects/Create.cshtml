@@ -10,6 +10,8 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
+
+	//So let's make sure we can't create project with same name, AccountController under Register , Post, has code on registration that does this which gathers data from AcountViewModels
     
 <div class="form-horizontal">
 	<h4>Project</h4>

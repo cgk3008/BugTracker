@@ -41,13 +41,22 @@ namespace BugTracker.Controllers
             return View();
         }
 
+
+
         // POST: Projects/Create
+
+
+        //So let's make sure we can't create project with same name, AccountController under Register , Post, has code on registration that does this which gathers data from AcountViewModels
+
+            
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name, Created")] Project project)
         {
+            //add project name check helper here...relate to fields above?
+
             if (ModelState.IsValid)
             {
                 db.Project.Add(project);
@@ -57,6 +66,12 @@ namespace BugTracker.Controllers
 
             return View(project);
         }
+
+
+
+
+
+
 
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
