@@ -30,17 +30,22 @@ namespace BugTracker.Controllers
             return View(model);
         }
 
+        //GET: EditUser
         public ActionResult EditUser(string id)
         {
             var user = dB.Users.Find(id);
             AdminModel AdminModel = new AdminModel();
             UserRolesHelper helper = new UserRolesHelper();
             var selected = helper.ListRolesForUser(id);
-            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name");
-            AdminModel.User.Id = user.Id;
-            AdminModel.User.FullName = user.FullName;
+            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name", "Name", selected);
+            AdminModel.User = new User
+            {
+                Id = user.Id,
+                FullName = user.FullName
+            };
             return View(AdminModel);
 
+            //new { id = mod.User.Id })
         }
 
         //POST: EditUser

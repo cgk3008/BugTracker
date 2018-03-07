@@ -52,7 +52,7 @@ namespace BugTracker.Migrations
             if (!context.Users.Any(u => u.Email == "cgk3008.ck@gmail.com"))
             {
                 var user = new User
-                //userManager.Create(new User
+                
                 {
                     UserName = "cliffkoenig",
                     Email = "cgk3008.ck@gmail.com",
@@ -60,8 +60,8 @@ namespace BugTracker.Migrations
                     LastName = "Koenig",
                     DisplayName = "ADMIN",
                     FullName = "Cliff Koenig"
-                }/*, "Redd12!")*/;
-                //Add password above????
+                };
+             
 
                 userManager.Create(user, "Redd12!");
 
@@ -71,13 +71,12 @@ namespace BugTracker.Migrations
                     });
             }
 
-            //var userId = userManager.FindByEmail("cgk3008.ck@gmail.com").Id;
-            //userManager.AddToRole(userId, "Admin");
+           
 
             if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
             {
                 var user = new User
-                //userManager.Create(new User
+                
                 {
                     UserName = "moderator",
                     Email = "moderator@coderfoundry.com",
@@ -85,9 +84,9 @@ namespace BugTracker.Migrations
                     LastName = "Raynor",
                     DisplayName = "MANAGER",
                     FullName = "Antonio Raynor"
-                    //Password = "Password-1"
-                }/*, "Password-1")*/;
-                //Add password above????
+                   
+                };
+               
 
                 userManager.Create(user, "Abc&123!");
 
@@ -96,10 +95,6 @@ namespace BugTracker.Migrations
                         "ProjectManager"
                     });
             }
-
-            //var userIdMod = userManager.FindByEmail("moderator@coderfoundry.com").Id;
-            //userManager.AddToRole(userIdMod, "ProjectManager");
-
 
             if (!context.Users.Any(u => u.Email == "developer@demo.com"))
             {

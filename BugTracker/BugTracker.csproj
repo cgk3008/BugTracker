@@ -400,6 +400,7 @@
     <Content Include="Views\AdminIndexViews\Index.cshtml" />
     <Content Include="Views\AdminIndexViews\EditUser.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />
