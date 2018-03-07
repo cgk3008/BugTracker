@@ -27,11 +27,11 @@ namespace BugTracker.Controllers
             //}
             return View(dB.Project.Include("User").ToList());
 
-            //ok need to adjust Users and User. go to project and adjust dB context reference???
+            //ok need to adjust Users to User. go to project and adjust dB context reference???
         }
 
-        //GET: EditUser
-        public ActionResult EditProject(int id) 
+        //GET: AddUser
+        public ActionResult AddToProject(int id) 
         {
             var project = dB.Project.Find(id);
             AdminProject AdminProject = new AdminProject();
@@ -44,17 +44,17 @@ namespace BugTracker.Controllers
 
         }
 
-        //POST: EditUser
+        //POST: AddUser
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProject(AdminProject model)
+        public ActionResult AddToProject(AdminProject model)
         {
 
             ProjectHelper helper = new ProjectHelper();
-            foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
-            {
-                helper.RemoveUserFromProject(userrmv, model.Project.Id );
-            }
+            //foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
+            //{
+            //    helper.RemoveUserFromProject(userrmv, model.Project.Id );
+            //}
 
             foreach (var useradd in model.SelectedUsers)
             {
@@ -63,7 +63,40 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+        //GET: RemoveUser
 
+            //ok i don't want list of users to remove, just the one linked to the user.Id
+        public ActionResult RemoveUser(int id)
+        {
+            var project = dB.Project.Find(id);
+            AdminProject AdminProject = new AdminProject();
+            ProjectHelper helper = new ProjectHelper();
+            var selected = project.User;
+            AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName", selected);
+            AdminProject.Project = project;
+            return View(AdminProject);
+
+
+        }
+
+        //POST: RemoveUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveUser(AdminProject model)
+        {
+
+            ProjectHelper helper = new ProjectHelper();
+            foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
+            {
+                helper.RemoveUserFromProject(userrmv, model.Project.Id);
+            }
+
+            //foreach (var useradd in model.SelectedUsers)
+            //{
+            //    helper.AddUserToProject(useradd, model.Project.Id);
+            //}
+            return RedirectToAction("Index");
+        }
 
 
     }

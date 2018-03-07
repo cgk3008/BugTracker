@@ -4,17 +4,17 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Admin Role Index</h2>
 
 @foreach (var mod in Model)
 {
 	<p>@mod.User.FullName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
 	<ul>
-		@foreach (var name in mod.Roles)
+		@foreach (var role in mod.Roles)
 		{
 
 			<li>
-				@name
+				@role
 			</li>
 		}
 	</ul>

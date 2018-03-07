@@ -83,7 +83,7 @@ namespace BugTracker.Models.Helper
             //    return null;
             //}                
         }
-        //add function to not allow same user on same project twice!!!
+        //add function to not allow same user on same project twice!!! wait, code already is not allowing that due to multiselect list
 
 
         //IsUserOnProject

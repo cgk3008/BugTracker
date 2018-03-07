@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AdminIndexViewsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminProjectsController.cs" />
+    <Compile Include="Controllers\AssignedProjectsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\AdminIndexViewModel.cs" />
     <Compile Include="Models\AdminProject.cs" />
+    <Compile Include="Models\AssignedProjects.cs" />
     <Compile Include="Models\Helper\ProjectHelper.cs" />
     <Compile Include="Models\Helper\UserRolesHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -403,8 +405,10 @@
     <Content Include="Views\AdminIndexViews\EditUser.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
-    <Content Include="Views\AdminProjects\EditProject.cshtml" />
+    <Content Include="Views\AdminProjects\AddToProject.cshtml" />
     <Content Include="Views\AdminProjects\Index.cshtml" />
+    <Content Include="Views\AdminProjects\RemoveUser.cshtml" />
+    <Content Include="Views\AssignedProjects\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />

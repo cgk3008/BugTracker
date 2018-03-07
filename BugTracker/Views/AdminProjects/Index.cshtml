@@ -3,18 +3,18 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Admin Project Index</h2>
 
 
 @foreach (var chg in Model)
 {
-	<p>@chg.Name | @Html.ActionLink("Edit Users on Project", "EditProject", new { id = chg.Id })</p>
+	<p>@chg.Name | @Html.ActionLink("Add User to Project", "AddToProject", new { id = chg.Id })</p>
 	<ul>
 		@foreach (var user in chg.User)
 		{
 
 			<li>
-				@user.FullName
+				@user.FullName | @Html.ActionLink("Remove User from Project", "RemoveUser", new { id = chg.Id})
 			</li>
 		}
 	</ul>

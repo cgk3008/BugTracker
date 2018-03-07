@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BugTracker.Models.Project>
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Assigned Projects Index</h2>
+
+
+@foreach (var user in Model)
+{
+<p>@user.FullName  |</p>
+	<ul>
+		@foreach (var user in chg.User)
+		{
+
+		<li>
+			
+			@project.Name
+		</li>
+		}
+	</ul>
+
+}
