@@ -30,7 +30,7 @@ namespace BugTracker.Models.Helper
             {
                 var prj = dB.Project.Find(projectId);
                 var usr = dB.Users.Find(userId);
-                prj.User.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
+                prj.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
                 dB.SaveChanges();
                 return null;
             }
@@ -46,7 +46,7 @@ namespace BugTracker.Models.Helper
             {
                 var prj = dB.Project.Find(projectId);
                 var usr = dB.Users.Find(userId);
-                prj.User.Remove(usr);
+                prj.Users.Remove(usr);
                 dB.SaveChanges();
                 return null;
             }
@@ -97,7 +97,7 @@ namespace BugTracker.Models.Helper
                 //prj.User.Find(usr);
 
                 //var result = dB.Users.Find(userId);
-                if (prj.User != null)
+                if (prj.Users != null)
                 {
 
                 }
@@ -113,7 +113,7 @@ namespace BugTracker.Models.Helper
 
         public ICollection<User> ListUsersOnProject(int projectId)
         {
-            return dB.Project.Find(projectId).User.ToList();
+            return dB.Project.Find(projectId).Users.ToList();
         }
 
         //UserNotOnProject(edited)

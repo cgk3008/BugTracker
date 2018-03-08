@@ -14,7 +14,7 @@ namespace BugTracker.Controllers
 
         public ActionResult Index()
         {
-            //Jeex look at all this code I don't need!!!!
+            //Jeez look at all this code I don't need!!!!
             //List<AdminIndexViewModel> model = new List<AdminIndexViewModel>();
             //ProjectHelper helper = new ProjectHelper();
 
@@ -25,9 +25,12 @@ namespace BugTracker.Controllers
             //    vm.Users = helper.ListProjectsForUser(User.Id);
             //    model.Add(vm);
             //}
-            return View(dB.Project.Include("User").ToList());
 
-            //ok need to adjust Users to User. go to project and adjust dB context reference???
+            return View();
+
+            //return View(dB.Project.Include("User").ToList());
+
+            //ok need to adjust Users to User. go to project and adjust dB context reference, ok Antonio helped me do this. Change one, then build then go through error list. Then updated database.
         }
 
         //GET: AddUser
@@ -36,7 +39,7 @@ namespace BugTracker.Controllers
             var project = dB.Project.Find(id);
             AdminProject AdminProject = new AdminProject();
             ProjectHelper helper = new ProjectHelper();
-            var selected = project.User;
+            var selected = project.Users;
             AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName", selected);
             AdminProject.Project = project;
             return View(AdminProject);
@@ -71,7 +74,7 @@ namespace BugTracker.Controllers
             var project = dB.Project.Find(id);
             AdminProject AdminProject = new AdminProject();
             ProjectHelper helper = new ProjectHelper();
-            var selected = project.User;
+            var selected = project.Users;
             AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName", selected);
             AdminProject.Project = project;
             return View(AdminProject);

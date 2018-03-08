@@ -1,4 +1,5 @@
 ﻿using BugTracker.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,14 @@ namespace BugTracker.Controllers
 
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            //helper.ListProjectForUser(userId);
 
-            return View(dB.Users.GetEnumerator("Project").ToList());
+            return View(dB.Users.Find(userId).Project.ToList());
 
+            //return View(dB.Users.GetEnumerator("Project").ToList());
 
-
-
-
-
+            //return View();
 
             //helper method 
             //public ICollection<Project> ListProjectsForUser(string userId)
@@ -28,15 +29,6 @@ namespace BugTracker.Controllers
 
             //    return dB.Users.Find(userId).Project.ToList();
 
-
-
-
-                //return View(dB.Project.Include("User").ToList());
-
-                //ok need to adjust Users to User. go to project and adjust dB context reference???
-            }
-
-
-
+        }
     }
 }

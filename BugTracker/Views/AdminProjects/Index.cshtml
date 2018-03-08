@@ -10,7 +10,7 @@
 {
 	<p>@chg.Name | @Html.ActionLink("Add User to Project", "AddToProject", new { id = chg.Id })</p>
 	<ul>
-		@foreach (var user in chg.User)
+		@foreach (var user in chg.Users)
 		{
 
 			<li>

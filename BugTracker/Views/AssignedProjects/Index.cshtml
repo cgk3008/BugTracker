@@ -5,17 +5,14 @@
 
 <h2>Assigned Projects Index</h2>
 
-
-@foreach (var user in Model)
+@foreach (var p in Model)
 {
-<p>@user.FullName  |</p>
+<p>@p.Name  |</p>
 	<ul>
-		@foreach (var user in chg.User)
+		@foreach (var u in p.Users)
 		{
-
-		<li>
-			
-			@project.Name
+		<li>			
+			@u.FullName
 		</li>
 		}
 	</ul>

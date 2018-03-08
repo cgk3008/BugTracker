@@ -10,7 +10,7 @@ namespace BugTracker.Models
     {
         public Project Project { get; set; }
 
-        public MultiSelectList Users { get; set; }  //change Users to User?????
-        public string[] SelectedUsers { get; set; }
+        /*public MultiSelectList Users { get; set; } */ //change Users to User?????
+        //public string[] SelectedUsers { get; set; }
     }
 }
