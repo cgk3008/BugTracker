@@ -5,18 +5,15 @@
 
 <h2>Admin - Remove User</h2>
 
-v@using (Html.BeginForm())
+@using (Html.BeginForm())
 {
-@Html.AntiForgeryToken()
+	@Html.AntiForgeryToken()
+	@Html.HiddenFor(m => m.Project.Id)
 
-
-@Html.HiddenFor(m => m.Project.Id)
-
-
-	//Model.User or Model.Users
-
-@Html.ListBox("SelectedUsers", Model.Users, new { @class = "control-label col-md-2" })  
-@*ok need this changed, just one user, don't need selected*@
-<p><input type="submit" class="btn btn-info" /></p>
+	@Html.ListBox("RmvUser", Model.Users, new { @class = "control-label col-md-2" })
+	@*ok need this changed, just one user, don't need selected*@
+	<p><input type="submit" class="btn btn-info" /></p>
 
 }
+
+
