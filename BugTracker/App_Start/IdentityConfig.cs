@@ -29,6 +29,10 @@ namespace BugTracker
         // Use NuGet to install SendGrid (Basic C# client lib) 
         private async Task configSendGridasync(IdentityMessage message)
         {
+
+
+
+
             //var myMessage = new SendGridMessage();
             //myMessage.AddTo(message.Destination);
             //myMessage.From = new EmailAddress("Joe@contoso.com", "Joe S.");
@@ -58,27 +62,7 @@ namespace BugTracker
             //      await Task.FromResult(0);
             //   }
             //}
-            var apiKey = ConfigurationManager.AppSettings["NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY"];//Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("cgk3008.ck@gmail.com", "Admin");
-            var subject = message.Subject;
-            var to = new EmailAddress("test@example.com", "Example User");
-            var plainTextContent = message.Body;
-            var htmlContent = message.Body;
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(msg);
-
-            // Send the email.
-            if (client != null)
-            {
-                await client.SendEmailAsync(msg);
-            }
-            else
-            {
-                Trace.TraceError("Failed to create Web transport.");
-                await Task.FromResult(0);
-            }
-
+            
 
 
         }

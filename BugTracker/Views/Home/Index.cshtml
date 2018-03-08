@@ -1,8 +1,8 @@
 @*@using PagedList;
-@using PagedList.Mvc;
+	@using PagedList.Mvc;
 
 
-@model IPagedList<BugTracker.Models.BugTracker>*@
+	@model IPagedList<BugTracker.Models.BugTracker>*@
 
 
 @{
@@ -119,8 +119,19 @@
 						<ul class="list-unstyled">
 							<li>
 								<a>
-									<i class="fa fa-desktop">
-									</i>@Html.ActionLink("Index of Projects", "Index", "Projects")
+
+									@*@if (User.IsInRole("Admin, Project Manager"))
+									{*@
+
+										<i class="fa fa-desktop">
+										</i>@Html.ActionLink("Index of Projects", "Index", "AdminProjects")
+									@*}
+									else
+									{
+										<i class="fa fa-desktop">
+										</i>@Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
+									}*@
+
 								</a>
 							</li>
 							<li><a href="~/Assets/bug-temp/theme/login.html"><i class="fa fa-sign-in"></i> Login</a></li>
@@ -320,7 +331,7 @@
 							<div class="head-user dropdown pull-right">
 								<a href="#" data-toggle="dropdown" id="profile">
 									<!-- Icon
-							<i class="fa fa-user"></i>  -->
+									<i class="fa fa-user"></i>  -->
 
 									<img src="~/Assets/bug-temp/theme/theme/img/user2.png" alt="" class="img-responsive img-circle" />
 
@@ -513,7 +524,7 @@
 											<!-- Current status item -->
 											<div class="current-status-item">
 												<!-- Icon
-										<i class="fa fa-user lblue"></i> -->
+												<i class="fa fa-user lblue"></i> -->
 												<!-- Heading -->
 												<h6>Profit</h6>
 												<h3>$50,000 <span class="fa fa-arrow-circle-up green"></span></h3>
@@ -523,7 +534,7 @@
 											<!-- Current status item -->
 											<div class="current-status-item">
 												<!-- Icon
-										<i class="fa fa-bar-chart-o lblue"></i> -->
+												<i class="fa fa-bar-chart-o lblue"></i> -->
 												<!-- Heading -->
 												<h6>Revenue</h6>
 												<h3>55.89% <span class="fa fa-arrow-circle-down red"></span></h3>
@@ -543,7 +554,7 @@
 											<!-- Current status item -->
 											<div class="current-status-item">
 												<!-- Icon
-										<i class="fa fa-user lblue"></i> -->
+												<i class="fa fa-user lblue"></i> -->
 												<!-- Heading -->
 												<h6>Bounce Rate</h6>
 												<h3>30.07% <span class="fa fa-arrow-circle-down lblue"></span></h3>
@@ -553,7 +564,7 @@
 											<!-- Current status item -->
 											<div class="current-status-item">
 												<!-- Icon
-										<i class="fa fa-bar-chart-o lblue"></i> -->
+												<i class="fa fa-bar-chart-o lblue"></i> -->
 												<!-- Heading -->
 												<h6>Visitors</h6>
 												<h3>25,000 <span class="fa fa-arrow-circle-up green"></span></h3>
@@ -1357,13 +1368,13 @@
 				});
 
 
-								<!--Actual plotting -- >
+									<!--Actual plotting -- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-							 <!--Line chart ends -- >
+								 <!--Line chart ends -- >
 
-							 <!--Bar chart starts -- >
+								 <!--Bar chart starts -- >
 
 			$(function () {
 
@@ -1418,10 +1429,10 @@
 
 			});
 
-							<!--Bar chart ends -- >
+								<!--Bar chart ends -- >
 
 
-							<!--Realtime chart starts -- >
+								<!--Realtime chart starts -- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -1499,9 +1510,9 @@
 
 			});
 
-							<!--Realtime charts ends -- >
+								<!--Realtime charts ends -- >
 
-							<!--Pie chart start -- >
+								<!--Pie chart start -- >
 
 			$(function () {
 
@@ -1537,7 +1548,7 @@
 
 
 			});
-							<!--Pie chart ends -- >
+								<!--Pie chart ends -- >
 
 			/* ****************************************** */
 			/* Main area sparkline */

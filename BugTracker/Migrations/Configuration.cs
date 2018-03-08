@@ -40,9 +40,9 @@ namespace BugTracker.Migrations
                 manager.Create(role);
             }
 
-            if (!context.Roles.Any(r => r.Name == "ProjectManager"))
+            if (!context.Roles.Any(r => r.Name == "Project Manager"))
             {
-                role = new IdentityRole { Name = "ProjectManager" };
+                role = new IdentityRole { Name = "Project Manager" };
                 manager.Create(role);
             }
 

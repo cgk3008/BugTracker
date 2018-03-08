@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
+using BugTracker.Models.Helper;
 
 namespace BugTracker.Controllers
 {
     public class ProjectsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext dB = new ApplicationDbContext();
 
         // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Project.ToList());
+            return View(dB.Project.ToList());
         }
 
         // GET: Projects/Details/5
@@ -27,7 +28,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Project.Find(id);
+            Project project = dB.Project.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -59,8 +60,8 @@ namespace BugTracker.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Project.Add(project);
-                db.SaveChanges();
+                dB.Project.Add(project);
+                dB.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -80,7 +81,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Project.Find(id);
+            Project project = dB.Project.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -97,8 +98,8 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
+                dB.Entry(project).State = EntityState.Modified;
+                dB.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(project);
@@ -111,7 +112,7 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Project.Find(id);
+            Project project = dB.Project.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -124,17 +125,17 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = db.Project.Find(id);
-            db.Project.Remove(project);
-            db.SaveChanges();
+            Project project = dB.Project.Find(id);
+            dB.Project.Remove(project);
+            dB.SaveChanges();
             return RedirectToAction("Index");
-        }
-
+        }   
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                dB.Dispose();
             }
             base.Dispose(disposing);
         }

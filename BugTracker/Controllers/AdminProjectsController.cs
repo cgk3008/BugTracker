@@ -62,7 +62,7 @@ namespace BugTracker.Controllers
             {
                 helper.AddUserToProject(useradd, model.Project.Id );
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Projects");
         }
 
         //GET: RemoveUser
@@ -97,7 +97,7 @@ namespace BugTracker.Controllers
             //{
             //    helper.AddUserToProject(useradd, model.Project.Id);
             //}
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Projects");
         }
 
 

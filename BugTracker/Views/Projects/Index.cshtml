@@ -4,60 +4,47 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Index of Projects</h2>
+<h2>Admin Index of Projects</h2>
 
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
 
-@*@if (User.IsInRole("Admin, ProjectManager"))
-{*@
-	<p>
-		@Html.ActionLink("Create New", "Create")
-	</p>
-@*}*@
-	<table class="table">
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Name)
-			</th>
-			<th></th>
-		</tr>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+		<th></th>
+	</tr>
 
-
-		ListProjectsForUser(string userId) so user only sees thieir assigned projects...where to use it
-
-	
-
-
-
-		@foreach (var item in Model)
+	@foreach (var item in Model)
 	{
 		<tr>
 			<td>
 				@Html.DisplayFor(modelItem => item.Name)
 
 				<ul>
-					@foreach (var u in item.User)
+					@foreach (var u in item.Users)
 					{
-						<li>
-							@u.FirstName @u.LastName
-						</li>
+					<li>
+						@u.FirstName @u.LastName @Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
+					</li>
 					}
 				</ul>
-
-				@*@Html.DisplayFor.ListProjectsForUser((string userId)(modelItem => item.Name))*@
-
 			</td>
 			<td>
-				@*@if (User.IsInRole("Admin, ProjectManager"))
-				{*@
-				@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-				@*}*@
-
-				|
+				@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Id }, null) |
+				@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
 				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-				@Html.ActionLink("Delete", "Delete", new { id = item.Id })
 
+				@if (User.IsInRole("Admin"))
+	{
+
+			@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+}
 			</td>
 		</tr>
-}
+	}
 
-	</table>
+</table>
