@@ -26,9 +26,8 @@ namespace BugTracker.Controllers
             //    model.Add(vm);
             //}
 
-            return View();
 
-            //return View(dB.Project.Include("User").ToList());
+            return View(dB.Project.Include("Users").ToList());
 
             //ok need to adjust Users to User. go to project and adjust dB context reference, ok Antonio helped me do this. Change one, then build then go through error list. Then updated database.
         }
