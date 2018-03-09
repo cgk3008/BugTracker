@@ -120,17 +120,17 @@
 							<li>
 								<a>
 
-									@*@if (User.IsInRole("Admin, Project Manager"))
-									{*@
+									@if (User.IsInRole("Admin, Project Manager"))
+									{
 
 										<i class="fa fa-desktop">
 										</i>@Html.ActionLink("Index of Projects", "Index", "AdminProjects")
-									@*}
+									}
 									else
 									{
 										<i class="fa fa-desktop">
 										</i>@Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
-									}*@
+									}
 
 								</a>
 							</li>

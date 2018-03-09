@@ -55,7 +55,16 @@ namespace BugTracker.Controllers
             {
                 db.Comment.Add(ticketComment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
+
+                //if (User.IsInRole("Admin, Moderator"))
+                //{
+                    return RedirectToAction("Index");
+                //}
+                //else
+                //{
+                //    return RedirectToAction("Details", "Ticket", new { id = tix.Ticket.Id });
+                //}
             }
 
             ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body", ticketComment.TicketId);
