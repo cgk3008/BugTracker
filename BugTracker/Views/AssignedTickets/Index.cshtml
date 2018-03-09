@@ -1,20 +1,9 @@
 ﻿@model IEnumerable<BugTracker.Models.Ticket>
-
 @{
 	ViewBag.Title = "Index";
 }
 
-<h2>Ticket Index</h2>
-
-@if (User.IsInRole("Submitter"))
-{
-
-	<p>
-		@Html.ActionLink("Create New", "Create")
-	</p>
-
-}
-
+<h2>Assigned Ticket Index</h2>
 
 <table class="table">
 	<tr>
@@ -53,8 +42,16 @@
 		<th></th>
 	</tr>
 
+
 	@foreach (var item in Model)
 	{
+		@*<p>@t.AssignedToUser  |</p>*@
+
+		@*@foreach (var u in t.AssignedToUserId)
+			{*@
+		@*@foreach (var item in t.AssignedToUserId)
+			{*@
+		@*<table class="table">*@
 		<tr>
 			<td>
 				@Html.DisplayFor(modelItem => item.AssignedToUser.FirstName)
@@ -91,22 +88,25 @@
 				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
 
 
-				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-				{
-					@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-				}
-				|
+				@*@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+							{
+								@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+					}
+									|
 
-				ok how do I perform soft delete???
-				@if (User.IsInRole("Admin"))
-				{
+									ok how do I perform soft delete???
+									@if (User.IsInRole("Admin"))
+							{
 
 
-					@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-				}
-				|
+								@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+					}
+									|*@
 			</td>
 		</tr>
+
+
 	}
+
 
 </table>

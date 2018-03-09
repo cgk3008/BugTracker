@@ -16,8 +16,8 @@ namespace BugTracker.Models
         public string FullName { get; set; }
         //public string Password { get; set; }
 
-        //public virtual Project Project { get; set; }
         public virtual ICollection<Project> Project { get; set; }
+        public virtual ICollection<Ticket> Ticket { get; set; }
         public virtual ICollection<TicketComment> Comment { get; set; }
         public virtual ICollection<TicketAttachment> Attachment { get; set; }
         public virtual ICollection<TicketHistory> History { get; set; }
@@ -27,9 +27,9 @@ namespace BugTracker.Models
         //public virtual ICollection<Ticket> AssignedToUser { get; set; }   Don't need this one!!!!    
 
         public User()
-        {   
-                        
-            Project = new HashSet<Project>();
+        {
+            Project = new HashSet<Project>();       
+            Ticket = new HashSet<Ticket>();
             Comment = new HashSet<TicketComment>();
             Attachment = new HashSet<TicketAttachment>();
             History = new HashSet<TicketHistory>();

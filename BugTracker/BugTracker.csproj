@@ -197,6 +197,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminProjectsController.cs" />
     <Compile Include="Controllers\AssignedProjectsController.cs" />
+    <Compile Include="Controllers\AssignedTicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Models\AdminIndexViewModel.cs" />
     <Compile Include="Models\AdminProject.cs" />
     <Compile Include="Models\AssignedProjects.cs" />
+    <Compile Include="Models\AssignedTicket.cs" />
     <Compile Include="Models\Helper\ProjectHelper.cs" />
     <Compile Include="Models\Helper\UserRolesHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -409,6 +411,7 @@
     <Content Include="Views\AdminProjects\Index.cshtml" />
     <Content Include="Views\AdminProjects\RemoveUser.cshtml" />
     <Content Include="Views\AssignedProjects\Index.cshtml" />
+    <Content Include="Views\AssignedTickets\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />
@@ -557,6 +560,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadsComments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

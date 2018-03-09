@@ -8,27 +8,18 @@ using System.Web.Mvc;
 
 namespace BugTracker.Controllers
 {
-    public class AssignedProjectsController : Controller
+    public class AssignedTicketsController : Controller
     {
+
         private ApplicationDbContext dB = new ApplicationDbContext();
 
+        // GET: AssignedTickets
         public ActionResult Index()
         {
+
             var userId = User.Identity.GetUserId();
-            //helper.ListProjectForUser(userId);
 
             return View(dB.Users.Find(userId).Ticket.ToList());
-
-            //return View(dB.Users.GetEnumerator("Project").ToList());
-
-            //return View();
-
-            //helper method 
-            //public ICollection<Project> ListProjectsForUser(string userId)
-            //{
-
-            //    return dB.Users.Find(userId).Project.ToList();
-
         }
     }
 }
