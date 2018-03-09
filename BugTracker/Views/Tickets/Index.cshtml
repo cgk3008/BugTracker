@@ -4,9 +4,9 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Ticket Index</h2>
+<h2>Index of All Tickets</h2>
 
-@if (User.IsInRole("Submitter"))
+@if (User.IsInRole("Submitter") || User.IsInRole("Admin"))
 {
 
 	<p>
@@ -39,16 +39,16 @@
 			Type
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Body)
+			Body
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Description)
+			Description
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Created)
+			Created
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Updated)
+			Updated
 		</th>
 		<th></th>
 	</tr>
@@ -57,10 +57,10 @@
 	{
 		<tr>
 			<td>
-				@Html.DisplayFor(modelItem => item.AssignedToUser.FirstName)
+				@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.OwnerUser.FirstName)
+				@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Priority.Name)
@@ -91,7 +91,7 @@
 				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
 
 
-				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+				@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
 				{
 					@Html.ActionLink("Edit", "Edit", new { id = item.Id })
 				}

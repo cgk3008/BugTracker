@@ -28,16 +28,16 @@
 			Type
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Body)
+			Body
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Description)
+			Description
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Created)
+			Created
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Updated)
+			Updated
 		</th>
 		<th></th>
 	</tr>
@@ -45,19 +45,13 @@
 
 	@foreach (var item in Model)
 	{
-		@*<p>@t.AssignedToUser  |</p>*@
-
-		@*@foreach (var u in t.AssignedToUserId)
-			{*@
-		@*@foreach (var item in t.AssignedToUserId)
-			{*@
-		@*<table class="table">*@
+		
 		<tr>
 			<td>
-				@Html.DisplayFor(modelItem => item.AssignedToUser.FirstName)
+				@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.OwnerUser.FirstName)
+				@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Priority.Name)
@@ -69,7 +63,7 @@
 				@Html.DisplayFor(modelItem => item.Status.Name)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.Type.Name)
+				@Html.DisplayFor(modelItem=> item.Type.Name)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Body)

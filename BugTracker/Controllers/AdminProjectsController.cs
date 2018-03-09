@@ -87,11 +87,16 @@ namespace BugTracker.Controllers
         public ActionResult RemoveUser(AdminProject model)
         {
 
-            ProjectHelper helper = new ProjectHelper();
-            foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
-            {
-                helper.RemoveUserFromProject(userrmv, model.Project.Id);
-            }
+
+            //ProjectHelper helper = new ProjectHelper();
+            //var userrmv in dB.Users.Select(r => r.Id).ToList()
+            
+            //    helper.RemoveUserFromProject(userrmv, model.Project.Id);
+            
+
+
+
+
 
             //foreach (var useradd in model.SelectedUsers)
             //{

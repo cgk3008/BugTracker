@@ -17,7 +17,7 @@ namespace BugTracker.Controllers
             var userId = User.Identity.GetUserId();
             //helper.ListProjectForUser(userId);
 
-            return View(dB.Users.Find(userId).Ticket.ToList());
+            return View(dB.Users.Find(userId).Project.ToList());
 
             //return View(dB.Users.GetEnumerator("Project").ToList());
 
