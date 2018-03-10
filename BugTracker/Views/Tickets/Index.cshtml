@@ -4,6 +4,7 @@
 	ViewBag.Title = "Index";
 }
 
+
 <h2>Index of All Tickets</h2>
 
 @if (User.IsInRole("Submitter") || User.IsInRole("Admin"))
@@ -15,98 +16,114 @@
 
 }
 
-
-<table class="table">
-	<tr>
-		<th>
-			Assigned User
-
-		</th>
-		<th>
-			Ticket Owner
-
-		</th>
-		<th>
-			Priority
-		</th>
-		<th>
-			Project
-		</th>
-		<th>
-			Status
-		</th>
-		<th>
-			Type
-		</th>
-		<th>
-			Body-change to Title?
-		</th>
-		<th>
-			Description
-		</th>
-		<th>
-			Created
-		</th>
-		<th>
-			Updated
-		</th>
-		<th></th>
-	</tr>
-
-	@foreach (var item in Model)
-	{
+<table id="mytable" class="table">
+	<thead>
 		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Priority.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Project.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Status.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Type.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Body)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Description)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Created)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Updated)
-			</td>
-			<td>
+			<th>
+				Assigned User
 
-				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+			</th>
+			<th>
+				Ticket Owner
 
-
-				@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
-				{
-					@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-				}
-				|
-
-				ok how do I perform soft delete???
-				@if (User.IsInRole("Admin"))
-				{
-
-
-					@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-				}
-				|
-			</td>
+			</th>
+			<th>
+				Priority
+			</th>
+			<th>
+				Project
+			</th>
+			<th>
+				Status
+			</th>
+			<th>
+				Type
+			</th>
+			<th>
+				Body-change to Title?
+			</th>
+			<th>
+				Description
+			</th>
+			<th>
+				Created
+			</th>
+			<th>
+				Updated
+			</th>
+			<th></th>
 		</tr>
-	}
+	</thead>
 
+	<tbody>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Priority.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Project.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Status.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Type.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Body)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Created)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Updated)
+				</td>
+				<td>
+
+					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+
+
+					@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+					{
+						@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+					}
+					|
+
+					ok how do I perform soft delete???
+					@if (User.IsInRole("Admin"))
+					{
+
+
+						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+					}
+					|
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
+
+<script>
+	$('#mytable').DataTable();
+</script>
+
+@*<script>
+		// format ALL tables by class selector
+		$('.table').DataTable();
+	</script>*@
+
+
+
+
