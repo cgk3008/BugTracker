@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,27 +50,37 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Created,TicketId,UserId, FileUrl")] TicketComment ticketComment)
+        public ActionResult Create([Bind(Include = "Id,Body,Created,TicketId,UserId, FileUrl")] TicketComment ticketComment, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/UploadsComments/"), fileName));
+                    ticketComment.FileUrl = "/UploadsComments/" + fileName;
+                }
+
                 db.Comment.Add(ticketComment);
                 db.SaveChanges();
                 var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
 
                 //if (User.IsInRole("Admin, Moderator"))
                 //{
-                    return RedirectToAction("Index");
+
                 //}
                 //else
                 //{
-                //    return RedirectToAction("Details", "Ticket", new { id = tix.Ticket.Id });
-                //}
-            }
 
-            ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body", ticketComment.TicketId);
+                //}
+
+                //return RedirectToAction("Index");
+            }
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", ticketComment.UserId);
-            return View(ticketComment);
+            ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body", ticketComment.TicketId);
+            return RedirectToAction("Index", "Tickets");
+            //return RedirectToAction("Details", "Ticket", new { id = ticketComment.TicketId });
+            //return View(ticketComment);
         }
 
         // GET: TicketComments/Edit/5

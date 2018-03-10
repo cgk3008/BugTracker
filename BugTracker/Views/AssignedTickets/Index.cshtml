@@ -45,7 +45,7 @@
 
 	@foreach (var item in Model)
 	{
-		
+
 		<tr>
 			<td>
 				@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
@@ -63,7 +63,7 @@
 				@Html.DisplayFor(modelItem => item.Status.Name)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem=> item.Type.Name)
+				@Html.DisplayFor(modelItem => item.Type.Name)
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Body)
@@ -79,17 +79,21 @@
 			</td>
 			<td>
 
-				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+				@Html.ActionLink("Details", "Details", "Tickets", null, new { id = item.Id }) |
 
 
-				@*@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-							{
-								@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-					}
-									|
+				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+				{
+					@Html.ActionLink("Edit", "Edit", "Tickets", null, new { id = item.Id })
+				}
+				|
+				
 
-									ok how do I perform soft delete???
-									@if (User.IsInRole("Admin"))
+				@*@Html.ActionLink("Go To Blog Index", "Index", "CliffBlogPosts", null, new { @class = "btn btn-outline btn-darkblue more-blog" })*@
+
+
+				ok how do I perform soft delete???
+				@*@if (User.IsInRole("Admin"))
 							{
 
 

@@ -9,40 +9,48 @@
 <div>
     <h4>TicketComment</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ticket.Body)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Ticket.Body)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ticket.Body)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Ticket.Body)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.FullName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.User.FullName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.FullName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.User.FullName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Body)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Body)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Body)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Created)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Created)
+		</dd>
 
-    </dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.FileUrl)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FileUrl)
+		</dd>
+
+	</dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

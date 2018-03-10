@@ -106,22 +106,22 @@
 		@foreach (var comm in Model.Comment)
 
 		{
-			<div class="col-md-offset-2 col-md-10 border">
-				@*wrap this in a bootstrap "well"*@
-				@*<ul class="container-fluid position-relative no-side-padding">*@
+		<div class="col-md-offset-2 col-md-10 border">
+			@*wrap this in a bootstrap "well"*@
+			@*<ul class="container-fluid position-relative no-side-padding">*@
 
-				@*I want to put DisplayName not AuthorId and then modify Created format for display*@
-				<h6>@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")</h6>
-				@*look for format addition to create date/time to code above!!!*@
-
-
-				<h4>@Html.DisplayFor(model => comm.Body)</h4>
+			@*I want to put DisplayName not AuthorId and then modify Created format for display*@
+			<h6>@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")</h6>
+			@*look for format addition to create date/time to code above!!!*@
 
 
-			
+			<h4>@Html.DisplayFor(model => comm.Body)</h4>
+
+			<img class="img-responsive" src="@comm.FileUrl" alt="">
 
 
-			</div>
+
+		</div>
 
 			if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 			{
@@ -138,18 +138,15 @@
 			<br />
 		}
 
-		<input name="PostId" value="@Model.Id" hidden />
+		<input name="TicketId" value="@Model.Id" hidden />
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
 
 				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
 
-				@*@Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
-		<div class="col-md-10">
+			
 
-			@Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
-			<input name="image" type="file" class="form-control" id="fileUpload" />
-		</div>*@
+				<input name="image" type="file" class="form-control" id="fileUpload" />
 
 
 			</div>
