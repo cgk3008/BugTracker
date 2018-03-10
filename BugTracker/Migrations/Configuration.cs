@@ -82,7 +82,7 @@ namespace BugTracker.Migrations
                     Email = "moderator@coderfoundry.com",
                     FirstName = "Antonio",
                     LastName = "Raynor",
-                    DisplayName = "MANAGER",
+                    DisplayName = "Antonio Raynor",
                     FullName = "Antonio Raynor"
                    
                 };

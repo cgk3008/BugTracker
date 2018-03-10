@@ -5,45 +5,47 @@
 
 <h2>Assigned Ticket Index</h2>
 
-<table class="table">
-	<tr>
-		<th>
-			Assigned User
+<table id="mytable" class="table">
+	<thead>
+		<tr>
+			<th>
+				Assigned User
 
-		</th>
-		<th>
-			Ticket Owner
+			</th>
+			<th>
+				Ticket Owner
 
-		</th>
-		<th>
-			Priority
-		</th>
-		<th>
-			Project
-		</th>
-		<th>
-			Status
-		</th>
-		<th>
-			Type
-		</th>
-		<th>
-			Body
-		</th>
-		<th>
-			Description
-		</th>
-		<th>
-			Created
-		</th>
-		<th>
-			Updated
-		</th>
-		<th></th>
-	</tr>
+			</th>
+			<th>
+				Priority
+			</th>
+			<th>
+				Project
+			</th>
+			<th>
+				Status
+			</th>
+			<th>
+				Type
+			</th>
+			<th>
+				Body
+			</th>
+			<th>
+				Description
+			</th>
+			<th>
+				Created
+			</th>
+			<th>
+				Updated
+			</th>
+			<th></th>
+		</tr>
+		</thead>
 
-
-	@foreach (var item in Model)
+	<tbody>
+		@foreach (var item in Model)
 	{
 
 		<tr>
@@ -83,28 +85,31 @@
 
 
 				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-				{
-					@Html.ActionLink("Edit", "Edit", "Tickets", null, new { id = item.Id })
-				}
+			{
+				@Html.ActionLink("Edit", "Edit", "Tickets", null, new { id = item.Id })
+		}
 				|
-				
+
 
 				@*@Html.ActionLink("Go To Blog Index", "Index", "CliffBlogPosts", null, new { @class = "btn btn-outline btn-darkblue more-blog" })*@
 
 
 				ok how do I perform soft delete???
 				@*@if (User.IsInRole("Admin"))
-							{
+						{
 
 
-								@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-					}
-									|*@
+							@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+				}
+								|*@
 			</td>
 		</tr>
 
 
-	}
-
+}
+	</tbody>
 
 </table>
+<script>
+	$('#mytable').DataTable();
+</script>

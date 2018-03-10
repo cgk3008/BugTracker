@@ -126,12 +126,15 @@
 										<i class="fa fa-desktop">
 										</i>@Html.ActionLink("Index of Projects", "Index", "AdminProjects")
 									}
-									else
-									{
-										<i class="fa fa-desktop">
-										</i>@Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
-									}
 
+
+
+								</a>
+							</li>
+							<li>
+								<a>
+									<i class="fa fa-desktop">
+									</i>   @Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
 								</a>
 							</li>
 							<li><a href="~/Assets/bug-temp/theme/login.html"><i class="fa fa-sign-in"></i> Login</a></li>
@@ -1368,13 +1371,13 @@
 				});
 
 
-									<!--Actual plotting -- >
+										<!--Actual plotting -- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-								 <!--Line chart ends -- >
+									 <!--Line chart ends -- >
 
-								 <!--Bar chart starts -- >
+									 <!--Bar chart starts -- >
 
 			$(function () {
 
@@ -1429,10 +1432,10 @@
 
 			});
 
-								<!--Bar chart ends -- >
+									<!--Bar chart ends -- >
 
 
-								<!--Realtime chart starts -- >
+									<!--Realtime chart starts -- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -1510,9 +1513,9 @@
 
 			});
 
-								<!--Realtime charts ends -- >
+									<!--Realtime charts ends -- >
 
-								<!--Pie chart start -- >
+									<!--Pie chart start -- >
 
 			$(function () {
 
@@ -1548,7 +1551,7 @@
 
 
 			});
-								<!--Pie chart ends -- >
+									<!--Pie chart ends -- >
 
 			/* ****************************************** */
 			/* Main area sparkline */

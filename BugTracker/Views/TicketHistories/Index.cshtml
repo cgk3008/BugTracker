@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ticket History Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,22 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ticket.Body)
+            Body
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.FullName)
+           Full Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Property)
+            Property
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OldValue)
+            Old Value
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NewValue)
+            New Value
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Changed)
+          Changed
         </th>
         <th></th>
     </tr>
