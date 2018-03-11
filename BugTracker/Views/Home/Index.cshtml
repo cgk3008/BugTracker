@@ -48,9 +48,9 @@
 			<div class="sidey">
 
 				<!-- Logo -->
-				<div class="logo">
-					<h1><a href="~/Assets/bug-temp/theme/index.html"><i class="fa fa-desktop br-red"></i> Barnie <span>It's Legendary</span></a></h1>
-				</div>
+				@*<div class="logo">
+						<h1><a href="~/Assets/bug-temp/theme/index.html"><i class="fa fa-desktop br-red"></i> Barnie <span>It's Legendary</span></a></h1>
+					</div>*@
 
 				<!-- Sidebar navigation starts -->
 				<!-- Responsive dropdown -->
@@ -63,7 +63,12 @@
 						<h4>Main</h4>
 						<!-- Sidebar links -->
 						<ul class="list-unstyled">
-							<li><a href="~/Assets/bug-temp/theme/index.html" class="active"><i class="fa fa-desktop"></i> Dashboard</a></li>
+							<li>
+								<a>
+									<i class="fa fa-desktop">
+									</i>   @Html.ActionLink("Dashboard", "Index", "Home")
+								</a>
+							</li>
 							<li><a href="~/Assets/bug-temp/theme/widgets.html"><i class="fa fa-bullseye"></i> Widget <span class="badge badge-danger pull-right">6</span></a></li>
 							<li><a href="~/Assets/bug-temp/theme/charts.html"><i class="fa fa-signal"></i> Charts <span class="badge badge-info pull-right">5</span></a></li>
 							<li><a href="~/Assets/bug-temp/theme/ui.html"><i class="fa fa-wrench"></i> UI</a></li>
@@ -118,18 +123,20 @@
 						<h4>Menu</h4>
 						<ul class="list-unstyled">
 							<li>
-								<a>
 
-									@if (User.IsInRole("Admin, Project Manager"))
+								<a>
+									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 									{
 
+
 										<i class="fa fa-desktop">
-										</i>@Html.ActionLink("Index of Projects", "Index", "AdminProjects")
+										</i>@Html.ActionLink("All Projects", "Index", "AdminProjects")
+
+
 									}
 
-
-
 								</a>
+
 							</li>
 							<li>
 								<a>
@@ -358,13 +365,14 @@
 			</div>
 
 			<!-- Mainbar head ends -->
-			@*<input disabled type="submit" value="Submit Comment" class="btn btn-default" />*@
+
+			@if (User.IsInRole("Admin"))
+			{
+				@Html.ActionLink("Admin User View", "Index", "Admin")
+			}
 
 
-			@*@Html.DropDownListFor(m => m.RoleName, new *@
 
-
-			@Html.ActionLink("Admin User View", "Index", "Admin")
 
 			UserRolesHelper
 
@@ -1371,13 +1379,13 @@
 				});
 
 
-										<!--Actual plotting -- >
+														<!--Actual plotting -- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-									 <!--Line chart ends -- >
+													 <!--Line chart ends -- >
 
-									 <!--Bar chart starts -- >
+													 <!--Bar chart starts -- >
 
 			$(function () {
 
@@ -1432,10 +1440,10 @@
 
 			});
 
-									<!--Bar chart ends -- >
+													<!--Bar chart ends -- >
 
 
-									<!--Realtime chart starts -- >
+													<!--Realtime chart starts -- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -1513,9 +1521,9 @@
 
 			});
 
-									<!--Realtime charts ends -- >
+													<!--Realtime charts ends -- >
 
-									<!--Pie chart start -- >
+													<!--Pie chart start -- >
 
 			$(function () {
 
@@ -1551,7 +1559,7 @@
 
 
 			});
-									<!--Pie chart ends -- >
+													<!--Pie chart ends -- >
 
 			/* ****************************************** */
 			/* Main area sparkline */

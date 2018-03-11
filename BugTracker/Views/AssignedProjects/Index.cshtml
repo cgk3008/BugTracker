@@ -5,19 +5,32 @@
 
 <h2>Assigned Projects Index</h2>
 
+@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+{
+	<p>
+		@Html.ActionLink("Create New Ticket", "Create", "Tickets")
+	</p>
+}
+
+
+
 @foreach (var p in Model)
 {
-<p>@p.Name  |</p>
+	<p>@p.Name  |</p>
 	<ul>
 		@foreach (var u in p.Users)
 		{
-		<li>			
-			@u.FullName
-		</li>
+			<li>
+				@u.FullName
+			</li>
 		}
 	</ul>
 
 }
+
+
+Ok how to reduce dropdownlist to just projects assigned to????
+
 
 
 

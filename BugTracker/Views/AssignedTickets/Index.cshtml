@@ -5,111 +5,118 @@
 
 <h2>Assigned Ticket Index</h2>
 
-<table id="mytable" class="table">
-	<thead>
-		<tr>
-			<th>
-				Assigned User
 
-			</th>
-			<th>
-				Ticket Owner
+@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+{
+<p>
+	@Html.ActionLink("Create New Ticket", "Create", "Tickets")
+</p>
+}
 
-			</th>
-			<th>
-				Priority
-			</th>
-			<th>
-				Project
-			</th>
-			<th>
-				Status
-			</th>
-			<th>
-				Type
-			</th>
-			<th>
-				Body
-			</th>
-			<th>
-				Description
-			</th>
-			<th>
-				Created
-			</th>
-			<th>
-				Updated
-			</th>
-			<th></th>
-		</tr>
+	<table id="mytable" class="table">
+		<thead>
+			<tr>
+				<th>
+					Assigned User
+
+				</th>
+				<th>
+					Ticket Owner
+
+				</th>
+				<th>
+					Priority
+				</th>
+				<th>
+					Project
+				</th>
+				<th>
+					Status
+				</th>
+				<th>
+					Type
+				</th>
+				<th>
+					Body
+				</th>
+				<th>
+					Description
+				</th>
+				<th>
+					Created
+				</th>
+				<th>
+					Updated
+				</th>
+				<th></th>
+			</tr>
 		</thead>
 
-	<tbody>
-		@foreach (var item in Model)
-	{
-
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Priority.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Project.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Status.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Type.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Body)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Description)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Created)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Updated)
-			</td>
-			<td>
-
-				@Html.ActionLink("Details", "Details", "Tickets", null, new { id = item.Id }) |
-
-
-				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+		<tbody>
+			@foreach (var item in Model)
 			{
-				@Html.ActionLink("Edit", "Edit", "Tickets", null, new { id = item.Id })
-		}
-				|
+
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Priority.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Project.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Status.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Type.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Body)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Description)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Created)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Updated)
+					</td>
+					<td>
+
+						@Html.ActionLink("Details", "Details", "Tickets", null, new { id = item.Id }) |
 
 
-				@*@Html.ActionLink("Go To Blog Index", "Index", "CliffBlogPosts", null, new { @class = "btn btn-outline btn-darkblue more-blog" })*@
+
+						@Html.ActionLink("Edit", "Edit", "Tickets", null, new { id = item.Id })
+
+						|
 
 
-				ok how do I perform soft delete???
-				@*@if (User.IsInRole("Admin"))
-						{
+						@*@Html.ActionLink("Go To Blog Index", "Index", "CliffBlogPosts", null, new { @class = "btn btn-outline btn-darkblue more-blog" })*@
 
 
-							@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-				}
-								|*@
-			</td>
-		</tr>
+						ok how do I perform soft delete???
+						@*@if (User.IsInRole("Admin"))
+									{
 
 
-}
-	</tbody>
+										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+							}
+											|*@
+					</td>
+				</tr>
 
-</table>
-<script>
-	$('#mytable').DataTable();
-</script>
+
+			}
+		</tbody>
+
+	</table>
+	<script>
+		$('#mytable').DataTable();
+	</script>

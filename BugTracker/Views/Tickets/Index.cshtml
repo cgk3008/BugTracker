@@ -7,11 +7,11 @@
 
 <h2>Index of All Tickets</h2>
 
-@if (User.IsInRole("Submitter") || User.IsInRole("Admin"))
+@if ( User.IsInRole("Admin"))
 {
 
 	<p>
-		@Html.ActionLink("Create New", "Create")
+		@Html.ActionLink("Create New Ticket", "Create")
 	</p>
 
 }
@@ -95,7 +95,7 @@
 					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
 
 
-					@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+					@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
 					{
 						@Html.ActionLink("Edit", "Edit", new { id = item.Id })
 					}
