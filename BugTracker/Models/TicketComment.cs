@@ -12,6 +12,7 @@ namespace BugTracker.Models
         [StringLength(5000, ErrorMessage = "The {0} cannot be over {1} characters long.")]
         public string Body { get; set; }
         public DateTimeOffset Created { get; set; }
+        public DateTimeOffset? Updated { get; set; }
         public int TicketId { get; set; }
         public string UserId { get; set; }
         public string FileUrl { get; set; }

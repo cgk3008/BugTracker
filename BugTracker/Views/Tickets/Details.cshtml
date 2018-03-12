@@ -111,7 +111,10 @@
 			@*<ul class="container-fluid position-relative no-side-padding">*@
 
 			@*I want to put DisplayName not AuthorId and then modify Created format for display*@
-			<h6>@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")</h6>
+			<h6>
+				@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+				, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+			</h6>
 			@*look for format addition to create date/time to code above!!!*@
 
 
@@ -126,6 +129,7 @@
 			if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 			{
 				<div class="col-md-offset-8 col-md-2 border">
+					ok let's fix these links!
 					@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
 					@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)
 					@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)

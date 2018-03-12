@@ -19,8 +19,8 @@ namespace BugTracker.Controllers
 
         public ActionResult Index()
         {
-                var tickets = db.Ticket.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Priority).Include(t => t.Project).Include(t => t.Status).Include(t => t.Type);
-                return View(tickets.ToList());           
+            var tickets = db.Ticket.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Priority).Include(t => t.Project).Include(t => t.Status).Include(t => t.Type);
+            return View(tickets.ToList());
         }
 
 
@@ -63,6 +63,7 @@ namespace BugTracker.Controllers
             if (ModelState.IsValid)
             {
                 ticket.OwnerUserId = User.Identity.GetUserId();
+                ticket.Created = DateTime.Now;
                 db.Ticket.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -108,6 +109,8 @@ namespace BugTracker.Controllers
             if (ModelState.IsValid)
             {
                 ticket.OwnerUserId = User.Identity.GetUserId();
+              
+                ticket.Updated = DateTime.Now;
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

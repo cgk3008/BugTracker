@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BugTracker.Controllers
 {
@@ -61,6 +62,9 @@ namespace BugTracker.Controllers
                     ticketComment.FileUrl = "/UploadsComments/" + fileName;
                 }
 
+                ticketComment.UserId = User.Identity.GetUserId();
+                ticketComment.Created = DateTime.Now;
+
                 db.Comment.Add(ticketComment);
                 db.SaveChanges();
                 var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
@@ -109,6 +113,8 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                ticketComment.UserId = User.Identity.GetUserId();
+                ticketComment.Updated = DateTime.Now;
                 db.Entry(ticketComment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
