@@ -84,11 +84,11 @@
 	<div class="form-group">
 		@Html.LabelFor(model => model.OwnerUserId, "OwnerUserId", htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
-			@*@Html.DropDownList("OwnerUserId", null, htmlAttributes: new { @class = "form-control" })*@
+			@Html.DropDownList("OwnerUserId", null, htmlAttributes: new { @class = "form-control" })
 
 
 
-			@Html.DisplayFor(model => model.OwnerUser.FullName, "OwnerUser")
+			@*@Html.DisplayFor(model => model.OwnerUser.FullName, "OwnerUser")*@
 			@*public string OwnerUserId { get; set; }
 		or
 		public virtual User OwnerUser { get; set; }*@
