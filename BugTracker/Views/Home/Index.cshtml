@@ -125,14 +125,13 @@
 							<li>
 
 								<a>
-									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+
+
+
+									<i class="fa fa-desktop">
+									</i>@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 									{
-
-
-										<i class="fa fa-desktop">
-										</i>@Html.ActionLink("All Projects", "Index", "AdminProjects")
-
-
+										@Html.ActionLink("All Projects", "Index", "AdminProjects")
 									}
 
 								</a>
@@ -370,24 +369,6 @@
 			{
 				@Html.ActionLink("Admin User View", "Index", "Admin")
 			}
-
-
-
-
-			UserRolesHelper
-
-			AddUserToRole(string UserId, string Role)
-
-			RemoveUserFromRole(string UserId, string Role)
-
-			IsUserInRole(string UserId, string Role)
-
-			ListUsersInRole(string Role)
-
-			ListUsersNotInRole(string Role)
-
-			ListRolesForUser(string UserId)
-
 			<br />
 
 
@@ -1313,7 +1294,7 @@
 	<!-- Javascript for this page -->
 	<script type="text/javascript">
 
-         <!--	Main line chart -- >
+         <!--	Main line chart-- >
 			$(function () {
 				/* Chart data #1 */
 				var d1 = [[0, 4], [1, 3.5], [2, 4.2], [3, 5.5], [4, 4.9], [5, 5], [6, 5.3], [7, 6], [8, 5.3], [9, 4], [10, 4], [11, 4.5], [12, 5], [13, 4]];
@@ -1379,13 +1360,13 @@
 				});
 
 
-														<!--Actual plotting -- >
+																< !--Actual plotting-- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-													 <!--Line chart ends -- >
+															 < !--Line chart ends-- >
 
-													 <!--Bar chart starts -- >
+															 < !--Bar chart starts-- >
 
 			$(function () {
 
@@ -1440,10 +1421,10 @@
 
 			});
 
-													<!--Bar chart ends -- >
+															< !--Bar chart ends-- >
 
 
-													<!--Realtime chart starts -- >
+															< !--Realtime chart starts-- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -1521,9 +1502,9 @@
 
 			});
 
-													<!--Realtime charts ends -- >
+															< !--Realtime charts ends-- >
 
-													<!--Pie chart start -- >
+															< !--Pie chart start-- >
 
 			$(function () {
 
@@ -1559,7 +1540,7 @@
 
 
 			});
-													<!--Pie chart ends -- >
+															< !--Pie chart ends-- >
 
 			/* ****************************************** */
 			/* Main area sparkline */
