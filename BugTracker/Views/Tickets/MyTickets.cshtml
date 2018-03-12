@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<BugTracker.Models.Ticket>
 
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "MyTickets";
 }
 
+<h2>My Tickets</h2>
 
-<h2>Index of All Tickets</h2>
-
-@if ( User.IsInRole("Admin"))
+@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
 {
 
 	<p>
@@ -83,9 +82,6 @@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Description)
-
-					@*@string.Join("", item.Description.Take(30))...
-					@Html.Hidden("FullDesc", item.Description)*@
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Created)
@@ -98,10 +94,10 @@
 					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
 
 
-					@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-					{
+					@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+					{*@
 						@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-					}
+						@*}*@
 					|
 
 					ok how do I perform soft delete???
@@ -126,7 +122,6 @@
 		// format ALL tables by class selector
 		$('.table').DataTable();
 	</script>*@
-
 
 
 

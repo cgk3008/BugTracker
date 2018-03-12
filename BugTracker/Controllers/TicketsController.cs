@@ -145,6 +145,21 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+
+        private ApplicationDbContext dB = new ApplicationDbContext();
+
+        // GET: AssignedTickets
+        public ActionResult MyTickets()
+        {
+            var userId = User.Identity.GetUserId();
+            //return View(dB.Users.Find(userId).Ticket.ToList());
+
+            //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
+
+            var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+            return View(tickets.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -62,7 +62,7 @@ namespace BugTracker.Controllers
             {
                 helper.AddUserToProject(useradd, model.Project.Id );
             }
-            return RedirectToAction("Index", "Projects");
+            return RedirectToAction("Index", "AdminProjects");
         }
 
         //GET: RemoveUser
@@ -74,7 +74,7 @@ namespace BugTracker.Controllers
             AdminProject AdminProject = new AdminProject();
             ProjectHelper helper = new ProjectHelper();
             var selected = project.Users;
-            AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName", selected);
+            AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName"/*, selected*/);
             AdminProject.Project = project;
             return View(AdminProject);
 
@@ -89,20 +89,21 @@ namespace BugTracker.Controllers
 
 
             //ProjectHelper helper = new ProjectHelper();
-            //var userrmv in dB.Users.Select(r => r.Id).ToList()
-            
+            //var userrmv = dB.Users.Select(r => r.Id).ToList();
+
+
             //    helper.RemoveUserFromProject(userrmv, model.Project.Id);
-            
 
 
 
 
+            ProjectHelper helper = new ProjectHelper();
+            foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
+            {
+                helper.RemoveUserFromProject(userrmv, model.Project.Id);
+            }
 
-            //foreach (var useradd in model.SelectedUsers)
-            //{
-            //    helper.AddUserToProject(useradd, model.Project.Id);
-            //}
-            return RedirectToAction("Index", "Projects");
+            return RedirectToAction("Index", "AdminProjects");
         }
 
 

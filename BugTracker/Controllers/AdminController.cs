@@ -66,6 +66,45 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //GET: IsUserInRole
+        public ActionResult UsersNotInRole(string id)
+        {
+            var user = dB.Users.Find(id);
+            AdminModel AdminModel = new AdminModel();
+            UserRolesHelper helper = new UserRolesHelper();
+            var selected = helper.ListUsersNotInRole(id);
+            AdminModel.Roles = new MultiSelectList(dB.Roles, "Name", "Name", selected);
+            AdminModel.User = new User
+            {
+                Id = user.Id,
+                FullName = user.FullName
+            };
+            return View(AdminModel);
+
+            //new { id = mod.User.Id })
+        }
+
+        //POST: IsUserInRole
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UsersNotInRole(AdminModel model)
+        {
+            //var user = dB.Users.Find(model.id);
+            UserRolesHelper helper = new UserRolesHelper();
+            foreach (var rolermv in dB.Roles.Select(r => r.Name).ToList())
+            {
+                helper.RemoveUserFromRole(model.User.Id, rolermv);
+            }
+            foreach (var roleadd in model.SelectedRoles)
+            {
+                helper.AddUserToRole(model.User.Id, roleadd);
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }
 
