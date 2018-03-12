@@ -62,6 +62,7 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                ticket.OwnerUserId = User.Identity.GetUserId();
                 db.Ticket.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -106,6 +107,7 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                ticket.OwnerUserId = User.Identity.GetUserId();
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
