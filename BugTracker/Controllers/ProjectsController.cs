@@ -60,6 +60,7 @@ namespace BugTracker.Controllers
 
             if (ModelState.IsValid)
             {
+                project.Created = DateTime.Now;
                 dB.Project.Add(project);
                 dB.SaveChanges();
                 return RedirectToAction("Index");

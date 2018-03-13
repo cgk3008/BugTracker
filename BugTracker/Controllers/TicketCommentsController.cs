@@ -113,6 +113,13 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/UploadsComments/"), fileName));
+                    ticketComment.FileUrl = "/UploadsComments/" + fileName;
+                }
+
                 ticketComment.UserId = User.Identity.GetUserId();
                 ticketComment.Updated = DateTime.Now;
                 db.Entry(ticketComment).State = EntityState.Modified;

@@ -11,19 +11,19 @@
 	<hr />
 	<dl class="dl-horizontal">
 		<dt>
-			FirstName
+			Name
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.AssignedToUser.FirstName)
+			@Html.DisplayFor(model => model.AssignedToUser.FullName)
 		</dd>
 
 		<dt>
-			FirstName
+			Name
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.OwnerUser.FirstName)
+			@Html.DisplayFor(model => model.OwnerUser.FullName)
 		</dd>
 
 		<dt>
@@ -104,7 +104,6 @@
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 		@foreach (var comm in Model.Comment)
-
 		{
 		<div class="col-md-offset-2 col-md-10 border">
 			@*wrap this in a bootstrap "well"*@
@@ -122,23 +121,18 @@
 
 			<img class="img-responsive" src="@comm.FileUrl" alt="">
 
-
-
 		</div>
-
+		
 			if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 			{
-				<div class="col-md-offset-8 col-md-2 border">
-					ok let's fix these links!
-					@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-					@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)
-					@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
-				</div>
+		<div class="col-md-offset-8 col-md-2 border">
+			Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
+			ok let's fix these links!
+			@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+			@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
+			@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+		</div>
 			}
-
-
-
-
 			<br />
 		}
 
@@ -146,13 +140,9 @@
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
 
-				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
-
-			
+				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>		
 
 				<input name="image" type="file" class="form-control" id="fileUpload" />
-
-
 			</div>
 		</div>
 		<div class="form-group">
@@ -170,15 +160,7 @@
 		</div>
 	</div>
 
-
 }
-
-
-
-
-
-
-
 
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

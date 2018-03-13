@@ -14,7 +14,7 @@ namespace BugTracker.Models
         public MultiSelectList Users { get; set; }  //change Users to User?????
         public string[] SelectedUsers { get; set; }
         public User RmvUser { get; set; }
-
+        //public SelectList RemoveUser { get; set; }
 
 
     }

@@ -193,9 +193,13 @@
 						<!-- Page title -->
 						<h2><i class="fa fa-desktop lblue"></i> @Html.ActionLink("Dashboard", "Index", "Home")</h2>
 					</div>
+<div class="col-md-3 col-sm-4 col-xs-6">
+						<!-- Page title -->
+	<h2>@*<i class="fa fa-desktop lblue"></i>*@ @Html.Partial("_LoginPartial")</h2>
+					</div>
+					<!-- Search block -->
+					@*<div class="col-md-3 col-sm-4 col-xs-6">
 
-					<div class="col-md-3 col-sm-4 col-xs-6">
-						<!-- Search block -->
 						<div class="head-search">
 							<form class="form" role="form">
 								<div class="input-group">
@@ -206,7 +210,7 @@
 								</div>
 							</form>
 						</div>
-					</div>
+					</div>*@
 
 					<div class="col-md-3 col-sm-4 hidden-xs">
 						<!-- Notifications -->
@@ -359,17 +363,19 @@
 					</div>
 
 
+
+
 					<div class="col-md-3 hidden-sm hidden-xs">
 						<!-- Head user -->
 						<div class="head-user dropdown pull-right">
 							<a href="#" data-toggle="dropdown" id="profile">
 								<!-- Icon
-							<i class="fa fa-user"></i>  -->
+				<i class="fa fa-user"></i>  -->
 
 								<img src="~/Assets/bug-temp/theme/theme/img/user2.png" alt="" class="img-responsive img-circle" />
 
 								<!-- User name -->
-								@Html.Partial("_LoginPartial") <span class="label label-danger">5</span>
+								 <span class="label label-danger">5</span>
 								<i class="fa fa-caret-down"></i>
 							</a>
 							<!-- Dropdown -->
@@ -388,6 +394,7 @@
 		</div>
 
 		@RenderBody()
+
 
 
 		@Scripts.Render("~/bundles/jquery")
