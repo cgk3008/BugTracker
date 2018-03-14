@@ -44,10 +44,17 @@ namespace BugTracker.Controllers
 
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
+            ProjectHelper helper = new ProjectHelper();
+            var projlist = helper.ListProjectsForUser(userId);
+            //Ticket.AssignedToUserId = new MultiSelectList(db, "id", "FullName", devlist);
+            
+            ViewBag.ProjectId = new SelectList(projlist, "Id", "Name");
+               
             ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName");
             ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName");
             ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name");
-            ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name");
+            //ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name");
             ViewBag.TicketStatusId = new SelectList(db.Status, "Id", "Name");
             ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name");
             return View();
@@ -117,11 +124,7 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                ticket.OwnerUserId = User.Identity.GetUserId();
-
-                //public ICollection<User> ListUsersInRole(string Role)
-
-                //ticket.AssignedToUserId = new SelectList(db.Users.
+                ticket.OwnerUserId = User.Identity.GetUserId();                
                 ticket.Updated = DateTime.Now;
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();

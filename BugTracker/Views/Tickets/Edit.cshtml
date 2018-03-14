@@ -103,7 +103,7 @@
 			<div class="form-group">
 				@Html.LabelFor(model => model.AssignedToUserId, "Assigned To User Id", htmlAttributes: new { @class = "control-label col-md-2" })
 				<div class="col-md-10">
-					Only show developers in list
+					
 					@Html.DropDownList("AssignedToUserId", null, htmlAttributes: new { @class = "form-control" })
 					@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
 				</div>
