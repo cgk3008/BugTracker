@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
+using BugTracker.Models.Helper;
 using Microsoft.AspNet.Identity;
 
 namespace BugTracker.Controllers
@@ -90,7 +91,15 @@ namespace BugTracker.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
+
+            //AdminModel AdminModel = new AdminModel();
+            UserRolesHelper helper = new UserRolesHelper();
+            var devlist = helper.ListUsersInRole("Developer");
+            //Ticket.AssignedToUserId = new MultiSelectList(db, "id", "FullName", devlist);
+
+
+
+            ViewBag.AssignedToUserId = new SelectList(devlist, "Id", "FullName", ticket.AssignedToUserId);
             ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
             ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", ticket.TicketPriorityId);
             ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", ticket.ProjectId);
@@ -109,13 +118,18 @@ namespace BugTracker.Controllers
             if (ModelState.IsValid)
             {
                 ticket.OwnerUserId = User.Identity.GetUserId();
-              
+
+                //public ICollection<User> ListUsersInRole(string Role)
+
+                //ticket.AssignedToUserId = new SelectList(db.Users.
                 ticket.Updated = DateTime.Now;
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
+
+
             ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
             ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", ticket.TicketPriorityId);
             ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", ticket.ProjectId);
@@ -157,11 +171,23 @@ namespace BugTracker.Controllers
         public ActionResult MyTickets()
         {
             var userId = User.Identity.GetUserId();
+
+            //var userRole = UserManager.GetRoles();
+
             //return View(dB.Users.Find(userId).Ticket.ToList());
+
 
             //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
 
-            var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+            //if (User.IsInRole()
+            //{
+                var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+
+            //}
+
+
+
+
             return View(tickets.ToList());
         }
 

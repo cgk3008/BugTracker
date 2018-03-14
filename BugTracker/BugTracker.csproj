@@ -444,7 +444,7 @@
     <Content Include="Views\AdminProjects\AddToProject.cshtml" />
     <Content Include="Views\AdminProjects\Index.cshtml" />
     <Content Include="Views\AdminProjects\RemoveUser.cshtml" />
-    <Content Include="Views\AssignedProjects\Index.cshtml" />
+    <Content Include="Views\AssignedProjects-not using\Index.cshtml" />
     <Content Include="Views\AssignedTickets-not using this\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />

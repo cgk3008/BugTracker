@@ -43,7 +43,6 @@ namespace BugTracker.Controllers
             AdminProject.Project = project;
             return View(AdminProject);
 
-
         }
 
         //POST: AddUser
@@ -93,8 +92,8 @@ namespace BugTracker.Controllers
 
 
             //    helper.RemoveUserFromProject(userrmv, model.Project.Id);
-
-
+            
+           //User create ticekt OwnerUserId method to get one user???
 
 
             ProjectHelper helper = new ProjectHelper();

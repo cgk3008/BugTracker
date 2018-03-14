@@ -6,7 +6,7 @@
 
 <h2>My Tickets</h2>
 
-@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+@if (@*User.IsInRole("Admin") ||*@ User.IsInRole("Submitter"))
 {
 
 	<p>
