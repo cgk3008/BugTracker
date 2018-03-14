@@ -1,0 +1,11 @@
+﻿@*@model IEnumerable.*@
+
+
+
+@{
+    ViewBag.Title = "TicketsForEachProject";
+}
+
+<h2>TicketsForEachProject</h2>
+
+foreach (var ticket in TicketHelper.GetProjectTickets(mod.Id)

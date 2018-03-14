@@ -82,8 +82,10 @@ namespace BugTracker.Controllers
             }
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", ticketComment.UserId);
             ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body", ticketComment.TicketId);
-            return RedirectToAction("Index", "Tickets");
-            //return RedirectToAction("Details", "Ticket", new { id = ticketComment.TicketId });
+            //return RedirectToAction("Details", "Tickets", new { ticket = tix.TicketId });
+
+            //This redirect to detail page with comments is not working
+            return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
             //return View(ticketComment);
         }
 
@@ -120,6 +122,9 @@ namespace BugTracker.Controllers
                     ticketComment.FileUrl = "/UploadsComments/" + fileName;
                 }
 
+
+                //the created DateTime.Now gets set to zero. Update time works, but my edit method is changing Created. Do I take it out of Bind statement above
+
                 ticketComment.UserId = User.Identity.GetUserId();
                 ticketComment.Updated = DateTime.Now;
                 db.Entry(ticketComment).State = EntityState.Modified;
@@ -129,6 +134,7 @@ namespace BugTracker.Controllers
             ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body", ticketComment.TicketId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", ticketComment.UserId);
             return View(ticketComment);
+
         }
 
         // GET: TicketComments/Delete/5

@@ -126,8 +126,8 @@
 			if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 			{
 		<div class="col-md-offset-8 col-md-2 border">
-			Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
-			ok let's fix these links!
+			@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
+			ok let's fix these links!*@
 			@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
 			@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
 			@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)

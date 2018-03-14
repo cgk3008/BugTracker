@@ -50,7 +50,7 @@ namespace BugTracker.Controllers
 
         //So let's make sure we can't create project with same name, AccountController under Register , Post, has code on registration that does this which gathers data from AcountViewModels
 
-            
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -130,15 +130,26 @@ namespace BugTracker.Controllers
 
         // GET: MyProjects
         public ActionResult MyProjects()
-        {
-            var userId = User.Identity.GetUserId();
+        { var userId = User.Identity.GetUserId();
             //return View(dB.Users.Find(userId).Ticket.ToList());
 
             //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
 
 
             return View(dB.Users.Find(userId).Project.ToList());
+
         }
+
+
+        // Get tickets each project
+        public ActionResult TicketsForEachProject()
+        { 
+        var userId = User.Identity.GetUserId();
+        var UserProjects = dB.Project.Include("Ticket");
+            //var projectHelper = new projectHelper();
+            //var myProjects = projectHelper.ListUserProjects(userId);
+            return View();
+    }
 
         protected override void Dispose(bool disposing)
         {
