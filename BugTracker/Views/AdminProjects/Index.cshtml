@@ -5,21 +5,35 @@
 
 <h2>Admin Project Index</h2>
 
-<br/>
+<br />
 <h3>@Html.ActionLink("Create Project", "Create", "Projects")</h3>
 
 <br />
 @foreach (var chg in Model)
 {
-	<p>@chg.Name | @Html.ActionLink("Add User to Project", "AddToProject", new { id = chg.Id })| @Html.ActionLink("Remove User from Project", "RemoveUser", new { id = chg.Id })</p>
-	<ul>
-		@foreach (var user in chg.Users)
-		{
+	<tr>
+		<td>
+			@chg.Name |
+			@Html.ActionLink("Add User to Project", "AddToProject", new { id = chg.Id }) |
+			@Html.ActionLink("Remove User from Project", "RemoveUser", new { id = chg.Id }) |
 
-			<li>
-				@user.FullName
-			</li>
-		}
-	</ul>
+			@if (User.IsInRole("Admin"))
+			{
+				@Html.ActionLink("Edit", "Edit", "Projects", null, new { id = chg.Id })
+				@Html.ActionLink("Details", "Details", "Projects", null, new { id = chg.Id })
+				@Html.ActionLink("Delete", "Delete", "Projects", null, new { id = chg.Id })
+			}
+		</td>
+		<td>
+			<ul>
+				@foreach (var user in chg.Users)
+				{
+					<li>
+						@user.FullName
+					</li>
+				}
+			</ul>
 
+		</td>
+	</tr>
 }

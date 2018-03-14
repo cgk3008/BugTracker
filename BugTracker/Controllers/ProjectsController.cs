@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
 using BugTracker.Models.Helper;
+using Microsoft.AspNet.Identity;
 
 namespace BugTracker.Controllers
 {
@@ -66,14 +67,9 @@ namespace BugTracker.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(project);
+            //return View(project);
+            return RedirectToAction("Index", "AdminProjects");
         }
-
-
-
-
-
-
 
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
@@ -130,8 +126,20 @@ namespace BugTracker.Controllers
             dB.Project.Remove(project);
             dB.SaveChanges();
             return RedirectToAction("Index");
-        }   
-        
+        }
+
+        // GET: MyProjects
+        public ActionResult MyProjects()
+        {
+            var userId = User.Identity.GetUserId();
+            //return View(dB.Users.Find(userId).Ticket.ToList());
+
+            //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
+
+
+            return View(dB.Users.Find(userId).Project.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

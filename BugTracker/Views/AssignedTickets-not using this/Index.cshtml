@@ -18,11 +18,9 @@
 			<tr>
 				<th>
 					Assigned User
-
 				</th>
 				<th>
 					Ticket Owner
-
 				</th>
 				<th>
 					Priority
@@ -95,18 +93,13 @@
 
 						@Html.ActionLink("Edit", "Edit", "Tickets", null, new { id = item.Id })
 
-						|
-
-
-						@*@Html.ActionLink("Go To Blog Index", "Index", "CliffBlogPosts", null, new { @class = "btn btn-outline btn-darkblue more-blog" })*@
+						|			
 
 
 						ok how do I perform soft delete???
 						@*@if (User.IsInRole("Admin"))
 									{
-
-
-										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+										@Html.ActionLink("Delete", "Delete", null, new { id = item.Id })
 							}
 											|*@
 					</td>

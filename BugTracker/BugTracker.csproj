@@ -445,7 +445,7 @@
     <Content Include="Views\AdminProjects\Index.cshtml" />
     <Content Include="Views\AdminProjects\RemoveUser.cshtml" />
     <Content Include="Views\AssignedProjects\Index.cshtml" />
-    <Content Include="Views\AssignedTickets\Index.cshtml" />
+    <Content Include="Views\AssignedTickets-not using this\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />
@@ -592,6 +592,7 @@
     <Content Include="Views\TicketTypes\Edit.cshtml" />
     <Content Include="Views\TicketTypes\Index.cshtml" />
     <Content Include="Views\Tickets\MyTickets.cshtml" />
+    <Content Include="Views\Projects\MyProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
