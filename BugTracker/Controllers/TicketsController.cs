@@ -122,23 +122,62 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket ticket)
         {
-            if (ModelState.IsValid)
-            {
-                ticket.OwnerUserId = User.Identity.GetUserId();
-                ticket.Updated = DateTime.Now;
-                db.Entry(ticket).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
+            //if (ModelState.IsValid)
+            //{
+            //    ticket.OwnerUserId = User.Identity.GetUserId();
+            //    ticket.Updated = DateTime.Now;
+            //    db.Entry(ticket).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
 
-            ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
-            ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", ticket.TicketPriorityId);
-            ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", ticket.ProjectId);
-            ViewBag.TicketStatusId = new SelectList(db.Status, "Id", "Name", ticket.TicketStatusId);
-            ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name", ticket.TicketTypeId);
+            //if (ModelState.IsValid)
+            //{
+            //    //var model = db.Tickets.Find(ticket.Id);
+            //    var oldTic = db.Ticket.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
+            //    foreach (var prop in typeof(Ticket).GetProperties())
+            //    {
+            //        //potentially remove comments, set a history for that separate maybe
+            //        if (prop.Name != null)
+
+            //            //if (prop.Name != null && prop.Name.IndexOf("Description", "TicketComments", "Body", "Notifications"))
+            //            //need to change Body to Title
+            //            var OldValue = ticket.GetType().GetField(prop.Name).ToString();
+            //        var NewValue = oldTic.GetType().GetField(prop.Name).ToString();
+            //        //if (!(ticket.GetType().GetField(prop.Name).GetValue(prop).Equals(model.Get
+
+            //        {
+            //            //var aval = ticket.GetType().GetField(prop.Name);
+
+            //            TicketHistory ticketHistory = new TicketHistory()
+            //            {
+            //                TicketId = ticket.Id,
+            //                UserId = User.Identity.GetUserId(),
+            //                Property = prop.Name,
+            //                OldValue = oldTic.GetType().GetField(prop.Name).ToString(),
+            //                NewValue = ticket.GetType().GetField(prop.Name).ToString(),
+            //                Changed = DateTime.Now
+            //            };
+            //            db.TicketHistories.Add(ticketHistory);
+            //            db.SaveChanges();
+            //        }
+                    
+            //    }
+            //    return RedirectToAction("Details", new { id = ticket.Id });
+            //}
+
+
+            //ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
+
+
+            //ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
+            //ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", ticket.TicketPriorityId);
+            //ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", ticket.ProjectId);
+            //ViewBag.TicketStatusId = new SelectList(db.Status, "Id", "Name", ticket.TicketStatusId);
+            //ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name", ticket.TicketTypeId);
             return View(ticket);
+
         }
 
         // GET: Tickets/Delete/5
@@ -165,31 +204,33 @@ namespace BugTracker.Controllers
             db.Ticket.Remove(ticket);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }      
+        }
 
         // GET: My Tickets
         public ActionResult MyTickets()
         {
             var userId = User.Identity.GetUserId();
 
-            var proj = db.Users.Find(userId).Project.ToList();          
+            var proj = db.Users.Find(userId).Project;
 
-            //    if (User.IsInRole("Project Manager"))
-            //    {
-            //        foreach ()
-            //        {
+            //if (User.IsInRole("Project Manager"))
+            //{
+            //    var tickets = db.Ticket.Where(p => p.ProjectId == proj).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+            //    return View(tickets.ToList());
+            //}
 
-            //        }
-            //    }
+            //if (User.IsInRole("Admin"))
+            //{
+            //    //var tickets = proj;
 
-            //    if (User.IsInRole("Admin"))
-            //    {
-            //        var tickets = proj;
-            //    }
 
-            //    //var userRole = UserManager.GetRoles();
+            //    var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+            //    return View(tickets.ToList());
+            //}
 
-            //    //return View(dB.Users.Find(userId).Ticket.ToList());
+            //var userRole = UserManager.GetRoles();
+
+            //return View(dB.Users.Find(userId).Ticket.ToList());
 
             //    //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
 
@@ -205,10 +246,10 @@ namespace BugTracker.Controllers
                 return View(tickets.ToList());
             }
             else //temperory else statement until i get tickethelper to work
-                    {
+            {
                 return View();
             }
-           
+
 
             //return View(tickets.ToList());
         }
