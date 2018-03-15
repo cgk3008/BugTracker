@@ -19,7 +19,7 @@ namespace BugTracker.Models.Helper
 
 
 
-            //dB.Project.Any (p => p.) "Any" returns a boolean??
+        //dB.Project.Any (p => p.) "Any" returns a boolean??
 
 
         private ApplicationDbContext dB = new ApplicationDbContext();
@@ -54,6 +54,11 @@ namespace BugTracker.Models.Helper
             {
                 return ex;
             }
+        }
+
+        public ICollection<User> ListUsersOnProject(int projectId)
+        {
+            return dB.Project.Find(projectId).Users.ToList();
         }
 
         public ICollection<Project> ListProjectsForUser(string userId)
@@ -111,10 +116,7 @@ namespace BugTracker.Models.Helper
             }
         }
 
-        public ICollection<User> ListUsersOnProject(int projectId)
-        {
-            return dB.Project.Find(projectId).Users.ToList();
-        }
+
 
         //UserNotOnProject(edited)
 

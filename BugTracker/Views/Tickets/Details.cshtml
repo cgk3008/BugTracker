@@ -94,17 +94,14 @@
 </div>
 
 
-@using (Html.BeginForm("Create", "TicketComments"))
-{
-	@Html.AntiForgeryToken()
-	@Html.Hidden("TicketId", Model.Id)
-	<div class="form-horizontal">
-		<h4>Comments</h4>
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-		@foreach (var comm in Model.Comment)
-		{
+<div class="form-horizontal">
+	<h4>Comments</h4>
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+	@foreach (var comm in Model.Comment)
+	{
 		<div class="col-md-offset-2 col-md-10 border">
 			@*wrap this in a bootstrap "well"*@
 			@*<ul class="container-fluid position-relative no-side-padding">*@
@@ -122,25 +119,29 @@
 			<img class="img-responsive" src="@comm.FileUrl" alt="">
 
 		</div>
-		
-			if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-			{
-		<div class="col-md-offset-8 col-md-2 border">
-			@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
-			ok let's fix these links!*@
-			@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-			@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
-			@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
-		</div>
-			}
-			<br />
+
+		if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+		{
+			<div class="col-md-offset-8 col-md-2 border">
+				@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
+					ok let's fix these links!*@
+				@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+				@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
+				@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+			</div>
 		}
+	}
+	<br />
+	@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+	{
+		@Html.AntiForgeryToken()
+		@Html.Hidden("TicketId", Model.Id)
 
 		<input name="TicketId" value="@Model.Id" hidden />
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
 
-				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>		
+				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
 
 				<input name="image" type="file" class="form-control" id="fileUpload" />
 			</div>
@@ -158,9 +159,10 @@
 
 			</div>
 		</div>
-	</div>
+	}
 
-}
+</div>
+
 
 <p>
 	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

@@ -77,7 +77,7 @@ namespace BugTracker.Controllers
                 //{
 
                 //}
-
+                return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
                 //return RedirectToAction("Index");
             }
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", ticketComment.UserId);

@@ -9,15 +9,24 @@ namespace BugTracker.Models.Helper
     {
         //public static ApplicationDbContext db = new ApplicationDbContext();
         //public List<Ticket> GetProjectTickets(int projectId)
-        //{
-        //    return db.Ticket.Where(t => t.ProjectId = ) //userId in parentheses????
+        //{            
+
+        //    return db.Ticket.Where(t => t.ProjectId == projectId);
+
+        //    //return db.Project.Find(projectId).Ticket.ToList();
         //}
 
 
 
 
-        //return dB.Users.Find(userId).Project.ToList();
+        //public ICollection<User> ListUsersOnProject(int projectId)
+        //{
+        //    return dB.Project.Find(projectId).Users.ToList();
+        //}
 
+
+
+        //var userId = User.Identity.GetUserId();
         //var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
 
     }

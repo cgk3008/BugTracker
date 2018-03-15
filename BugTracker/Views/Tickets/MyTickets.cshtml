@@ -6,14 +6,16 @@
 
 <h2>My Tickets</h2>
 
-@if (@*User.IsInRole("Admin") ||*@ User.IsInRole("Submitter"))
-{
+@if (@*User.IsInRole("Admin") ||*@ /**/
+														  /**/
+														  User.IsInRole("Submitter"))
+			{
 
-	<p>
-		@Html.ActionLink("Create New Ticket", "Create")
-	</p>
+				<p>
+					@Html.ActionLink("Create New Ticket", "Create")
+				</p>
 
-}
+			}
 
 <table id="mytable" class="table">
 	<thead>
@@ -93,9 +95,9 @@
 
 
 					@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-					{*@
-						@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-						@*}*@
+						{*@
+					@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+					@*}*@
 					|
 
 					ok how do I perform soft delete???
@@ -104,7 +106,7 @@
 
 						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
 					}
-					
+
 				</td>
 			</tr>
 		}
@@ -119,6 +121,5 @@
 		// format ALL tables by class selector
 		$('.table').DataTable();
 	</script>*@
-
 
 

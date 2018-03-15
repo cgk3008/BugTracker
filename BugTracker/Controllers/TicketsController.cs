@@ -165,53 +165,53 @@ namespace BugTracker.Controllers
             db.Ticket.Remove(ticket);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-
-        private ApplicationDbContext dB = new ApplicationDbContext();
+        }      
 
         // GET: My Tickets
-        //public ActionResult MyTickets()
-        //{
-        //    var userId = User.Identity.GetUserId();
+        public ActionResult MyTickets()
+        {
+            var userId = User.Identity.GetUserId();
 
-        //    var proj = dB.Users.Find(userId).Project.ToList();
+            var proj = db.Users.Find(userId).Project.ToList();          
 
-        //    if (User.IsInRole("Project Manager"))
-        //    {
-        //        foreach ()
-        //        {
+            //    if (User.IsInRole("Project Manager"))
+            //    {
+            //        foreach ()
+            //        {
 
-        //        }
-        //    }
+            //        }
+            //    }
 
+            //    if (User.IsInRole("Admin"))
+            //    {
+            //        var tickets = proj;
+            //    }
 
+            //    //var userRole = UserManager.GetRoles();
 
+            //    //return View(dB.Users.Find(userId).Ticket.ToList());
 
+            //    //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
 
-        //    if (User.IsInRole("Admin"))
-        //    {
-        //        var tickets = proj;
-        //    }
+            if (User.IsInRole("Developer"))
+            {
+                var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                return View(tickets.ToList());
+            }
 
-        //    //var userRole = UserManager.GetRoles();
+            if (User.IsInRole("Submitter"))
+            {
+                var tickets = db.Ticket.Where(u => u.OwnerUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                return View(tickets.ToList());
+            }
+            else //temperory else statement until i get tickethelper to work
+                    {
+                return View();
+            }
+           
 
-        //    //return View(dB.Users.Find(userId).Ticket.ToList());
-
-        //    //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
-
-        //    if (User.IsInRole("Developer"))
-        //    {
-        //        var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-        //    }
-
-        //    if (User.IsInRole("Submitter"))
-        //    {
-        //        var tickets = dB.Ticket.Where(u => u.OwnerUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-        //    }           
-
-        //    return View(tickets.ToList());
-        //}
+            //return View(tickets.ToList());
+        }
 
         protected override void Dispose(bool disposing)
         {
