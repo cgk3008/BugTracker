@@ -7,14 +7,49 @@ namespace BugTracker.Models.Helper
 {
     public class TicketHelper
     {
-        //public static ApplicationDbContext db = new ApplicationDbContext();
-        //public List<Ticket> GetProjectTickets(int projectId)
-        //{            
+        public static ApplicationDbContext db = new ApplicationDbContext();
+        public List<Ticket> GetProjectTickets(string userId, int projectId)
+        {
 
-        //    return db.Ticket.Where(t => t.ProjectId == projectId);
+            //var usr = db.Users.Find(userId);
+            //var prj = db.Project.Find(projectId);
 
-        //    //return db.Project.Find(projectId).Ticket.ToList();
-        //}
+            //return db.prj.Users.Ticket.ToList();
+
+            return db.Project.Find(userId, projectId).Ticket.ToList();
+
+
+
+            //public ICollection<Project> ListProjectsForUser(string userId)
+            //{
+
+            //    return dB.Users.Find(userId).Project.ToList();
+
+            //return db.Ticket.Where(t => t.ProjectId == projectId);
+
+
+
+            //public Exception AddUserToProject(string userId, int projectId)
+            //{
+            //    try
+            //    {
+            //        var prj = dB.Project.Find(projectId);
+            //       
+            //        prj.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
+            //        dB.SaveChanges();
+            //        return null;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return ex;
+            //    }
+            //}
+
+
+
+
+
+        }
 
 
 
