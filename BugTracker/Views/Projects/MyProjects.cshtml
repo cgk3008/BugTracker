@@ -4,65 +4,86 @@
 	ViewBag.Title = "MyProjects";
 }
 
-<h2>My Projects</h2>
-<br />
-@*<h3>
-	@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-	{ 
-		@Html.ActionLink("Create New Project", "Create")
-	}
-</h3>*@
+<div class="main-content">
+	<div class="container">
 
-<h3>
-	@if (User.IsInRole("Submitter"))
-	{
-		@Html.ActionLink("Create New Ticket", "Create", "Tickets")
-		<br />
-		<br />
-	}
-</h3>
+		<div class="page-content">
 
-
-
-<table class="table">
-	<tr>
-		<th>
-			Project Name
-		</th>
-		<th></th>
-	</tr>
-
-	@foreach (var item in Model)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.Name)
-
-				<ul>
-					@foreach (var u in item.Users)
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-desktop blue"></i> My Projects</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			
+			<br />
+			@*<h3>
+					@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 					{
-						<li>
-							@u.FullName @Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
-						</li>
+						@Html.ActionLink("Create New Project", "Create")
 					}
-				</ul>
-			</td>
-			<td>
-				@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Id }, null) |
-				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-				{
-					@Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
-					
-				}
-				@Html.ActionLink("Details", "Details", new { id = item.Id })
+				</h3>*@
 
-				@if (User.IsInRole("Admin"))
+			<h3>
+				@if (User.IsInRole("Submitter"))
 				{
-					
-					@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+					@Html.ActionLink("Create New Ticket", "Create", "Tickets")
+					<br />
+					<br />
 				}
-			</td>
-		</tr>
-	}
+			</h3>
 
-</table>
+
+
+			<table class="table">
+				<tr>
+					<th>
+						Project Name
+					</th>
+					<th></th>
+				</tr>
+
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Name)
+
+							<ul>
+								@foreach (var u in item.Users)
+								{
+									<li>
+										@u.FullName @Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
+									</li>
+								}
+							</ul>
+						</td>
+						<td>
+							@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Id }, null) |
+							@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+							{
+								@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+
+							}
+							@Html.ActionLink("Details", "Details", new { id = item.Id })
+
+							@if (User.IsInRole("Admin"))
+							{
+
+								@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+							}
+						</td>
+					</tr>
+				}
+
+			</table>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

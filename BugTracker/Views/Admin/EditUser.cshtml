@@ -2,21 +2,50 @@
 @{
 	ViewBag.Title = "EditUser";
 }
+<div class="main-content">
+	<div class="container">
 
-<h2>Admin - Edit User Role</h2>
+		<div class="page-content">
+
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-desktop green"></i> Admin - Edit User Role</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+	
 
 
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
 
 
-	@Html.HiddenFor(m => m.User.Id)
+				@Html.HiddenFor(m => m.User.Id)
 
 
 
-	@Html.ListBox("SelectedRoles", Model.Roles, new { @class = "control-label col-md-2" }) @*Model.Roles)*@
-	<p><input type="submit" class="btn btn-info" /></p>
+				@Html.ListBox("SelectedRoles", Model.Roles, new { @class = "control-label col-md-2" }) @*Model.Roles)*@
 
+				<h5>
+					Hold Ctrl Key to Select Multiple Roles for the User. <br /><br />
+					Hold Shift Key and Scroll through List to Select All Roles.
+				</h5>
+				<br />
+
+				<p><input type="submit" class="btn btn-info" /></p>
+
+			}
+			<br />
+
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
 }
 

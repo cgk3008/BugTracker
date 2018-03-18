@@ -2,18 +2,48 @@
 @{
 	ViewBag.Title = "RemoveUser";
 }
+<div class="main-content">
+	<div class="container">
 
-<h2>Admin - Remove User</h2>
+		<div class="page-content">
 
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
-	@Html.HiddenFor(m => m.Project.Id)
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-desktop green"></i> Admin - Remove User</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
 
-	@Html.ListBox("RmvUser", Model.Users, new { @class = "control-label col-md-2" })
-	@*ok need this changed, just one user*@
-	<p><input type="submit" class="btn btn-info" /></p>
 
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
+				@Html.HiddenFor(m => m.Project.Id)
+
+				@Html.ListBox("RmvUser", Model.Users, new { @class = "control-label col-md-2" })
+				@*ok need this changed, just one user*@
+				<br />
+				<br />
+				<br />
+				<h5>
+					Hold Ctrl Key to Select Multiple Users for the Project. <br /><br />
+					Hold Shift Key and Scroll through List to Select Multiple Users or All Users.
+				</h5>
+				<br />
+				<p><input type="submit" class="btn btn-info" /></p>
+
+			}
+
+
+			<br />
+
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
 }
-
-

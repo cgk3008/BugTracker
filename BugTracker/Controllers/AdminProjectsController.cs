@@ -61,7 +61,7 @@ namespace BugTracker.Controllers
             {
                 helper.AddUserToProject(useradd, model.Project.Id );
             }
-            return RedirectToAction("Index", "AdminProjects");
+            return RedirectToAction("Index", "Projects");
         }
 
         //GET: RemoveUser
@@ -86,16 +86,20 @@ namespace BugTracker.Controllers
         public ActionResult RemoveUser(AdminProject model)
         {
 
-
+            ProjectHelper helper = new ProjectHelper();
+            foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
+            {
+                helper.RemoveUserFromProject(userrmv, model.Project.Id);
+            }
 
 
             //ProjectHelper helper = new ProjectHelper();
             //var userrmv = dB.Users.Select(r => r.Id).ToList());
-            
-            //    helper.RemoveUserFromProject(userrmv, model.Project.Id);
-            
 
-            return RedirectToAction("Index", "AdminProjects");
+            //helper.RemoveUserFromProject(userrmv, model.Project.Id);
+
+
+            return RedirectToAction("Index", "Projects");
         }
 
 

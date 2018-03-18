@@ -4,167 +4,189 @@
 	ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="main-content">
+	<div class="container">
 
-<div>
-	<h4>Ticket</h4>
-	<hr />
-	<dl class="dl-horizontal">
-		<dt>
-			Name
-		</dt>
+		<div class="page-content">
 
-		<dd>
-			@Html.DisplayFor(model => model.AssignedToUser.FullName)
-		</dd>
-
-		<dt>
-			Name
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.OwnerUser.FullName)
-		</dd>
-
-		<dt>
-			Priority
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Priority.Name)
-		</dd>
-
-		<dt>
-			Project
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Project.Name)
-		</dd>
-
-		<dt>
-			Status
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Status.Name)
-		</dd>
-
-		<dt>
-			Type
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Type.Name)
-		</dd>
-
-		<dt>
-			Body
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Body)
-		</dd>
-
-		<dt>
-			Description
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Description)
-		</dd>
-
-		<dt>
-			Created
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Created)
-		</dd>
-
-		<dt>
-			Updated
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Updated)
-		</dd>
-
-	</dl>
-</div>
-
-
-
-<div class="form-horizontal">
-	<h4>Comments</h4>
-	<hr />
-	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-	@foreach (var comm in Model.Comment)
-	{
-		<div class="col-md-offset-2 col-md-10 border">
-			@*wrap this in a bootstrap "well"*@
-			@*<ul class="container-fluid position-relative no-side-padding">*@
-
-			@*I want to put DisplayName not AuthorId and then modify Created format for display*@
-			<h6>
-				@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-				, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-			</h6>
-			@*look for format addition to create date/time to code above!!!*@
-
-
-			<h4>@Html.DisplayFor(model => comm.Body)</h4>
-
-			<img class="img-responsive" src="@comm.FileUrl" alt="">
-
-		</div>
-
-		if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-		{
-			<div class="col-md-offset-8 col-md-2 border">
-				@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
-					ok let's fix these links!*@
-				@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-				@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
-				@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket blue"></i> Ticket Details</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
 			</div>
-		}
-	}
-	<br />
-	@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
-	{
-		@Html.AntiForgeryToken()
-		@Html.Hidden("TicketId", Model.Id)
+					
 
-		<input name="TicketId" value="@Model.Id" hidden />
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-12">
+			<div>
+			
+				<hr />
+				<dl class="dl-horizontal">
+					<dt>
+						Name
+					</dt>
 
-				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
+					<dd>
+						@Html.DisplayFor(model => model.AssignedToUser.FullName)
+					</dd>
 
-				<input name="image" type="file" class="form-control" id="fileUpload" />
+					<dt>
+						Name
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.OwnerUser.FullName)
+					</dd>
+
+					<dt>
+						Priority
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Priority.Name)
+					</dd>
+
+					<dt>
+						Project
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Project.Name)
+					</dd>
+
+					<dt>
+						Status
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Status.Name)
+					</dd>
+
+					<dt>
+						Type
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Type.Name)
+					</dd>
+
+					<dt>
+						Body
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Body)
+					</dd>
+
+					<dt>
+						Description
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Description)
+					</dd>
+
+					<dt>
+						Created
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Created)
+					</dd>
+
+					<dt>
+						Updated
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Updated)
+					</dd>
+
+				</dl>
 			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-12">
-				@if (Request.IsAuthenticated)
+
+
+
+			<div class="form-horizontal">
+				<h4>Comments</h4>
+				<hr />
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+				@foreach (var comm in Model.Comment)
 				{
-					<input type="submit" value="Submit Comment" class="btn btn-default" />
+					<div class="col-md-offset-2 col-md-10 border">
+						@*wrap this in a bootstrap "well"*@
+						@*<ul class="container-fluid position-relative no-side-padding">*@
+
+						@*I want to put DisplayName not AuthorId and then modify Created format for display*@
+						<h6>
+							@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+							, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+						</h6>
+						@*look for format addition to create date/time to code above!!!*@
+
+
+						<h4>@Html.DisplayFor(model => comm.Body)</h4>
+
+						<img class="img-responsive" src="@comm.FileUrl" alt="">
+
+					</div>
+
+					if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+					{
+						<div class="col-md-offset-8 col-md-2 border">
+							@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
+								ok let's fix these links!*@
+							@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+							@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
+							@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+						</div>
+					}
 				}
-				else
-				{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
-					<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
+				<br />
+				@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+				{
+					@Html.AntiForgeryToken()
+					@Html.Hidden("TicketId", Model.Id)
+
+					<input name="TicketId" value="@Model.Id" hidden />
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-12">
+
+							<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
+
+							<input name="image" type="file" class="form-control" id="fileUpload" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-12">
+							@if (Request.IsAuthenticated)
+							{
+								<input type="submit" value="Submit Comment" class="btn btn-default" />
+							}
+							else
+							{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
+								<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
+							}
+
+						</div>
+					</div>
 				}
 
 			</div>
+
+
+			<p>
+				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+				@Html.ActionLink("Back to List", "Index")
+			</p>
+
 		</div>
-	}
-
+	</div>
 </div>
-
-
-<p>
-	@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-	@Html.ActionLink("Back to List", "Index")
-</p>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

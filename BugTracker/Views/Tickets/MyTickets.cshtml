@@ -3,115 +3,138 @@
 @{
 	ViewBag.Title = "MyTickets";
 }
+<div class="main-content">
+	<div class="container">
 
-<h2>My Tickets</h2>
+		<div class="page-content">
 
-@if (@*User.IsInRole("Admin") ||*@ /**/
-														  /**/
-														  User.IsInRole("Submitter"))
-			{
-
-				<p>
-					@Html.ActionLink("Create New Ticket", "Create")
-				</p>
-
-			}
-
-<table id="mytable" class="table">
-	<thead>
-		<tr>
-			<th>
-				Assigned User
-			</th>
-			<th>
-				Ticket Owner
-			</th>
-			<th>
-				Priority
-			</th>
-			<th>
-				Project
-			</th>
-			<th>
-				Status
-			</th>
-			<th>
-				Type
-			</th>
-			<th>
-				Body-change to Title?
-			</th>
-			<th>
-				Description
-			</th>
-			<th>
-				Created
-			</th>
-			<th>
-				Updated
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-
-	<tbody>
-
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Priority.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Project.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Status.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Type.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Body)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Created)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Updated)
-				</td>
-				<td>
-
-					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i> My Tickets</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
 
 
-					@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-						{*@
-					@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-					@*}*@
-					|
 
-					ok how do I perform soft delete???
-					@if (User.IsInRole("Admin"))
+			<br />
+			@if (@*User.IsInRole("Admin") ||*@ /**/
+																	  /**/
+																	  User.IsInRole("Submitter"))
+						{
+
+							<h3>
+								@Html.ActionLink("Create New Ticket", "Create")
+							</h3>
+							<br />
+
+						}
+
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							Assigned User
+						</th>
+						<th>
+							Ticket Owner
+						</th>
+						<th>
+							Priority
+						</th>
+						<th>
+							Project
+						</th>
+						<th>
+							Status
+						</th>
+						<th>
+							Type
+						</th>
+						<th>
+							Body-change to Title?
+						</th>
+						<th>
+							Description
+						</th>
+						<th>
+							Created
+						</th>
+						<th>
+							Updated
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					@foreach (var item in Model)
 					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Priority.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Project.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Status.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Type.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Body)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Description)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Created)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Updated)
+							</td>
+							<td>
 
-						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+								@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+
+
+								@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+									{*@
+								@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+								@*}*@
+								|
+
+								ok how do I perform soft delete???
+								@if (User.IsInRole("Admin"))
+								{
+
+									@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+								}
+
+							</td>
+						</tr>
 					}
-
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
 
 <script>
 	$('#mytable').DataTable();

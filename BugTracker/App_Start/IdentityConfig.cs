@@ -36,7 +36,8 @@ namespace BugTracker
             var GmailPassword = WebConfigurationManager.AppSettings["password"];
             var host = WebConfigurationManager.AppSettings["host"];
             int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
-            var from = new MailAddress(WebConfigurationManager.AppSettings["emailfrom"],
+
+            var from = new MailAddress(GmailUsername,
             "BugTracker");
             //Email object set up
             var email = new MailMessage(from, new MailAddress(message.Destination))
@@ -63,7 +64,7 @@ namespace BugTracker
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    //Console.WriteLine(e.Message);
                     return false;
                 }
             };

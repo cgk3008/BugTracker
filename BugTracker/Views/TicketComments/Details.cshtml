@@ -1,59 +1,79 @@
 ﻿@model BugTracker.Models.TicketComment
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
+<div class="main-content">
+	<div class="container">
 
-<h2>Details</h2>
+		<div class="page-content">
 
-<div>
-    <h4>TicketComment</h4>
-    <hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.Ticket.Body)
-		</dt>
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i> Ticket Comment Details</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			
 
-		<dd>
-			@Html.DisplayFor(model => model.Ticket.Body)
-		</dd>
+			<div>
+			
+				<hr />
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayNameFor(model => model.Ticket.Body)
+					</dt>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.User.FullName)
-		</dt>
+					<dd>
+						@Html.DisplayFor(model => model.Ticket.Body)
+					</dd>
 
-		<dd>
-			@Html.DisplayFor(model => model.User.FullName)
-		</dd>
+					<dt>
+						@Html.DisplayNameFor(model => model.User.FullName)
+					</dt>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Body)
-		</dt>
+					<dd>
+						@Html.DisplayFor(model => model.User.FullName)
+					</dd>
 
-		<dd>
-			@Html.DisplayFor(model => model.Body)
-		</dd>
+					<dt>
+						@Html.DisplayNameFor(model => model.Body)
+					</dt>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Created)
-		</dt>
+					<dd>
+						@Html.DisplayFor(model => model.Body)
+					</dd>
 
-		<dd>
-			@Html.DisplayFor(model => model.Created)
-		</dd>
+					<dt>
+						@Html.DisplayNameFor(model => model.Created)
+					</dt>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.FileUrl)
-		</dt>
+					<dd>
+						@Html.DisplayFor(model => model.Created)
+					</dd>
 
-		<dd>
-			@*@Html.DisplayFor(model => model.FileUrl)*@
-			<img class="img-responsive" src="@Model.FileUrl" alt="">
-		</dd>
+					<dt>
+						@Html.DisplayNameFor(model => model.FileUrl)
+					</dt>
 
-	</dl>
+					<dd>
+						@*@Html.DisplayFor(model => model.FileUrl)*@
+						<img class="img-responsive" src="@Model.FileUrl" alt="">
+					</dd>
+
+				</dl>
+			</div>
+			<p>
+				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+				@Html.ActionLink("Back to List", "Index")
+			</p>
+		</div>
+	</div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

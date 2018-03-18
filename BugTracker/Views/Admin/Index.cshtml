@@ -4,23 +4,45 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Admin User Role Index</h2>
+<div class="main-content">
+	<div class="container">
 
-@foreach (var mod in Model)
-{
-	<p>@mod.User.FullName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
-	<ul>
-		@foreach (var role in mod.Roles)
-		{
+		<div class="page-content">
 
-			<li>
-				@role
-			</li>
-		}
-	</ul>
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-desktop blue"></i> Admin User Role Index</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
 
+
+			@foreach (var mod in Model)
+			{
+				<p>@mod.User.FullName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
+				<ul>
+					@foreach (var role in mod.Roles)
+					{
+
+						<li>
+							@role
+						</li>
+					}
+				</ul>
+
+			}
+
+
+
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
 }
-
-
 
 

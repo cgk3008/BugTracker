@@ -4,126 +4,147 @@
 	ViewBag.Title = "Index";
 }
 
-<h2>Index of All Tickets</h2>
 
-@if ( User.IsInRole("Admin"))
-{
+<div class="main-content">
+	<div class="container">
 
-	<p>
-		@Html.ActionLink("Create New Ticket", "Create")
-	</p>
+		<div class="page-content">
 
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i> Index of All Tickets</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+			@if (User.IsInRole("Admin"))
+			{
+
+				<h3>
+					@Html.ActionLink("Create New Ticket", "Create")
+				</h3>
+
+			}
+
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							Assigned User
+						</th>
+						<th>
+							Ticket Owner
+						</th>
+						<th>
+							Priority
+						</th>
+						<th>
+							Project
+						</th>
+						<th>
+							Status
+						</th>
+						<th>
+							Type
+						</th>
+						<th>
+							Body-change to Title?
+						</th>
+						<th>
+							Description
+						</th>
+						<th>
+							Created
+						</th>
+						<th>
+							Updated
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Priority.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Project.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Status.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Type.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Body)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Description)
+
+								@*@string.Join("", item.Description.Take(30))...
+									@Html.Hidden("FullDesc", item.Description)*@
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Created)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Updated)
+							</td>
+							<td>
+
+								@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+
+
+								@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+								{
+									@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+								}
+								|
+
+								ok how do I perform soft delete???
+								@if (User.IsInRole("Admin"))
+								{
+
+
+									@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+								}
+								|
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+			<script>
+				$('#mytable').DataTable();
+			</script>
+
+			@*<script>
+					// format ALL tables by class selector
+					$('.table').DataTable();
+				</script>*@
+
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
 }
-
-<table id="mytable" class="table">
-	<thead>
-		<tr>
-			<th>
-				Assigned User
-			</th>
-			<th>
-				Ticket Owner
-			</th>
-			<th>
-				Priority
-			</th>
-			<th>
-				Project
-			</th>
-			<th>
-				Status
-			</th>
-			<th>
-				Type
-			</th>
-			<th>
-				Body-change to Title?
-			</th>
-			<th>
-				Description
-			</th>
-			<th>
-				Created
-			</th>
-			<th>
-				Updated
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-
-	<tbody>
-
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Priority.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Project.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Status.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Type.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Body)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-
-					@*@string.Join("", item.Description.Take(30))...
-					@Html.Hidden("FullDesc", item.Description)*@
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Created)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Updated)
-				</td>
-				<td>
-
-					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-
-
-					@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-					{
-						@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-					}
-					|
-
-					ok how do I perform soft delete???
-					@if (User.IsInRole("Admin"))
-					{
-
-
-						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-					}
-					|
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
-
-<script>
-	$('#mytable').DataTable();
-</script>
-
-@*<script>
-		// format ALL tables by class selector
-		$('.table').DataTable();
-	</script>*@
-
-
 
 

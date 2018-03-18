@@ -15,7 +15,7 @@ namespace BugTracker.Models.Helper
         {
             var ClaimsUser = (ClaimsIdentity)user;
             var claim = ClaimsUser.Claims.FirstOrDefault(c => c.Type == "Name");
-                if (claim != null)
+            if (claim != null)
             {
                 return claim.Value;
 
@@ -24,6 +24,12 @@ namespace BugTracker.Models.Helper
             {
                 return null;
             }
+        }
+
+        public static bool In(this string source, params string[] list)
+        {
+            if (null == source) throw new ArgumentNullException("source");
+            return list.Contains(source, StringComparer.OrdinalIgnoreCase);
         }
     }
 }
