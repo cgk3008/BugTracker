@@ -146,7 +146,7 @@ namespace BugTracker.Controllers
 
                                 Changed = DateTime.Now
                             };
-                            db.TicketHistories.Add(ticketHistory);
+                            db.History.Add(ticketHistory);
                         }
                     }
                 }
