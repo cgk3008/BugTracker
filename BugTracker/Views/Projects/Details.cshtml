@@ -18,10 +18,10 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-		
+
 
 			<div>
-			
+
 				<hr />
 				<dl class="dl-horizontal">
 					<dt>
@@ -41,16 +41,100 @@
 				</dl>
 			</div>
 
-			<p>
-				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-				@Html.ActionLink("Back to List", "Index")
-			</p>
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							Assigned Users
+						</th>
+					</tr>
+				</thead>
 
+				<tbody>
+
+
+					<tr>
+						<td>
+
+							<ul>
+								@foreach (var u in Model.Users)
+								{
+									<li>
+										@u.FullName
+									</li>
+								}
+							</ul>
+						</td>
+						<td>
+							@Html.ActionLink("Remove User from Project | ", "RemoveUser", "AdminProjects", new { id = Model.Id }, null)
+
+							@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = Model.Id }, null)
+							@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+							{
+								@Html.ActionLink("Edit | ", "Edit", new { id = Model.Id })
+
+							}
+							@Html.ActionLink("Details", "Details", new { id = Model.Id })
+
+							@if (User.IsInRole("Admin"))
+							{
+
+								@Html.ActionLink(" | Delete", "Delete", new { id = Model.Id })
+							}
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+
+
+			<table id="mytable" class="table">
+
+				<thead>
+					<tr>
+						<th>
+							Project Tickets
+						</th>
+					</tr>
+
+				<tbody>
+
+					<tr>
+						<td>
+							The Go to Ticket Details link is not working!!!!
+							@foreach (var d in Model.Ticket)
+							{
+								 
+								@d.Body @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", null, new { id = d.Id }) 
+								<ul>
+									<li>@d.Description</li>
+
+								</ul>
+							}
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
+<p>
+
+	@Html.ActionLink("Back to List", "MyTickets")
+</p>
+
+
+
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+	$('#mytable').DataTable();
+</script>
+
+
+
 
 

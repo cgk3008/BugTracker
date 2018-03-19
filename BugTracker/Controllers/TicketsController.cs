@@ -121,7 +121,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket model)
+        public ActionResult Edit([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId/*,AssignedToUserId*/")] Ticket model)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace BugTracker.Controllers
 
                 foreach (var prop in typeof(Ticket).GetProperties())
                 {
-                    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId", "AssignedToUserId"))
+                    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId"/*, "AssignedToUserId"*/))
                     {
                         var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
                         var newVal = model.GetType().GetProperty(prop.Name).GetValue(model).ToString();
