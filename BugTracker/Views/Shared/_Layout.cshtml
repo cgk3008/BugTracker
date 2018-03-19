@@ -37,30 +37,30 @@
 </head>
 <body>
 	@*<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Home", "Index", "Home")</li>
-					<li>@Html.ActionLink("About", "About", "Home")</li>
-					<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-				</ul>
-				@Html.Partial("_LoginPartial")
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li>@Html.ActionLink("Home", "Index", "Home")</li>
+						<li>@Html.ActionLink("About", "About", "Home")</li>
+						<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+					</ul>
+					@Html.Partial("_LoginPartial")
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container body-content">
-		@RenderBody()
-		<hr />
+		<div class="container body-content">
+			@RenderBody()
+			<hr />
 
-	</div>*@
+		</div>*@
 
 
 
@@ -149,8 +149,18 @@
 						<li>
 
 							<a>
+								@if (User.IsInRole("Admin"))
+								{
+									<i class="fa fa-desktop">
+									</i>
+									@Html.ActionLink("Admin User View", "Index", "Admin")
+								}
+							</a>
 
+						</li>
+						<li>
 
+							<a>
 								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 								{
 									<i class="fa fa-desktop">
@@ -165,39 +175,54 @@
 							<a>
 								<i class="fa fa-desktop">
 								</i>   @*@Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
-								<br />*@
+									<br />*@
 								@Html.ActionLink("My Projects", "MyProjects", "Projects")
 							</a>
 						</li>
-						<li><a href="~/Assets/bug-temp/theme/login.html">
-	<i class="fa fa-ticket"></i>
-
-	@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
-
-	@*@if (User.IsInRole("Submitter"))
-		{
-			@Html.ActionLink("My Tickets", "MyTicketsSub", "Tickets")
-		}
-
-		@if (User.IsInRole("Developer"))
-		{
-			@Html.ActionLink("My Tickets", "MyTicketsDev", "Tickets")
-		}
-		@if (User.IsInRole("Admin"))
-		{
-			@Html.ActionLink("My Tickets", "MyTicketsAdmin", "Tickets")
-		}
-		@if (User.IsInRole("Project Manager"))
-		{
-			@Html.ActionLink("My Tickets", "MyTicketsProjMan", "Tickets")
-		}*@
+						<li>
+							<a href="~/Assets/bug-temp/theme/login.html">
 
 
-</a></li>
+								@if (User.IsInRole("Admin"))
+								{
+									<i class="fa fa-ticket">
+									</i>
+									@Html.ActionLink("All Tickets", "Index", "Tickets")
+								}
+							</a>
 
-						<li><a href="~/Assets/bug-temp/theme/404.html"><i class="fa fa-times"></i> Error Page</a></li>
+						</li>
+						<li>
+							<a>
+								<i class="fa fa-ticket"></i>
+
+								@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+
+								@*@if (User.IsInRole("Submitter"))
+									{
+										@Html.ActionLink("My Tickets", "MyTicketsSub", "Tickets")
+									}
+
+									@if (User.IsInRole("Developer"))
+									{
+										@Html.ActionLink("My Tickets", "MyTicketsDev", "Tickets")
+									}
+									@if (User.IsInRole("Admin"))
+									{
+										@Html.ActionLink("My Tickets", "MyTicketsAdmin", "Tickets")
+									}
+									@if (User.IsInRole("Project Manager"))
+									{
+										@Html.ActionLink("My Tickets", "MyTicketsProjMan", "Tickets")
+									}*@
+
+
+							</a>
+						</li>
+
+						@*<li><a href="~/Assets/bug-temp/theme/404.html"><i class="fa fa-times"></i> Error Page</a></li>
 						<li><a href="~/Assets/bug-temp/theme/grid.html"><i class="fa fa-th-large"></i> Grids</a></li>
-						<li><a href="~/Assets/bug-temp/theme/lock.html"><i class="fa fa-lock"></i> Lock</a></li>
+						<li><a href="~/Assets/bug-temp/theme/lock.html"><i class="fa fa-lock"></i> Lock</a></li>*@
 					</ul>
 				</div>
 
@@ -220,24 +245,24 @@
 						<!-- Page title -->
 						<h2><i class="fa fa-desktop lblue"></i> @Html.ActionLink("Dashboard", "Index", "Home")</h2>
 					</div>
-<div class="col-md-3 col-sm-4 col-xs-6">
+					<div class="col-md-3 col-sm-4 col-xs-6">
 						<!-- Page title -->
-	<h2>@*<i class="fa fa-desktop lblue"></i>*@ @Html.Partial("_LoginPartial")</h2>
+						<h2>@*<i class="fa fa-desktop lblue"></i>*@ @Html.Partial("_LoginPartial")</h2>
 					</div>
 					<!-- Search block -->
 					@*<div class="col-md-3 col-sm-4 col-xs-6">
 
-						<div class="head-search">
-							<form class="form" role="form">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div>*@
+							<div class="head-search">
+								<form class="form" role="form">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Search...">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+										</span>
+									</div>
+								</form>
+							</div>
+						</div>*@
 
 					<div class="col-md-3 col-sm-4 hidden-xs">
 						<!-- Notifications -->
@@ -397,12 +422,12 @@
 						<div class="head-user dropdown pull-right">
 							<a href="#" data-toggle="dropdown" id="profile">
 								<!-- Icon
-				<i class="fa fa-user"></i>  -->
+								<i class="fa fa-user"></i>  -->
 
 								<img src="~/Assets/bug-temp/theme/theme/img/user2.png" alt="" class="img-responsive img-circle" />
 
 								<!-- User name -->
-								 <span class="label label-danger">5</span>
+								<span class="label label-danger">5</span>
 								<i class="fa fa-caret-down"></i>
 							</a>
 							<!-- Dropdown -->

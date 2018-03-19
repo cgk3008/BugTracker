@@ -119,45 +119,51 @@ namespace BugTracker.Controllers
         // POST: Tickets/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var oldTicket = db.Ticket.AsNoTracking().FirstOrDefault(t => t.Id == model.Id);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket model)
+        {
+            if (ModelState.IsValid)
+            {
+                var oldTicket = db.Ticket.AsNoTracking().FirstOrDefault(t => t.Id == model.Id);
 
-        //        foreach (var prop in typeof(Ticket).GetProperties())
-        //        {
-        //            if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId", "AssignedToUserId"))
-        //            {
-        //                var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
-        //                var newVal = model.GetType().GetProperty(prop.Name).GetValue(model).ToString();
+                foreach (var prop in typeof(Ticket).GetProperties())
+                {
+                    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId", "AssignedToUserId"))
+                    {
+                        var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
+                        var newVal = model.GetType().GetProperty(prop.Name).GetValue(model).ToString();
 
-        //                if (oldVal != newVal)
-        //                {
-        //                    TicketHistory ticketHistory = new TicketHistory()
-        //                    {
-        //                        TicketId = oldTicket.Id,
-        //                        UserId = User.Identity.GetUserId(),
-        //                        Property = prop.Name,
-        //                        OldValue = oldVal,
-        //                        NewValue = newVal,
+                        if (oldVal != newVal)
+                        {
+                            TicketHistory ticketHistory = new TicketHistory()
+                            {
+                                TicketId = oldTicket.Id,
+                                UserId = User.Identity.GetUserId(),
+                                Property = prop.Name,
+                                OldValue = oldVal,
+                                NewValue = newVal,
 
-        //                        Changed = DateTime.Now
-        //                    };
-        //                    db.TicketHistories.Add(ticketHistory);
-        //                }
-        //            }
-        //        }
+                                Changed = DateTime.Now
+                            };
+                            db.TicketHistories.Add(ticketHistory);
+                        }
+                    }
+                }
 
-        //        db.Entry(model).State = EntityState.Modified;
-        //        db.SaveChanges();
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
 
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", model.OwnerUserId);
+            ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", model.TicketPriorityId);
+            ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", model.ProjectId);
+            ViewBag.TicketStatusId = new SelectList(db.Status, "Id", "Name", model.TicketStatusId);
+            ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name", model.TicketTypeId);
+            return View(model);
 
+        }
 
         //if (ModelState.IsValid)
         //{
@@ -207,14 +213,7 @@ namespace BugTracker.Controllers
         //ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
 
 
-        //ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
-        //ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", ticket.TicketPriorityId);
-        //ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", ticket.ProjectId);
-        //ViewBag.TicketStatusId = new SelectList(db.Status, "Id", "Name", ticket.TicketStatusId);
-        //ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name", ticket.TicketTypeId);
-        //    return View(ticket);
 
-        //}
 
         // GET: Tickets/Delete/5
         public ActionResult Delete(int? id)
@@ -318,8 +317,11 @@ namespace BugTracker.Controllers
             {
                 EmailService ems = new EmailService();
                 IdentityMessage msg = new IdentityMessage();
-                User user = db.Users.Find(model.AssignedToUserId);
+                //User user = db.Users.Find(model.AssignedToUserId);
+                User user = new User();
+
                 msg.Body = "You have been assigned a new Ticket." + Environment.NewLine + "Please click the following link to view the details" + "<a href=\"" + callbackUrl + "\">NEW TICKET</a>";
+
                 msg.Destination = user.Email;
                 msg.Subject = "Invite to Household";
                 await ems.SendMailAsync(msg);

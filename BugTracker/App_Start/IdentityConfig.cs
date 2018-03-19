@@ -18,6 +18,7 @@ using System.Diagnostics;
 using SendGrid;
 using System.Web.Configuration;
 using System.Net.Mail;
+using System.Net.Mime;
 
 namespace BugTracker
 {
@@ -28,6 +29,25 @@ namespace BugTracker
             // Plug in your email service here to send an email.
             await SendMailAsync(message);
             //return Task.FromResult(0);
+
+            //string text = message.Body;
+            //string html = message.Body;
+            ////do whatever you want to the message        
+            //MailMessage msg = new MailMessage();
+            //msg.From = new MailAddress("cgk3008.ck@gmail.com");
+            //msg.To.Add(new MailAddress(message.Destination));
+            //msg.Subject = message.Subject;
+            //msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+            //msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+
+            //SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(Keys.EmailUser, Keys.EMailKey);
+            //smtpClient.Credentials = credentials;
+            //smtpClient.Send(msg);
+
+            //return Task.FromResult(0);
+
+
         }
         public async Task<bool> SendMailAsync(IdentityMessage message)
         {
@@ -37,8 +57,7 @@ namespace BugTracker
             var host = WebConfigurationManager.AppSettings["host"];
             int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
 
-            var from = new MailAddress(GmailUsername,
-            "BugTracker");
+            var from = new MailAddress(WebConfigurationManager.AppSettings["emailfrom"],"BugTracker");
             //Email object set up
             var email = new MailMessage(from, new MailAddress(message.Destination))
             {

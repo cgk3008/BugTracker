@@ -31,37 +31,12 @@ namespace BugTracker.Controllers
             return View(model);
         }
 
+        private const string key = "qazqaz1288"; //You can add your own Key
+        public ActionResult Login()
+        {
+            return View();
+        }
 
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Contact(EmailModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            var body = "<p>Email From: <bold>{0}</bold> ({ 1})</ p >< p > Message:</ p >< p >{ 2}</ p > ";
-        //            var from = "BugTracker<cgk3008.ck@gmail.com>";
-        //            model.Body = "This is a message from your tracker site. The name and the email of the contacting person is above.";
-        //            var email = new IdentityMessage(from, ConfigurationManager.AppSettings["emailto"])
-        //            {
-        //                Subject = "Portfolio Contact Email",
-        //                Body = string.Format(body, model.FromName, model.FromEmail, model.Body),
-        //                IsBodyHtml = true
-        //            };
-        //            var svc = new EmailService();
-        //            await svc.SendAsync(email);
-        //            return View(new EmailModel());
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //            await Task.FromResult(0);
-        //        }
-        //    }
-        //    return View(model);
-        //}
 
 
     }

@@ -31,6 +31,9 @@
 
 			}
 
+
+
+
 			<table id="mytable" class="table">
 				<thead>
 					<tr>
@@ -113,7 +116,10 @@
 
 								@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
 								{
-									@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+									@Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+
+									@Html.ActionLink("Assign", "AssignTicket", new { id = item.Id })
+
 								}
 								|
 
