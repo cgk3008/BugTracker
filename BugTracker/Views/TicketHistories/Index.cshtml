@@ -1,63 +1,98 @@
 ﻿@model IEnumerable<BugTracker.Models.TicketHistory>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
+<div class="main-content">
+	<div class="container">
 
-<h2>Ticket History Index</h2>
+		<div class="page-content">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Body
-        </th>
-        <th>
-           Full Name
-        </th>
-        <th>
-            Property
-        </th>
-        <th>
-            Old Value
-        </th>
-        <th>
-            New Value
-        </th>
-        <th>
-          Changed
-        </th>
-        <th></th>
-    </tr>
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i>Ticket History Index</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Property)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OldValue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NewValue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Changed)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+			@*<h2>Ticket History Index</h2>*@
+
+			@*<p>
+					@Html.ActionLink("Create New", "Create")
+				</p>*@
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							Body
+						</th>
+						<th>
+							Full Name
+						</th>
+						<th>
+							Property
+						</th>
+						<th>
+							Old Value
+						</th>
+						<th>
+							New Value
+						</th>
+						<th>
+							Changed
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Ticket.Body)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.User.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Property)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.OldValue)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.NewValue)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Changed)
+							</td>
+							<td>
+
+								@if (User.IsInRole("Admin"))
+								{
+									@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+									@Html.ActionLink("Details", "Details", new { id = item.Id })
+									@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+								}
+
+							</td>
+
+						</tr>
+					}
+				</tbody>
+			</table>
+
+			<script>
+				$('#mytable').DataTable();
+			</script>
+
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
 }
-
-</table>
