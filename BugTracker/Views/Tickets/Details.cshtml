@@ -188,46 +188,69 @@
 
 
 			<div class="form-horizontal">
-				<h4>Comments</h4>
 				<hr />
+				<br />
+				<h4>Comments</h4>
+
 				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-				@foreach (var comm in Model.Comment)
-				{
-					<div class="page-grid">
-						<div class="container">
-							<div class="row show-grid">
-								<div class="col-md-10">
-									<h6>
-										@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-										, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-									</h6>
+				<table id="mytable" class="table">
+					<thead>
+						<tr>
+							<th>
+								User
+							</th>
+							<th>
+								Created
+							</th>
 
-									<h4>@Html.DisplayFor(model => comm.Body)</h4>
+						</tr>
+					</thead>
+					<tbody>
 
-									<img class="img-responsive" src="@comm.FileUrl" alt="">
-								</div>
+						@foreach (var comm in Model.Comment)
+						{
+							<div class="page-grid">
+								<div class="container">
+									<div class="row show-grid">
+										<div class="col-md-10">
+											<h6>
+												@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+												, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+											</h6>
 
-								<div class="col-md-2">
+											<h4>@Html.DisplayFor(model => comm.Body)</h4>
 
-									@if (comm.User.UserName == User.Identity.Name)
-									{
-										<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
-									}
+											<img class="img-responsive" src="@comm.FileUrl" alt="">
+										</div>
+
+										<div class="col-md-2">
+
+											@if (comm.User.UserName == User.Identity.Name)
+											{
+												<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
+											}
 
 
-									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-									{
-										<h3>
-											@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-											@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
-										</h3>
-									}
+											@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+											{
+												<h3>
+													@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+													@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+												</h3>
+											}
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				}
+						}
+					</tbody>
+				</table>
+
+				<script>
+					$('#mytable').DataTable();
+				</script>
+
 				<br />
 
 				@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))

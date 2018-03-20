@@ -55,7 +55,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name, Created, pmId")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Name, Created, PmId")] Project project)
         {
             //add project name check helper here...relate to fields above?
 
@@ -96,7 +96,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name, pmId")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Name, PmId")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace BugTracker.Controllers
                 dB.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.pmId = new SelectList(dB.Project, "Id", "FullName", project.pmId);
+            ViewBag.pmId = new SelectList(dB.Project, "Id", "FullName", project.PmId);
             return View(project);
         }
 

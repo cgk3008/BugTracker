@@ -252,9 +252,9 @@ namespace BugTracker.Controllers
             {
                 //var tickets = db.Ticket.Where(p => p.ProjectId == proj).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
                 
-                var tkts = db.Project.Where(p => p.pmId == userId).SelectMany(t => t.Ticket).ToList();
+                var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).ToList();
 
-                //var tkts = db.Project.Where(p => p.pmId == userId).SelectMany(t => t.Ticket).Include(tx => tx.AssignedToUser).Include(tx => tx.OwnerUser).Include(tx => tx.Project).Include(tx => tx.Priority).Include(tx => tx.Status).Include(tx => tx.Type);
+                //var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).Include(tx => tx.AssignedToUser).Include(tx => tx.OwnerUser).Include(tx => tx.Project).Include(tx => tx.Priority).Include(tx => tx.Status).Include(tx => tx.Type);
 
               
                 return View(tkts.ToList());
