@@ -105,7 +105,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayFor(model => model.Created)
+						@Html.DisplayFor(model => model.Created, "{0:dd-MMM-yyyy}")
 					</dd>
 
 					<dt>
@@ -218,9 +218,14 @@
 							@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
 								ok let's fix these links!*@
 							@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-							@*@Html.ActionLink(" Details ----- ", "Details", "TicketComments", new { id = comm.Id }, null)*@
+
 							@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
 						</div>
+					}
+
+					if (comm.User.UserName == User.Identity.Name)
+					{
+						@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)
 					}
 				}
 				<br />
