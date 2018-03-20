@@ -11,7 +11,21 @@
 			<!-- Heading -->
 			<div class="single-head">
 				<!-- Heading -->
-				<h2 class="pull-left"><i class="fa fa-desktop green"></i> Project Details</h2>
+				<div class="col-md-4">
+					<h2 class="pull-left">
+						<i class="fa fa-desktop green"></i> Project Details
+					</h2>
+				</div>
+
+				@if (User.IsInRole("Submitter"))
+				{<div class="col-md-4">
+						<h2 class="pull-left">
+							<i class="fa fa-ticket green"></i>
+							@Html.ActionLink("Create New Ticket", "Create", "Tickets")
+						</h2>
+					</div>
+				}
+
 				<!-- Bread crumbs -->
 				<div class="breads pull-right">
 					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
@@ -23,116 +37,125 @@
 			<div>
 
 				<hr />
-				<dl class="dl-horizontal">
-					<dt>
-						@Html.DisplayNameFor(model => model.Name)
-					</dt>
+				<div class="page-grid">
+					<div class="container">
+						<div class="col-md-4"><strong>Project Name</strong> @Html.DisplayFor(model => model.Name)</div>
 
-					<dd>
-						@Html.DisplayFor(model => model.Name)
-					</dd>
 
-					<dt>
-						Created
-					</dt>
-					<dd>
-						@Html.DisplayFor(model => model.Created, "{0:dd-MMM-yyyy}")
-					</dd>
-				</dl>
+
+						<div class="col-md-4">
+							<strong> Created</strong>	@Html.DisplayFor(model => model.Created, "{0:ddd, MMM d, yyyy}")
+
+						</div>
+						<br />	<br />
+						<table id="mytable" class="table">
+							<thead>
+								<tr>
+									<th>
+
+										Assigned Users
+
+									</th>
+								</tr>
+							</thead>
+
+							<tbody>
+
+
+								<tr>
+									<td>
+
+										<ul>
+											@foreach (var u in Model.Users)
+											{
+												<li>
+													@u.FullName
+												</li>
+											}
+										</ul>
+									</td>
+									<td>
+										<strong>@Html.ActionLink("Remove User from Project | ", "RemoveUser", "AdminProjects", new { id = Model.Id }, null)</strong>
+
+										<strong>
+											@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = Model.Id }, null)
+										</strong>
+										@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+										{
+											<strong>
+												@Html.ActionLink("Edit Project | ", "Edit", new { id = Model.Id })
+											</strong>
+
+										}
+										<strong>
+											@Html.ActionLink("Project Details", "Details", new { id = Model.Id })
+										</strong>
+
+										@if (User.IsInRole("Admin"))
+										{
+
+											<strong>
+												@Html.ActionLink(" | Delete Project", "Delete", new { id = Model.Id })
+											</strong>
+										}
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+
+						<table id="mytable" class="table">
+
+							<thead>
+								<tr>
+									<th>
+
+										Project Tickets
+									</th>
+								</tr>
+
+
+
+
+
+							</thead>
+							<tbody>
+
+								<tr>
+									<td>
+
+										@foreach (var d in Model.Ticket)
+										{
+
+											@d.Body @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", new { id = d.Id }, null)
+											<ul>
+												<li>@d.Description</li>
+
+											</ul>
+										}
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
+			<strong>
 
-			<table id="mytable" class="table">
-				<thead>
-					<tr>
-						<th>
-							Assigned Users
-						</th>
-					</tr>
-				</thead>
-
-				<tbody>
-
-
-					<tr>
-						<td>
-
-							<ul>
-								@foreach (var u in Model.Users)
-								{
-									<li>
-										@u.FullName
-									</li>
-								}
-							</ul>
-						</td>
-						<td>
-							@Html.ActionLink("Remove User from Project | ", "RemoveUser", "AdminProjects", new { id = Model.Id }, null)
-
-							@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = Model.Id }, null)
-							@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-							{
-								@Html.ActionLink("Edit | ", "Edit", new { id = Model.Id })
-
-							}
-							@Html.ActionLink("Details", "Details", new { id = Model.Id })
-
-							@if (User.IsInRole("Admin"))
-							{
-
-								@Html.ActionLink(" | Delete", "Delete", new { id = Model.Id })
-							}
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-
-
-			<table id="mytable" class="table">
-
-				<thead>
-					<tr>
-						<th>
-							Project Tickets
-						</th>
-					</tr>
-
-				<tbody>
-
-					<tr>
-						<td>
-							
-							@foreach (var d in Model.Ticket)
-							{
-								 
-								@d.Body @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", new { id = d.Id }, null) 
-								<ul>
-									<li>@d.Description</li>
-
-								</ul>
-							}
-
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-<p>
-
-	@Html.ActionLink("Back to List", "MyTickets")
-</p>
+				@Html.ActionLink("Back to My Projects", "MyTickets")
+			</strong>
 
 
 
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
-}
+			@section Scripts {
+				@Scripts.Render("~/bundles/jqueryval")
+			}
 
-<script>
-	$('#mytable').DataTable();
-</script>
+			<script>
+				$('#mytable').DataTable();
+			</script>
 
 
 
