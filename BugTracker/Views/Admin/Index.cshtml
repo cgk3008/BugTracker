@@ -20,23 +20,47 @@
 				<div class="clearfix"></div>
 			</div>
 
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							User Name
+						</th>
+						<th>
+							Role
+						</th>
+					</tr>
 
-			@foreach (var mod in Model)
-			{
-				<p>@mod.User.FullName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
-				<ul>
-					@foreach (var role in mod.Roles)
+				</thead>
+
+
+				<tbody>
+					@foreach (var mod in Model)
 					{
+						<tr>
+							<td>
+								<p>@mod.User.FullName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
+							</td>
+							<td>
+								<ul>
+									<li>
+										@foreach (var role in mod.Roles)
+										{
+											@role											
+										}
+									</li>
+								</ul>
+							</td>
+						</tr>
 
-						<li>
-							@role
-						</li>
 					}
-				</ul>
 
-			}
+				</tbody>
+			</table>
 
-
+			<script>
+				$('#mytable').DataTable();
+			</script>
 
 		</div>
 	</div>
