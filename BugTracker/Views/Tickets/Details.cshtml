@@ -194,41 +194,42 @@
 
 				@foreach (var comm in Model.Comment)
 				{
-					<div class="col-md-offset-2 col-md-10 border">
-						@*wrap this in a bootstrap "well"*@
-						@*<ul class="container-fluid position-relative no-side-padding">*@
+					<div class="page-grid">
+						<div class="container">
+							<div class="row show-grid">
+								<div class="col-md-10">
+									<h6>
+										@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+										, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+									</h6>
 
-						@*I want to put DisplayName not AuthorId and then modify Created format for display*@
-						<h6>
-							@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-							, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-						</h6>
-						@*look for format addition to create date/time to code above!!!*@
+									<h4>@Html.DisplayFor(model => comm.Body)</h4>
+
+									<img class="img-responsive" src="@comm.FileUrl" alt="">
+								</div>
+
+								<div class="col-md-2">
+
+									@if (comm.User.UserName == User.Identity.Name)
+									{
+										<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
+									}
 
 
-						<h4>@Html.DisplayFor(model => comm.Body)</h4>
-
-						<img class="img-responsive" src="@comm.FileUrl" alt="">
-
-					</div>
-
-					if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-					{
-						<div class="col-md-offset-8 col-md-2 border">
-							@*Also, only logged user should be able to edit their own comments. If ( this code in controller"ticketComment.UserId = User.Identity.GetUserId();" is equal to comment "UserId" then show edit, and delete.  I don't think I need details shown at all!!!!
-								ok let's fix these links!*@
-							@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-
-							@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+									{
+										<h3>
+											@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+											@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+										</h3>
+									}
+								</div>
+							</div>
 						</div>
-					}
-
-					if (comm.User.UserName == User.Identity.Name)
-					{
-						@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)
-					}
+					</div>
 				}
 				<br />
+
 				@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
 				{
 					@Html.AntiForgeryToken()
