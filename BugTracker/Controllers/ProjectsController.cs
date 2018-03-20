@@ -83,6 +83,11 @@ namespace BugTracker.Controllers
             {
                 return HttpNotFound();
             }
+            UserRolesHelper helper = new UserRolesHelper();
+            var pmlist = helper.ListUsersInRole("ProjectManager, Admin");
+         
+            ViewBag.pmId = new SelectList(pmlist, "Id", "FullName");
+
             return View(project);
         }
 
@@ -91,7 +96,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Name, pmId")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +104,7 @@ namespace BugTracker.Controllers
                 dB.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.pmId = new SelectList(dB.Project, "Id", "FullName", project.pmId);
             return View(project);
         }
 
