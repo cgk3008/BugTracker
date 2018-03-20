@@ -55,7 +55,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name, Created")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Name, Created, pmId")] Project project)
         {
             //add project name check helper here...relate to fields above?
 

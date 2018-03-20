@@ -55,18 +55,18 @@
 					{
 						<tr>
 							<td>
-								@Html.DisplayFor(modelItem => item.Name)
+								@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.pmId)
 
 								<ul>
 									@foreach (var u in item.Users)
-									{
-										<li>
-											@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-											{
-												@Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
-											}
-										</li>
-									}
+		{
+							<li>
+								@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+	{
+							@Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
+}
+							</li>
+}
 								</ul>
 							</td>
 							<td>
