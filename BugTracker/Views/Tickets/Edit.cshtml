@@ -94,7 +94,7 @@
 					</div>
 
 
-					@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+					@*@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 
 
 					{
@@ -109,7 +109,7 @@
 								@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
 							</div>
 						</div>
-					}
+					}*@
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-10">
 							<input type="submit" value="Save" class="btn btn-primary" />

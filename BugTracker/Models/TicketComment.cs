@@ -16,6 +16,7 @@ namespace BugTracker.Models
         public int TicketId { get; set; }
         public string UserId { get; set; }
         public string FileUrl { get; set; }
+        public string SoftDelete { get; set; }
 
         public virtual Ticket Ticket { get; set; }
         public virtual User User { get; set; }

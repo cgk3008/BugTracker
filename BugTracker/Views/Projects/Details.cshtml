@@ -44,7 +44,7 @@
 
 
 						<div class="col-md-4">
-							<strong> Created</strong>	@Html.DisplayFor(model => model.Created, "{0:ddd, MMM d, yyyy}")
+							<strong> Created</strong>	@Html.DisplayFor(model => model.Created, "{0:dd-MMM-yyyy}")
 
 						</div>
 						<br />	<br />
@@ -83,13 +83,11 @@
 										@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 										{
 											<strong>
-												@Html.ActionLink("Edit Project | ", "Edit", new { id = Model.Id })
+												@Html.ActionLink("Edit Project ", "Edit", new { id = Model.Id })
 											</strong>
 
 										}
-										<strong>
-											@Html.ActionLink("Project Details", "Details", new { id = Model.Id })
-										</strong>
+									
 
 										@if (User.IsInRole("Admin"))
 										{

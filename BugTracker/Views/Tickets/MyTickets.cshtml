@@ -23,9 +23,11 @@
 
 			<br />
 			@if (@*User.IsInRole("Admin") ||*@ /**/
-																				  /**/
-																				  /**/
-																				  User.IsInRole("Submitter"))
+																										  /**/
+																										  /**/
+																										  /**/
+																										  /**/
+																										  User.IsInRole("Submitter"))
 						{
 
 							<h3>
@@ -102,27 +104,37 @@
 								@Html.DisplayFor(modelItem => item.Description)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.Created)
+								@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
 							</td>
 							<td>
 								@Html.DisplayFor(modelItem => item.Updated)
 							</td>
 							<td>
 
-								@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+								@Html.ActionLink("Details ", "Details", new { id = item.Id }) |
 
 
 								@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
 									{*@
-								@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-								@*}*@
-								|
 
-								ok how do I perform soft delete???
+
+
+								@Html.ActionLink(" Edit ", "Edit", new { id = item.Id }) <text> | </text>
+								@*}*@
+
+
+								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+								{
+
+
+									@Html.ActionLink(" Assign ", "AssignTicket", new { id = item.Id }) <text> | </text>
+								}
+
+								ok how do I perform soft delete ???
 								@if (User.IsInRole("Admin"))
 								{
 
-									@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+									@Html.ActionLink(" Delete ", "Delete", new { id = item.Id })
 								}
 
 							</td>
