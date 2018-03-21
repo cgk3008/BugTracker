@@ -318,12 +318,12 @@ namespace BugTracker.Controllers
                 EmailService ems = new EmailService();
                 IdentityMessage msg = new IdentityMessage();
                 //User user = db.Users.Find(model.AssignedToUserId);
-                User user = new User();
+                User user = db.Users.Find(model.AssignedToUserId);
 
                 msg.Body = "You have been assigned a new Ticket." + Environment.NewLine + "Please click the following link to view the details" + "<a href=\"" + callbackUrl + "\">NEW TICKET</a>";
 
                 msg.Destination = user.Email;
-                msg.Subject = "Invite to Household";
+                msg.Subject = "Assigned Ticket";
                 await ems.SendMailAsync(msg);
             }
             catch (Exception ex)
