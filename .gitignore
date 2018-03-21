@@ -6,7 +6,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-private.config
+private9.config
+private9.Debug.config
+private9.Release.config
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
