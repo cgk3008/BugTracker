@@ -466,6 +466,15 @@
     <Content Include="Views\AdminProjects\RemoveUser.cshtml" />
     <Content Include="Views\AssignedProjects-not using\Index.cshtml" />
     <Content Include="Views\AssignedTickets-not using this\Index.cshtml" />
+    <Content Include="private9.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="private9.Debug.config">
+      <DependentUpon>private9.config</DependentUpon>
+    </Content>
+    <Content Include="private9.Release.config">
+      <DependentUpon>private9.config</DependentUpon>
+    </Content>
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />
