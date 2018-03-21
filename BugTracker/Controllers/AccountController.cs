@@ -53,6 +53,57 @@ namespace BugTracker.Controllers
             }
         }
 
+        //Demo Login for landing page
+        [AllowAnonymous]
+        public async Task<ActionResult> GuestLogin(string returnUrl, string type)
+        {
+            string Email = "";
+            string Password = ""; 
+
+            switch (type)
+            {
+                case "Admin":
+                    Email = "admin9@demo.com";
+                    Password = "Abc&124!";
+                    break;
+                case "ProjectManager":
+                    Email = "manager9@demo.com";
+                    Password = "Abc&125!";
+                    break;
+                case "Developer":
+                    Email = "developer9@demo.com";
+                    Password = "Abc&126!";
+                    break;
+                case "Submitter":
+                    Email = "submitter9@demo.com";
+                    Password = "Abc&127!";
+                    break;
+                default:
+                    Email = "sumitter8@demo.com";
+                    Password = "Abc&128!";
+                    break;
+            }
+            var result = await SignInManager.PasswordSignInAsync(Email, Password, false, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToAction("Index", "Tickets");
+                //return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return RedirectToAction("Login");
+            }
+        }
+
+
+
+
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -152,7 +203,7 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.DisplayName, FullName = model.FullName };
+                var user = new User { UserName = model.Email, Email = model.Email, /*FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.DisplayName,*/ FullName = model.FullName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

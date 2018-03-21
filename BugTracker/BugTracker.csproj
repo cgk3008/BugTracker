@@ -624,6 +624,7 @@
       <DependentUpon>private.config</DependentUpon>
     </Content>
     <Content Include="Views\Tickets\AssignTicket.cshtml" />
+    <Content Include="Views\Home\LandingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
