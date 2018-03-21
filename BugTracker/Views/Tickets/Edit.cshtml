@@ -4,7 +4,7 @@
 	ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+
 
 <div class="main-content">
 	<div class="container">
@@ -14,7 +14,7 @@
 			<!-- Heading -->
 			<div class="single-head">
 				<!-- Heading -->
-				<h2 class="pull-left"><i class="fa fa-ticket green"></i> Create Ticket</h2>
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i> Edit Ticket</h2>
 				<!-- Bread crumbs -->
 				<div class="breads pull-right">
 					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
@@ -28,8 +28,8 @@
 				@Html.AntiForgeryToken()
 
 				<div class="form-horizontal">
-					<h4>Ticket</h4>
-					<hr />
+				
+				
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 					@Html.HiddenFor(model => model.Id)
 

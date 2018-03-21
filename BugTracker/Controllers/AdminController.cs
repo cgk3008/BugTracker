@@ -67,7 +67,7 @@ namespace BugTracker.Controllers
         }
 
 
-        //GET: IsUserInRole
+        //GET: Users not in role
         public ActionResult UsersNotInRole(string id)
         {
             var user = dB.Users.Find(id);
@@ -85,7 +85,7 @@ namespace BugTracker.Controllers
             //new { id = mod.User.Id })
         }
 
-        //POST: IsUserInRole
+        //POST: Users not in role
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UsersNotInRole(AdminModel model)
@@ -102,6 +102,12 @@ namespace BugTracker.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        //GET: Is user in role
+
+
+
+
 
 
 

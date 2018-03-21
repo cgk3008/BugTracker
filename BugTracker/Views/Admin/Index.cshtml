@@ -26,6 +26,7 @@
 						<th>
 							User Name
 						</th>
+
 						<th>
 							Role
 						</th>
@@ -41,16 +42,12 @@
 							<td>
 								<p>@mod.User.FullName | @Html.ActionLink("Edit Roles", "EditUser", new { id = mod.User.Id })</p>
 							</td>
+
 							<td>
-								<ul>
-									<li>
-										@foreach (var role in mod.Roles)
-										{
-											@role											
-										}
-									</li>
-								</ul>
-							</td>
+								@foreach (var role in mod.Roles)
+								{
+									@role
+								}
 						</tr>
 
 					}
@@ -58,9 +55,14 @@
 				</tbody>
 			</table>
 
+
 			<script>
 				$('#mytable').DataTable();
 			</script>
+
+			
+
+
 
 		</div>
 	</div>

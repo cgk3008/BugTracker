@@ -67,7 +67,7 @@ namespace BugTracker.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket ticket)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace BugTracker.Controllers
             }
 
             ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
-            ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
+            //ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", ticket.OwnerUserId);
             ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", ticket.TicketPriorityId);
             ViewBag.ProjectId = new SelectList(db.Project, "Id", "Name", ticket.ProjectId);
             ViewBag.TicketStatusId = new SelectList(db.Status, "Id", "Name", ticket.TicketStatusId);
@@ -121,7 +121,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId/*,AssignedToUserId*/")] Ticket model)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId/*,AssignedToUserId*/")] Ticket model)
         {
             if (ModelState.IsValid)
             {
@@ -184,7 +184,7 @@ namespace BugTracker.Controllers
         //        
         //        if (prop.Name != null)
 
-        //            //if (prop.Name != null && prop.Name.IndexOf("Description", "TicketComments", "Body", "Notifications"))
+        //            //if (prop.Name != null && prop.Name.IndexOf("Description", "TicketComments", "Title", "Notifications"))
         //            //need to change Body to Title
         //            var OldValue = oldTic.GetType().GetField(prop.Name).ToString();
         //        var NewValue = ticket.GetType().GetField(prop.Name).ToString();
@@ -326,8 +326,11 @@ namespace BugTracker.Controllers
                 msg.Subject = "Invite to Household";
                 await ems.SendMailAsync(msg);
             }
-            catch (Exception ex) { await Task.FromResult(0); }
-            return RedirectToAction("Index");
+            catch (Exception ex)
+            {
+                await Task.FromResult(0);
+            }
+            return RedirectToAction("MyTickets");
         }
 
 
