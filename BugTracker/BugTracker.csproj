@@ -634,6 +634,7 @@
     </Content>
     <Content Include="Views\Tickets\AssignTicket.cshtml" />
     <Content Include="Views\Home\LandingPage.cshtml" />
+    <Content Include="Views\Projects\AssignProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

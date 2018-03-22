@@ -320,7 +320,7 @@ namespace BugTracker.Controllers
                 //User user = db.Users.Find(model.AssignedToUserId);
                 User user = db.Users.Find(model.AssignedToUserId);
 
-                msg.Body = "You have been assigned a new Ticket." + Environment.NewLine + "Please click the following link to view the details" + "<a href=\"" + callbackUrl + "\">NEW TICKET</a>";
+                msg.Body = "New Ticket Assignment." + Environment.NewLine + "Please click the following link to view the details" + "<a href=\"" + callbackUrl + "\">NEW TICKET</a>";
 
                 msg.Destination = user.Email;
                 msg.Subject = "Assigned Ticket";

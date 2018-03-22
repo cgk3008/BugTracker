@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
@@ -153,6 +154,51 @@ namespace BugTracker.Controllers
             //var myProjects = projectHelper.ListUserProjects(userId);
             return View();
     }
+
+        //GET: Assign Project
+        public ActionResult AssignProject(int? id)
+        {
+           
+            UserRolesHelper helper = new UserRolesHelper();
+
+            var project = dB.Project.Find(id);
+
+            var users = helper.ListUsersInRole("Project Manager").ToList();
+
+            ViewBag.PmId = new SelectList(users, "Id", "FullName", project.PmId);
+
+            return View(project);
+        }
+
+        //POST: Assign a project thru email notification
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AssignProject(Project model)
+        {
+            var project = dB.Project.Find(model.Id);
+            project.PmId = model.PmId;
+            dB.SaveChanges();
+            var callbackUrl = Url.Action("Details", "Projects", new { id = project.Id }, protocol: Request.Url.Scheme);
+
+            try
+            {
+                EmailService ems = new EmailService();
+                IdentityMessage msg = new IdentityMessage();
+                
+                User user = dB.Users.Find(model.PmId);
+
+                msg.Body = "New Project Assignment." + Environment.NewLine + "Please click the following link to view the details" + "<a href=\"" + callbackUrl + "\">NEW PROJECT</a>";
+
+                msg.Destination = user.Email;
+                msg.Subject = "Assigned Project";
+                await ems.SendMailAsync(msg);
+            }
+            catch (Exception ex)
+            {
+                await Task.FromResult(0);
+            }
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

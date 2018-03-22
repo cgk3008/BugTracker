@@ -1,0 +1,61 @@
+﻿@model BugTracker.Models.Project
+
+@{
+	ViewBag.Title = "AssignProject";
+}
+
+<div class="main-content">
+	<div class="container">
+
+		<div class="page-content">
+
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i> Assign Project</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			@using (Html.BeginForm("AssignProject", "Projects", FormMethod.Post))
+			{
+				@Html.AntiForgeryToken()
+
+				<div class="form-horizontal">
+					<h4>@Html.DisplayFor(model => model.Name)</h4>
+					<hr />
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					@Html.HiddenFor(model => model.Id)
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.PmId, "Assign Project Manager", new
+						{
+							@class = "control-label col-md-2"
+						})
+						<div class="col-md-10">
+							@Html.DropDownList("PmId", null, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.PmId, "", new
+							{
+								@class = "text-danger"
+							})
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<input type="submit" value="Save" class="btn btn-default" />
+						</div>
+					</div>
+				</div>
+			}
+			<div>
+				@Html.ActionLink("Back to List", "Index")
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

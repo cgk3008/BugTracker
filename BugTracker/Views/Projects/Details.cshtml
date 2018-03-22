@@ -130,7 +130,7 @@
 										@foreach (var d in Model.Ticket)
 					{
 
-						@d.Body @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", new { id = d.Id }, null)
+						@d.Title @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", new { id = d.Id }, null)
 						<ul>
 							<li>@d.Description</li>
 

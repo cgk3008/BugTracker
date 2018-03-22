@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BugTracker.Models;
 using static BugTracker.EmailService;
+using BugTracker.Models.Helper;
 
 namespace BugTracker.Controllers
 {
@@ -201,9 +202,11 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+
+            //add role submitter somewhere here????
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, /*FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.DisplayName,*/ FullName = model.FullName };
+                var user = new User { UserName = model.Email, Email = model.Email, /*FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.DisplayName,*/ FullName = model.FullName,  };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -214,6 +217,17 @@ namespace BugTracker.Controllers
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+
+                    UserRolesHelper helper = new UserRolesHelper();
+                    //helper.AddUserToRole(user, AdminModel, "Submitter");
+
+                    //userManager.AddToRoles(user.Id,
+                    //                  new string[] {
+                    //    "Submitter"
+                    //                  });
+
+
 
                     return RedirectToAction("Index", "Home");
                 }
