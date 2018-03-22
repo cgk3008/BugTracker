@@ -23,6 +23,12 @@ namespace BugTracker.Controllers
             return View(dB.Project.ToList());
         }
 
+        // GET: Soft Delete Projects
+        public ActionResult SoftDeleteIndex()
+        {
+            return View(dB.Project.ToList());
+        }
+
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {
@@ -56,13 +62,14 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name, Created, PmId")] Project project)
+        public ActionResult Create([Bind(Include = "Id, Name, Created, PmId, IsDeleted")] Project project)
         {
             //add project name check helper here...relate to fields above?
 
             if (ModelState.IsValid)
             {
                 project.Created = DateTime.Now;
+                project.IsDeleted = false;
                 dB.Project.Add(project);
                 dB.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,7 +93,7 @@ namespace BugTracker.Controllers
             }
             UserRolesHelper helper = new UserRolesHelper();
             var pmlist = helper.ListUsersInRole("ProjectManager, Admin");
-         
+
             ViewBag.pmId = new SelectList(pmlist, "Id", "FullName");
 
             return View(project);
@@ -97,11 +104,13 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name, PmId")] Project project)
+        public ActionResult Edit([Bind(Include = "Id, Name, PmId")] Project project)
         {
             if (ModelState.IsValid)
             {
                 dB.Entry(project).State = EntityState.Modified;
+
+
                 dB.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -135,30 +144,66 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Projects/SoftDelete
+        public ActionResult SoftDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Project project = dB.Project.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        // POST: Projects/SoftDelete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SoftDelete([Bind(Include = "Id, Name, PmId, IsDeleted")] Project project)
+        {
+            if (ModelState.IsValid)
+            {
+
+                dB.Entry(project).State = EntityState.Modified;
+                project.IsDeleted = true;
+                dB.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+           
+            return View(project);
+        }
+        
+      
         // GET: MyProjects
+        [Authorize]
         public ActionResult MyProjects()
-        { var userId = User.Identity.GetUserId();
+        {
+            var userId = User.Identity.GetUserId();
             //return View(dB.Users.Find(userId).Ticket.ToList());
 
             //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
 
             return View(dB.Users.Find(userId).Project.ToList());
         }
-        
+
         // Get tickets each project
         public ActionResult TicketsForEachProject()
-        { 
-        var userId = User.Identity.GetUserId();
-        var UserProjects = dB.Project.Include("Ticket");
+        {
+            var userId = User.Identity.GetUserId();
+            var UserProjects = dB.Project.Include("Ticket");
             //var projectHelper = new projectHelper();
             //var myProjects = projectHelper.ListUserProjects(userId);
             return View();
-    }
+        }
 
         //GET: Assign Project
         public ActionResult AssignProject(int? id)
         {
-           
+
             UserRolesHelper helper = new UserRolesHelper();
 
             var project = dB.Project.Find(id);
@@ -184,10 +229,10 @@ namespace BugTracker.Controllers
             {
                 EmailService ems = new EmailService();
                 IdentityMessage msg = new IdentityMessage();
-                
+
                 User user = dB.Users.Find(model.PmId);
 
-                msg.Body = "New Project Assignment." + Environment.NewLine + "Please click the following link to view the details" + "<a href=\"" + callbackUrl + "\">NEW PROJECT</a>";
+                msg.Body = "New Project Assignment." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">NEW PROJECT</a>";
 
                 msg.Destination = user.Email;
                 msg.Subject = "Assigned Project";

@@ -635,6 +635,8 @@
     <Content Include="Views\Tickets\AssignTicket.cshtml" />
     <Content Include="Views\Home\LandingPage.cshtml" />
     <Content Include="Views\Projects\AssignProject.cshtml" />
+    <Content Include="Views\Projects\SoftDelete.cshtml" />
+    <Content Include="Views\Projects\SoftDeleteIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -51,40 +51,43 @@
 				<tbody>
 					@foreach (var item in Model)
 					{
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
+						if (item.IsDeleted == false)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
 
-								<ul>
-									@foreach (var u in item.Users)
-		{
-							<li>
-								@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-	{
-							@Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
-}
-							</li>
-}
-								</ul>
-							</td>
-							<td>
+									<ul>
+										@foreach (var u in item.Users)
+										{
+											<li>
+												@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+												{
+													@Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
+												}
+											</li>
+										}
+									</ul>
+								</td>
+								<td>
 
-								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-								{
-									@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = item.Id }, null)
+									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+									{
+										@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = item.Id }, null)
 
-									@Html.ActionLink("Edit | ", "Edit", new { id = item.Id })
+										@Html.ActionLink("Edit | ", "Edit", new { id = item.Id })
 
-								}
-								@Html.ActionLink("Details", "Details", new { id = item.Id })
+									}
+									@Html.ActionLink("Details", "Details", new { id = item.Id })
 
-								@if (User.IsInRole("Admin"))
-								{
+									@if (User.IsInRole("Admin"))
+									{
 
-									@Html.ActionLink(" | Delete", "Delete", new { id = item.Id })
-								}
-							</td>
-						</tr>
+										@Html.ActionLink(" | Delete", "Delete", new { id = item.Id })
+									}
+								</td>
+							</tr>
+						}
 					}
 
 				</tbody>
