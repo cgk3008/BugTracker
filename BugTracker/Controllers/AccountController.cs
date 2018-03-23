@@ -64,26 +64,26 @@ namespace BugTracker.Controllers
 
             switch (type)
             {
-                case "Admin":
+                case "Admin9":
                     Email = "admin9@demo.com";
                     Password = "Abc&124!";
                     break;
-                case "ProjectManager":
+                case "ProjectManager9":
                     Email = "manager9@demo.com";
                     Password = "Abc&125!";
                     break;
-                case "Developer":
+                case "Developer9":
                     Email = "developer9@demo.com";
                     Password = "Abc&126!";
                     break;
-                case "Submitter":
+                case "Submitter9":
                     Email = "submitter9@demo.com";
                     Password = "Abc&127!";
                     break;
-                default:
-                    Email = "sumitter8@demo.com";
-                    Password = "Abc&128!";
-                    break;
+                //default:
+                //    Email = "sumitter8@demo.com";
+                //    Password = "Abc&128!";
+                //    break;
             }
             var result = await SignInManager.PasswordSignInAsync(Email, Password, false, shouldLockout: false);
             switch (result)
@@ -98,7 +98,7 @@ namespace BugTracker.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return RedirectToAction("Login");
+                    return RedirectToAction("Index", "Home");
             }
         }
 
