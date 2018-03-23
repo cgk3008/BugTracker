@@ -1,0 +1,158 @@
+﻿@using BugTracker.Models
+@model LoginViewModel
+@{
+	ViewBag.Title = "Guest Log in";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Title here -->
+	<title>Guest Login Page - Bug Tracker</title>
+	<!-- Description, Keywords and Author -->
+	<meta name="description" content="Your description">
+	<meta name="keywords" content="Your,Keywords">
+	<meta name="author" content="ResponsiveWebInc">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Styles -->
+	<!-- Bootstrap CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<!-- Custom Color CSS -->
+	<link href="css/less-style.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="css/style.css" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="#">
+</head>
+
+<body>
+
+	<div class="outer-page">
+
+		<!-- Login page -->
+		<div class="login-page">
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs nav-justified">
+				<li class="active"><a href="#login" data-toggle="tab" class="br-lblue"><i class="fa fa-sign-in"></i> Guest Login</a></li>			
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane fade active in" id="login">
+
+					<!-- Login form -->
+					@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					{
+						@Html.AntiForgeryToken()
+
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+						@*<form role="form" action="index.html">*@
+						<div class="form-group">
+							<label for="email">Email</label>
+							@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+							@*<input type="text" class="form-control" id="email" placeholder="Email">*@
+							@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+						</div>
+
+
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+							@*<input type="password" class="form-control" id="password" placeholder="Password">*@
+							@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+						</div>
+
+						<div class="checkbox">
+
+							<label>
+								@Html.CheckBoxFor(m => m.RememberMe)
+								<input type="checkbox"> Remember Me Next Time
+							</label>
+
+						</div>
+						<button type="submit" class="btn btn-info btn-sm">Submit</button>
+						<button type="reset" class="btn btn-default btn-sm">Reset</button>
+
+						//Enable this once you have account confirmation enabled for password reset functionality
+						<p>
+							<br />
+							@Html.ActionLink("Forgot your password?", "ForgotPassword")
+							<br />
+							<br />
+							Click On The Sign Up Tab To Register As A New User
+						</p>
+						@*</form>*@
+
+						@*</div>*@
+
+					}
+					<div class="tab-pane fade" id="register">
+						<!-- Register form -->
+
+						<input type="submit" value="Log in" class="btn btn-default" />
+
+						@Html.ActionLink("Register as a new user", "Register")
+
+
+
+						@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
+
+						<div class="tab-pane fade" id="contact">
+
+							<!-- Contact Form -->
+
+							<form role="form" action="index.html">
+								<div class="form-group">
+									<label for="name">Name</label>
+									<input type="text" class="form-control" id="name" placeholder="Name">
+								</div>
+								<div class="form-group">
+									<label for="email">Email</label>
+									<input type="text" class="form-control" id="email" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="message">Message</label>
+									<textarea rows="3" class="form-control"></textarea>
+								</div>
+								<button type="submit" class="btn btn-info btn-sm">Submit</button>
+								<button type="reset" class="btn btn-default btn-sm">Reset</button>
+							</form>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Javascript files -->
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Respond JS for IE8 -->
+	<script src="js/respond.min.js"></script>
+	<!-- HTML5 Support for IE -->
+	<script src="js/html5shiv.js"></script>
+
+	<!-- Javascript for this page -->
+	<!-- Javascript for this page -->
+
+	<script type="text/javascript">
+
+	</script>
+
+</body>
+</html>

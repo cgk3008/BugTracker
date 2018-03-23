@@ -475,6 +475,7 @@
     <Content Include="private9.Release.config">
       <DependentUpon>private9.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\GuestLogin.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />

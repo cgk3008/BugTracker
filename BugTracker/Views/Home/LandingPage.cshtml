@@ -1,7 +1,9 @@
 ﻿@using BugTracker.Models
 @model LoginViewModel
+
+
 @{
-	ViewBag.Title = "LandingPage";
+	Layout = null;
 }
 
 <h2>LandingPage</h2>
@@ -12,7 +14,7 @@
 <html>
 <head>
 	<!-- Title here -->
-	<title>Login Page - Bug Tracker</title>
+	<title>Landing Page - Bug Tracker</title>
 	<!-- Description, Keywords and Author -->
 	<meta name="description" content="Your description">
 	<meta name="keywords" content="Your,Keywords">
@@ -65,30 +67,30 @@
 
 
 					@*login form
-		@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-		{
-			@Html.AntiForgeryToken()
+						@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+						{
+							@Html.AntiForgeryToken()
 
-			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-			<div class="form-group">
-				<label for="email">Email</label>
-				@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+							<div class="form-group">
+								<label for="email">Email</label>
+								@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 
-				@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-			</div>
+								@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+							</div>
 
-			<div class="form-group">
-				<label for="password">Password</label>
-				@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+							<div class="form-group">
+								<label for="password">Password</label>
+								@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 
-				@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-			</div>
+								@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+							</div>
 
-			<button type="submit" class="btn btn-info btn-sm">Submit</button>
-			<button type="reset" class="btn btn-default btn-sm">Reset</button>
+							<button type="submit" class="btn btn-info btn-sm">Submit</button>
+							<button type="reset" class="btn btn-default btn-sm">Reset</button>
 
-		}*@
+						}*@
 
 				</div>
 			</div>
