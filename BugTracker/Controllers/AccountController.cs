@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using BugTracker.Models;
 using static BugTracker.EmailService;
 using BugTracker.Models.Helper;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BugTracker.Controllers
 {
@@ -210,6 +211,9 @@ namespace BugTracker.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+
+                    //ok so would move this line below to login. Then need to direct them to login page and confirm email
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -219,17 +223,29 @@ namespace BugTracker.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
 
-                    UserRolesHelper helper = new UserRolesHelper();
+                    //if (!context.Roles.Any(r => r.Name == "Submitter"))
+                    //{
+                    //    role = new IdentityRole { Name = "Submitter" };
+                    //    manager.Create(role);
+                    //}
+
+                    //var store = new RoleStore<IdentityRole>();
+                    //var manager = new RoleManager<IdentityRole>(store);
+                    //var role = new IdentityRole();
+
+                    //var userStore = new UserStore<User>();
+                    //var userManager = new UserManager<User>(userStore);
+
+
+                    //UserRolesHelper helper = new UserRolesHelper();
                     //helper.AddUserToRole(user, AdminModel, "Submitter");
-
-                    //userManager.AddToRoles(user.Id,
-                    //                  new string[] {
-                    //    "Submitter"
-                    //                  });
+                    UserManager.AddToRole(user.Id, "Submitter");
+                    //_userManager.AddToRoles(user.Id, new string[] {"Submitter"});
 
 
-
+                    //redirect to login page on successful register so we can confirm email
                     return RedirectToAction("Index", "Home");
+
                 }
                 AddErrors(result);
             }
