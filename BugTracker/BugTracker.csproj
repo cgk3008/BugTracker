@@ -621,7 +621,6 @@
     <Content Include="Views\TicketTypes\Details.cshtml" />
     <Content Include="Views\TicketTypes\Edit.cshtml" />
     <Content Include="Views\TicketTypes\Index.cshtml" />
-    <Content Include="Views\Projects\TicketsForEachProject.cshtml" />
     <Content Include="Views\Tickets\MyTickets.cshtml" />
     <Content Include="Views\Projects\MyProjects.cshtml" />
     <Content Include="private.config">

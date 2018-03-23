@@ -37,16 +37,17 @@
 				</dl>
 
 				@using (Html.BeginForm())
-				{
-					@Html.AntiForgeryToken()
-					@Html.HiddenFor(model => model.Id)
-					@Html.HiddenFor(model => model.Name)
-					@Html.HiddenFor(model => model.PmId)
-					<div class="form-actions no-color">
-						<input type="submit" value="Soft Delete" class="btn btn-default" /> |
-						@Html.ActionLink("Back to List", "Index")
-					</div>
-				}
+	{
+			@Html.AntiForgeryToken()
+			@Html.HiddenFor(model => model.Id)
+			@Html.HiddenFor(model => model.Name)
+			@Html.HiddenFor(model => model.PmId)
+			@Html.HiddenFor(model => model.Created)
+			<div class="form-actions no-color">
+				<input type="submit" value="Soft Delete" class="btn btn-default" /> |
+				@Html.ActionLink("Back to List", "Index")
+			</div>
+}
 			</div>
 		</div>
 	</div>
