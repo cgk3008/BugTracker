@@ -1,10 +1,35 @@
 ﻿@{
-    ViewBag.Title = "Confirm Email";
+	ViewBag.Title = "Confirm Email";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div>
-    <p>
-        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-    </p>
+
+<div class="main-content">
+	<div class="container">
+
+		<div class="page-content">
+
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-desktop blue"></i> @ViewBag.Title</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+
+			<div>
+				<p>
+					Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+				</p>
+			</div>
+
+		</div>
+	</div>
 </div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
