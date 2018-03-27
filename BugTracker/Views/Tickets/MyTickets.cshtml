@@ -22,20 +22,17 @@
 
 
 			<br />
-			@if (@*User.IsInRole("Admin") ||*@ /**/
-																										  /**/
-																										  /**/
-																										  /**/
-																										  /**/
-																										  User.IsInRole("Submitter"))
-						{
+			@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+{
 
-							<h3>
-								@Html.ActionLink("Create New Ticket", "Create")
-							</h3>
-							<br />
+<h3>
+	@Html.ActionLink("Create New Ticket", "Create")
 
-						}
+	Ok MyTickets not showing my assigned to tickets......Use partial view for each role, will have some redundancies but they will be sorted by role or PM ID.
+</h3>
+<br />
+
+}
 
 			<table id="mytable" class="table">
 				<thead>
@@ -68,8 +65,8 @@
 							Created
 						</th>
 						@*<th>
-							Updated
-						</th>*@
+								Updated
+							</th>*@
 						<th></th>
 					</tr>
 				</thead>
@@ -78,67 +75,74 @@
 
 					@foreach (var item in Model)
 					{
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Priority.Name)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Project.Name)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Status.Name)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Type.Name)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Title)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Description)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
-							</td>
-							@*<td>
-								@Html.DisplayFor(modelItem => item.Updated)
-							</td>*@
-							<td>
 
-								@Html.ActionLink("Details ", "Details", new { id = item.Id }) |
+						if (item.IsDeleted == false)
+						{
 
 
-								@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-									{*@
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Priority.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Project.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Status.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Type.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Title)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Description)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
+								</td>
+								@*<td>
+										@Html.DisplayFor(modelItem => item.Updated)
+									</td>*@
+								<td>
+
+									@Html.ActionLink("Details ", "Details", new { id = item.Id }) |
+
+
+									@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+										{*@
 
 
 
-								@Html.ActionLink(" Edit ", "Edit", new { id = item.Id }) <text> | </text>
-								@*}*@
+									@Html.ActionLink(" Edit ", "Edit", new { id = item.Id }) <text> | </text>
+									@*}*@
 
 
-								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-								{
+									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+									{
 
 
-									@Html.ActionLink(" Assign ", "AssignTicket", new { id = item.Id }) <text> | </text>
-								}
+										@Html.ActionLink(" Assign ", "AssignTicket", new { id = item.Id }) <text> | </text>
 
-								ok how do I perform soft delete ???
-								@if (User.IsInRole("Admin"))
-								{
+										@Html.ActionLink(" Soft Delete ", "SoftDelete", new { id = item.Id }) <text> | </text>
+									}
 
-									@Html.ActionLink(" Delete ", "Delete", new { id = item.Id })
-								}
+									@if (User.IsInRole("Admin"))
+									{
 
-							</td>
-						</tr>
+										@Html.ActionLink(" Delete ", "Delete", new { id = item.Id })
+									}
+
+								</td>
+							</tr>
+						}
 					}
 				</tbody>
 			</table>

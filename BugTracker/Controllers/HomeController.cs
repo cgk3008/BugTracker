@@ -32,12 +32,18 @@ namespace BugTracker.Controllers
         }
 
         private const string key = "qazqaz1288"; //You can add your own Key
+
         public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult LandingPage()
+        public ActionResult DemoLogin()
+        {
+            return View();
+        }
+
+        public ActionResult LP()
         {
             return View();
         }

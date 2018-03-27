@@ -2,11 +2,15 @@
 @model LoginViewModel
 
 
+@*@{
+		Layout = null;
+	}*@
+
 @{
-	Layout = null;
+	ViewBag.Title = "Demo Login";
 }
 
-<h2>LandingPage</h2>
+@*<h2>LandingPage</h2>*@
 
 
 
@@ -14,7 +18,7 @@
 <html>
 <head>
 	<!-- Title here -->
-	<title>Landing Page - Bug Tracker</title>
+	<title>Demo Login - Bug Tracker</title>
 	<!-- Description, Keywords and Author -->
 	<meta name="description" content="Your description">
 	<meta name="keywords" content="Your,Keywords">
@@ -39,13 +43,20 @@
 <body>
 
 	<div class="outer-page">
-
+		<h1></h1>
 		<!-- Login page -->
 		<div class="login-page">
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs nav-justified">
-				<li class="active"><a href="#login" data-toggle="tab" class="br-lblue"><i class="fa fa-sign-in"></i> Sign In</a></li>
+				<li class="active">
+					<a href="#login" data-toggle="tab" class="br-lblue">
+						<i class="fa fa-sign-in"></i> Sign In
+						<br />
+						<br />
+						Login as different user types and try out the features!
+					</a>
+				</li>
 			</ul>
 
 			<!-- Tab panes -->
@@ -54,12 +65,15 @@
 
 
 					@Html.ActionLink("Login As Guest Admin", "GuestLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, type = "Admin9" }, new { @class = "btn btn-primary" })
-
+					<br />
+					<br />
 					@Html.ActionLink("Login As Guest Project Manager", "GuestLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, type = "ProjectManager9" }, new { @class = "btn btn-primary" })
-
+					<br />
+					<br />
 					@Html.ActionLink("Login As Guest Developer", "GuestLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, type = "Developer9" }, new { @class = "btn btn-primary" })
-
-					@Html.ActionLink("Login As Guest Submitter", "GuestLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, type = "Submitter9" }, new { @class = "btn btn-primary" })				
+					<br />
+					<br />
+					@Html.ActionLink("Login As Guest Submitter", "GuestLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, type = "Submitter9" }, new { @class = "btn btn-primary" })
 
 				</div>
 			</div>

@@ -25,84 +25,88 @@
 			<div class="page-grid">
 				<div class="container">
 					<div class="col-md-4">
-						<strong>
-							<h3>
+
+						<h3>
+							<strong>
 								@Html.ActionLink("Create New Project", "Create")
-								<br />
-								<br />
-							</h3>
-						</strong>
+							</strong>
+							<br />
+							<br />
+						</h3>
+
 					</div>
 
 
 
 					<div class="col-md-4">
-						<strong>
-							<h3>
+
+						<h3>
+							<strong>
 								@Html.ActionLink("See Soft Deleted Projects", "SoftDeleteIndex")
-								<br />
-								<br />
-							</h3>
-						</strong>
+							</strong>
+							<br />
+							<br />
+						</h3>
 
 					</div>
-
-
-
-
-					<table id="mytable" class="table">
-						<thead>
-							<tr>
-								<th>
-									@Html.DisplayNameFor(model => model.Name)
-								</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach (var item in Model)
-							{
-								if (item.IsDeleted == false)
-								{
-									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
-
-											<ul>
-												@foreach (var u in item.Users)
-												{
-													<li>
-														@u.FullName @Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
-													</li>
-												}
-											</ul>
-										</td>
-										<td>
-											@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Id }, null) |
-											@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-											@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-
-											@if (User.IsInRole("Admin"))
-											{
-												@Html.ActionLink("Assign PM", "AssignProject", new { id = item.Id })
-												<br />
-												@Html.ActionLink("Soft Delete", "SoftDelete", new { id = item.Id })
-												<br />
-												@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-											}
-										</td>
-									</tr>
-								}
-							}
-						</tbody>
-					</table>
-
-					<script>
-						$('#mytable').DataTable();
-					</script>
 				</div>
+
+
+
+
+				<table id="mytable" class="table">
+					<thead>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Name)
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							if (item.IsDeleted == false)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
+
+										<ul>
+											@foreach (var u in item.Users)
+											{
+												<li>
+													@u.FullName @Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
+												</li>
+											}
+										</ul>
+									</td>
+									<td>
+										@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Id }, null) |
+										@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+										@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+
+										@if (User.IsInRole("Admin"))
+										{
+											@Html.ActionLink("Assign PM", "AssignProject", new { id = item.Id })
+											<br />
+											@Html.ActionLink("Soft Delete", "SoftDelete", new { id = item.Id })
+											<br />
+											@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+										}
+									</td>
+								</tr>
+							}
+						}
+					</tbody>
+				</table>
+
+				<script>
+					$('#mytable').DataTable();
+				</script>
 			</div>
 		</div>
-		@section Scripts {
-			@Scripts.Render("~/bundles/jqueryval")
-		}
+	</div>
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}

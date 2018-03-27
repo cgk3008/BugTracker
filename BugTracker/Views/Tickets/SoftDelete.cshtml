@@ -1,0 +1,162 @@
+﻿@model BugTracker.Models.Ticket
+
+@{
+	ViewBag.Title = "SoftDelete";
+}
+
+<div class="main-content">
+	<div class="container">
+
+		<div class="page-content">
+
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-desktop red"></i> <strong>Soft</strong> Delete Ticket</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<br />
+			<h3>Are you sure you want to soft delete this? It will be removed from queries and views but will be still located in the database for recovery.<br /> <br /></h3>
+
+			<h3>
+				@Html.ActionLink("Details ", "Details", new { id = Model.Id }) |
+
+
+				@*@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+					{*@
+
+
+
+				@Html.ActionLink(" Edit ", "Edit", new { id = Model.Id }) <text> | </text>
+				@*}*@
+
+
+				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+				{
+
+
+					@Html.ActionLink(" Assign ", "AssignTicket", new { id = Model.Id }) <text> | </text>
+				}
+
+				@if (User.IsInRole("Admin"))
+				{
+
+					@Html.ActionLink(" Delete ", "Delete", new { id = Model.Id })
+				}
+				<br />
+				<br />
+			</h3>
+			<div>
+				<table id="mytable" class="table">
+					<thead>
+						<tr>
+							<th>
+								Assigned User
+							</th>
+							<th>
+								Ticket Owner
+							</th>
+							<th>
+								Priority
+							</th>
+							<th>
+								Project
+							</th>
+							<th>
+								Status
+							</th>
+							<th>
+								Type
+							</th>
+							<th>
+								Title
+							</th>
+							<th>
+								Description
+							</th>
+							<th>
+								Created
+							</th>
+							@*<th>
+						Updated
+					</th>*@
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => Model.AssignedToUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.OwnerUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Priority.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Project.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Status.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Type.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Title)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Description)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => Model.Created, "{0:dd-MMM-yyyy}")
+							</td>
+							@*<td>
+						@Html.DisplayFor(modelItem => item.Updated)
+					</td>*@
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+				@using (Html.BeginForm())
+	{
+			@Html.AntiForgeryToken()
+			@Html.HiddenFor(model => model.AssignedToUserId)
+			@Html.HiddenFor(model => model.OwnerUserId)
+			@Html.HiddenFor(model => model.TicketPriorityId)
+			@Html.HiddenFor(model => model.ProjectId)
+			@Html.HiddenFor(model => model.TicketStatusId)
+			@Html.HiddenFor(model => model.TicketTypeId)
+			@Html.HiddenFor(model => model.Title)
+			@Html.HiddenFor(model => model.Description)
+			@Html.HiddenFor(model => model.Created, "{0:dd-MMM-yyyy}")
+
+				<div class="form-actions no-color">
+					<br />
+					<br />
+					<input type="submit" value="Soft Delete" class="btn btn-danger" /> |
+					@Html.ActionLink("Back to List", "MyTickets")
+				</div>
+}
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script>
+	$('#mytable').DataTable();
+</script>

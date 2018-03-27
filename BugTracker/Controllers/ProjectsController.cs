@@ -190,6 +190,21 @@ namespace BugTracker.Controllers
             return View(dB.Users.Find(userId).Project.ToList());
         }
 
+
+
+       // GET: My Project list
+        [Authorize]
+        public ActionResult MyProjectList()
+        {
+            var userId = User.Identity.GetUserId();
+            //return View(dB.Users.Find(userId).Ticket.ToList());
+
+            //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
+
+            return View(dB.Users.Find(userId).Project.ToList());
+        }
+
+
         // Get tickets each project
         public ActionResult TicketsForEachProject()
         {

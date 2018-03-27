@@ -25,6 +25,14 @@ namespace BugTracker.Controllers
             return View(tickets.ToList());
         }
 
+        // GET: Soft Delete Tickets
+        public ActionResult SoftDeleteIndex()
+        {
+            return View(db.Ticket.ToList());
+        }
+
+
+
 
         // GET: Tickets/Details/5
         public ActionResult Details(int? id)
@@ -67,12 +75,13 @@ namespace BugTracker.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId")] Ticket ticket)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId,IsDeleted")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
                 ticket.OwnerUserId = User.Identity.GetUserId();
                 ticket.Created = DateTime.Now;
+                ticket.IsDeleted = false;
                 db.Ticket.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -121,7 +130,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId/*,AssignedToUserId*/")] Ticket model)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId/*, AssignedToUserId*/")] Ticket model)
         {
             if (ModelState.IsValid)
             {
@@ -154,7 +163,7 @@ namespace BugTracker.Controllers
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("MyTickets");
             }
             ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", model.OwnerUserId);
             ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", model.TicketPriorityId);
@@ -241,53 +250,91 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Projects/SoftDelete
+        public ActionResult SoftDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Ticket ticket = db.Ticket.Find(id);
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ticket);
+        }
+
+        // POST: Projects/SoftDelete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SoftDelete([Bind(Include = "Id,Title,Description,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId,IsDeleted")] Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.Entry(ticket).State = EntityState.Modified;
+                ticket.IsDeleted = true;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+
+            return View(ticket);
+        }
+
+
+
+
         // GET: My Tickets
         [Authorize]
         public ActionResult MyTickets()
         {
             var userId = User.Identity.GetUserId();
 
-            var proj = db.Users.Find(userId).Project;
+            var proj = db.Users.Find(userId).Project;          
 
-            if (User.IsInRole("Project Manager"))
+            //foreach (var user in role)
+
+                if (User.IsInRole("Project Manager"))
             {
                 //var tickets = db.Ticket.Where(p => p.ProjectId == proj).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-                
+
                 var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).ToList();
 
                 //var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).Include(tx => tx.AssignedToUser).Include(tx => tx.OwnerUser).Include(tx => tx.Project).Include(tx => tx.Priority).Include(tx => tx.Status).Include(tx => tx.Type);
 
-              
+
                 return View(tkts.ToList());
             }
 
-                //    TicketHelper helper = new TicketHelper();
-                //    var projtickets = helper.GetProjectTickets().;
+            //    TicketHelper helper = new TicketHelper();
+            //    var projtickets = helper.GetProjectTickets().;
 
 
-                //    GetProjectTickets(int projectId)
+            //    GetProjectTickets(int projectId)
 
-                //    //return db.Project.Find(projectId).Ticket.ToList();
+            //    //return db.Project.Find(projectId).Ticket.ToList();
 
-                //}               
-
-                if (User.IsInRole("Developer"))
-                {
-                    var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-                    return View(tickets.ToList());
-                }
-
-                if (User.IsInRole("Submitter"))
-                {
-                    var tickets = db.Ticket.Where(u => u.OwnerUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-                    return View(tickets.ToList());
-                }
-                else //temperory else statement until i get tickethelper to work
-                {
-                    return View();
-                }
-                //return View(tickets.ToList());
+            //}               
+            
+            if (User.IsInRole("Developer"))
+            {
+                var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                return View(tickets.ToList());
             }
+
+            if (User.IsInRole("Submitter"))
+            {
+                var tickets = db.Ticket.Where(u => u.OwnerUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                return View(tickets.ToList());
+            }
+            else //temperory else statement until i get tickethelper to work
+            {
+                return View();
+            }
+            //return View(tickets.ToList());
+        }
 
         //Get Assign Ticket
         public ActionResult AssignTicket(int? id)
@@ -307,7 +354,7 @@ namespace BugTracker.Controllers
         //Post Assign a ticket thru email notification
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AssignTicket (Ticket model)
+        public async Task<ActionResult> AssignTicket(Ticket model)
         {
             var ticket = db.Ticket.Find(model.Id);
             ticket.AssignedToUserId = model.AssignedToUserId;

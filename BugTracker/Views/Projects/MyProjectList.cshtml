@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BugTracker.Models.Project>
+
+@{
+	ViewBag.Title = "MyProjectList";
+}
+
+
+			@foreach (var item in Model)
+			{
+				if (item.IsDeleted == false)
+				{
+					<li>
+						<p>
+							<!-- Checkbox -->
+							@*<input value="check1" type="checkbox">*@
+							<!-- Name -->
+							<strong>
+								@Html.DisplayFor(modelItem => item.Name)
+							</strong>
+						</p>
+
+						<p class="p-meta">
+							<!-- Due date & % Completed -->
+							<span>Due : 26/2/2012 - 80% Done</span>
+						</p>
+
+						<!-- Progress bar -->
+						<div class="progress">
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+								<span class="sr-only">90% Complete</span>
+							</div>
+						</div>
+					</li>
+
+				}
+			}
+
+

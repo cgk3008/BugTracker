@@ -20,7 +20,7 @@
 					<div class="col-md-4">
 						<h2>
 							<i class="fa fa-ticket green"></i>
-							@Html.ActionLink("Assign Ticket", "AssignTicket", new { id = Model.Id })
+							@Html.ActionLink("Assign This Ticket", "AssignTicket", new { id = Model.Id })
 						</h2>
 					</div>
 
@@ -284,7 +284,7 @@
 
 			<p>
 				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-				@Html.ActionLink("Back to List", "Index")
+				@Html.ActionLink("Back to List", "MyTickets")
 			</p>
 
 		</div>

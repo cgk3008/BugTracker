@@ -455,6 +455,36 @@
     <Content Include="Assets\DataTable\datatables.js" />
     <Content Include="Assets\DataTable\datatables.min.css" />
     <Content Include="Assets\DataTable\datatables.min.js" />
+    <Content Include="Assets\LandingPage\css\landing-page.css" />
+    <Content Include="Assets\LandingPage\css\landing-page.min.css" />
+    <Content Include="Assets\LandingPage\img\bg-masthead.jpg" />
+    <Content Include="Assets\LandingPage\img\bg-showcase-1.jpg" />
+    <Content Include="Assets\LandingPage\img\bg-showcase-2.jpg" />
+    <Content Include="Assets\LandingPage\img\bg-showcase-3.jpg" />
+    <Content Include="Assets\LandingPage\img\BugTrackerLP.png" />
+    <Content Include="Assets\LandingPage\img\testimonials-1.jpg" />
+    <Content Include="Assets\LandingPage\img\testimonials-2.jpg" />
+    <Content Include="Assets\LandingPage\img\testimonials-3.jpg" />
+    <None Include="Assets\LandingPage\LP.cshtml" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\LandingPage\vendor\jquery\jquery.js" />
+    <Content Include="Assets\LandingPage\vendor\jquery\jquery.min.js" />
+    <Content Include="Assets\LandingPage\vendor\jquery\jquery.slim.js" />
+    <Content Include="Assets\LandingPage\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Assets\LandingPage\vendor\simple-line-icons\css\simple-line-icons.css" />
+    <Content Include="Assets\LandingPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
     <Content Include="Views\Account\ConfirmationSent.cshtml" />
     <Content Include="Views\AdminIndexViews\Index.cshtml" />
@@ -466,15 +496,62 @@
     <Content Include="Views\AdminProjects\RemoveUser.cshtml" />
     <Content Include="Views\AssignedProjects-not using\Index.cshtml" />
     <Content Include="Views\AssignedTickets-not using this\Index.cshtml" />
-    <Content Include="private9.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="private9.Debug.config">
-      <DependentUpon>private9.config</DependentUpon>
-    </Content>
-    <Content Include="private9.Release.config">
-      <DependentUpon>private9.config</DependentUpon>
-    </Content>
+    <Content Include="Assets\LandingPage\scss\landing-page.scss" />
+    <Content Include="Assets\LandingPage\scss\_call-to-action.scss" />
+    <Content Include="Assets\LandingPage\scss\_footer.scss" />
+    <Content Include="Assets\LandingPage\scss\_global.scss" />
+    <Content Include="Assets\LandingPage\scss\_icons.scss" />
+    <Content Include="Assets\LandingPage\scss\_masthead.scss" />
+    <Content Include="Assets\LandingPage\scss\_mixins.scss" />
+    <Content Include="Assets\LandingPage\scss\_showcase.scss" />
+    <Content Include="Assets\LandingPage\scss\_testimonials.scss" />
+    <Content Include="Assets\LandingPage\scss\_variables.scss" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Assets\LandingPage\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\animated.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\core.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\fixed-width.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\font-awesome.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\icons.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\larger.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\list.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\mixins.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\path.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\screen-reader.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\stacked.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\less\variables.less" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_animated.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_core.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_icons.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_larger.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_list.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_mixins.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_path.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_stacked.scss" />
+    <Content Include="Assets\LandingPage\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Assets\LandingPage\vendor\jquery\jquery.min.map" />
+    <Content Include="Assets\LandingPage\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Assets\LandingPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Assets\LandingPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Assets\LandingPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Assets\LandingPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.woff2" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Assets\bug-temp\theme\invoice.html" />
     <Content Include="Assets\bug-temp\theme\js\bootstrap-datetimepicker.min.js" />
@@ -632,10 +709,15 @@
       <DependentUpon>private.config</DependentUpon>
     </Content>
     <Content Include="Views\Tickets\AssignTicket.cshtml" />
-    <Content Include="Views\Home\LandingPage.cshtml" />
+    <Content Include="Views\Home\DemoLogin.cshtml" />
     <Content Include="Views\Projects\AssignProject.cshtml" />
     <Content Include="Views\Projects\SoftDelete.cshtml" />
     <Content Include="Views\Projects\SoftDeleteIndex.cshtml" />
+    <Content Include="Views\Tickets\SoftDelete.cshtml" />
+    <Content Include="Views\Tickets\SoftDeleteIndex.cshtml" />
+    <Content Include="Views\Shared\_ProjectPartial.cshtml" />
+    <Content Include="Views\Projects\MyProjectList.cshtml" />
+    <Content Include="Views\Home\LP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
