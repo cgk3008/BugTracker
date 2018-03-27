@@ -3,7 +3,7 @@
 	ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+
 
 
 <div class="main-content">
@@ -29,6 +29,21 @@
 				@*<h4>Change your account settings</h4>*@
 				<hr />
 				<dl class="dl-horizontal">
+
+					<dt>Fullname:</dt>
+					<dd>
+						[
+						@if (Model.HasPassword)
+						{
+							@Html.ActionLink("Change your name", "ChangeFullName")
+						}
+						else
+						{
+							@Html.ActionLink("Create", "SetFullName")
+						}
+						]
+					</dd>
+
 					<dt>Password:</dt>
 					<dd>
 						[

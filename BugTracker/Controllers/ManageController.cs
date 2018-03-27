@@ -214,24 +214,24 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-        ////
-        //// GET: /Manage/ChangeName
-        //public ActionResult ChangeFirstName()
-        //{
-        //    return View();
-        //}
+        //
+        // GET: /Manage/ChangeName
+        public ActionResult ChangeFullName()
+        {
+            return View();
+        }
 
-        ////
-        //// POST: /Manage/ChangeFirstName
+        //
+        // POST: /Manage/ChangeFirstName
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> ChangeFirstName(ChangeFirstNameViewModel model)
+        //public async Task<ActionResult> ChangeFullName(ChangeFullNameViewModel model)
         //{
         //    if (!ModelState.IsValid)
         //    {
         //        return View(model);
         //    }
-        //    var result = await UserManager.ChangeFirstNameAsync(User.Identity.GetUserId(), model.OldFirstName, model.NewFirstName);
+        //    var result = await UserManager.ChangeFullNameAsync(User.Identity.GetUserId(), model.OldFirstName, model.NewFirstName);
         //    if (result.Succeeded)
         //    {
         //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
