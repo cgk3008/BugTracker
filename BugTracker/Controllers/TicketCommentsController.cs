@@ -43,7 +43,8 @@ namespace BugTracker.Controllers
         public ActionResult Create()
         {
             ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body");
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FullName");            
+
             return View();
         }
 
@@ -52,7 +53,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Created,TicketId,UserId,FileUrl")] TicketComment ticketComment, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Body,Created,TicketId,UserId,FileUrl")] TicketComment ticketComment, Ticket model, HttpPostedFileBase image)
 
         //Add ",Ticket model above as parameter
         {
@@ -72,28 +73,25 @@ namespace BugTracker.Controllers
                 db.SaveChanges();
                 var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
 
-                //var ticket = db.Ticket.Find(model.Id);
-                //ticket.AssignedToUserId = model.AssignedToUserId;
-                //db.SaveChanges();
-                //var callbackUrl = Url.Action("Details", "Tickets", new { id = ticket.Id }, protocol: Request.Url.Scheme);
+                //var ticket = db.Ticket.Find(model.Id);             
+                var callbackUrl = Url.Action("Details", "Tickets", new { id = ticketComment.Id }, protocol: Request.Url.Scheme);
 
-                //try
-                //{
-                //    EmailService ems = new EmailService();
-                //    IdentityMessage msg = new IdentityMessage();
-                //    //User user = db.Users.Find(model.AssignedToUserId);
-                //    User user = db.Users.Find(model.AssignedToUserId);
+                try
+                {
+                    EmailService ems = new EmailService();
+                    IdentityMessage msg = new IdentityMessage();                   
+                    User user = db.Users.Find(model.AssignedToUserId);
 
-                //    msg.Body = "New Ticket Comment." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">NEW COMMENT</a>";
+                    msg.Body = "New Ticket Comment." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">NEW COMMENT</a>";
 
-                //    msg.Destination = user.Email;
-                //    msg.Subject = "New Ticket Comment";
-                //    await ems.SendMailAsync(msg);
-                //}
-                //catch (Exception ex)
-                //{
-                //    await Task.FromResult(0);
-                //}
+                    msg.Destination = user.Email;
+                    msg.Subject = "New Ticket Comment";
+                    await ems.SendMailAsync(msg);
+                }
+                catch (Exception ex)
+                {
+                    await Task.FromResult(0);
+                }
 
                 return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
                 //return RedirectToAction("Index");
