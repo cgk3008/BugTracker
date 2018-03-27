@@ -130,7 +130,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId, AssignedToUserId")] Ticket model)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId, AssignedToUserId")] Ticket model)
         {
             if (ModelState.IsValid)
             {
@@ -162,6 +162,32 @@ namespace BugTracker.Controllers
 
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
+
+
+                var ticket = db.Ticket.Find(model.Id);
+                ticket.AssignedToUserId = model.AssignedToUserId;
+                //db.SaveChanges();
+                var callbackUrl = Url.Action("Details", "Tickets", new { id = ticket.Id }, protocol: Request.Url.Scheme);
+
+                try
+                {
+                    EmailService ems = new EmailService();
+                    IdentityMessage msg = new IdentityMessage();
+                    //User user = db.Users.Find(model.AssignedToUserId);
+                    User user = db.Users.Find(model.AssignedToUserId);
+
+                    msg.Body = "New Ticket Change." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">CHANGE TO YOUR TICKET</a>";
+
+                    msg.Destination = user.Email;
+                    msg.Subject = "Changes to your ticket";
+                    await ems.SendMailAsync(msg);
+                }
+                catch (Exception ex)
+                {
+                    await Task.FromResult(0);
+                }
+
+
 
                 return RedirectToAction("MyTickets");
             }
