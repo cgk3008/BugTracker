@@ -11,6 +11,10 @@ namespace BugTracker
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+
+            //can I add if user signed in as not demo then redirect to normal index page????
+
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(

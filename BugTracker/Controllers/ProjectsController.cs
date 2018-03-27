@@ -23,7 +23,7 @@ namespace BugTracker.Controllers
             return View(dB.Project.ToList());
         }
 
-        // GET: Soft Delete Projects
+        // GET: Soft Delete Projects Index
         public ActionResult SoftDeleteIndex()
         {
             return View(dB.Project.ToList());
