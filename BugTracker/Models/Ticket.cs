@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,9 @@ namespace BugTracker.Models
     {
 
         public int Id { get; set; }
+        [StringLength(40, ErrorMessage = "The {0} cannot be {1} characters long.")]
         public string Title { get; set; }
+        [StringLength(200, ErrorMessage = "The {0} cannot be {1} characters long.")]
         public string Description { get; set; }
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }

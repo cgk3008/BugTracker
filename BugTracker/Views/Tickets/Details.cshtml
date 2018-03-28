@@ -256,7 +256,8 @@
 				@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
 				{
 					@Html.AntiForgeryToken()
-					@Html.Hidden("TicketId", Model.Id)
+					@*@Html.Hidden("TicketId", Model.Id)*@
+					//already passing the ticketId in Hidden statement above to the below in the input
 
 					<input name="TicketId" value="@Model.Id" hidden />
 					<div class="form-group">

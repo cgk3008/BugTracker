@@ -53,7 +53,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Body,Created,TicketId,UserId,FileUrl")] TicketComment ticketComment, Ticket model, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Body,Created,TicketId,UserId,FileUrl")] TicketComment ticketComment, HttpPostedFileBase image)
       
         {
             if (ModelState.IsValid)
@@ -67,13 +67,16 @@ namespace BugTracker.Controllers
 
                 ticketComment.UserId = User.Identity.GetUserId();
                 ticketComment.Created = DateTime.Now;
-
                 db.Comment.Add(ticketComment);
                 db.SaveChanges();
                 var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
 
-                var ticket = db.Ticket.Find(model.Id);
-                ticket.AssignedToUserId = model.AssignedToUserId;
+                var ticket = db.Comment.Find(ticketComment.TicketId);
+                ticket.User. = ticketComment.AssignedToUserId;
+
+                //var ticket = db.Ticket.Find(model.Id);
+                //ticket.AssignedToUserId = model.AssignedToUserId;
+
                 var callbackUrl = Url.Action("Details", "Tickets", new { id = ticketComment.Id }, protocol: Request.Url.Scheme);
                 
                 try
