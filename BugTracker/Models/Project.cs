@@ -9,7 +9,7 @@ namespace BugTracker.Models
     public class Project
     {
         public int Id { get; set; }
-        [StringLength(60, ErrorMessage = "The {0} cannot be {1} characters long.")]
+        [StringLength(100, ErrorMessage = "The {0} cannot be {1} characters long.")]
         public string Name { get; set; }
         public DateTimeOffset Created { get; set; }
         public string PmId { get; set; }

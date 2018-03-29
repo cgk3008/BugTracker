@@ -67,17 +67,26 @@ namespace BugTracker.Controllers
         //GET: RemoveUser
 
             //ok i don't want list of users to remove, just the one linked to the user.Id
-        public ActionResult RemoveUser(int id)
+        public ActionResult RemoveUser(int id, string userId)
         {
-            var project = dB.Project.Find(id);
+            //var project = dB.Project.Find(id);
+            //AdminProject AdminProject = new AdminProject();
+            //ProjectHelper helper = new ProjectHelper();
+            //var selected = project.Users;
+            //AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName", selected);
+
+            //return View(AdminProject);
+
             AdminProject AdminProject = new AdminProject();
-            ProjectHelper helper = new ProjectHelper();
-            var selected = project.Users;
-            AdminProject.Users = new MultiSelectList(dB.Users, "Id", "FullName", selected);
+            var project = dB.Project.Find(id); 
+            Project rmvuser = new Project();
+            var selected = userId;
+            AdminProject.RmvUser = dB.Users.Find(userId);
             AdminProject.Project = project;
+
+            //AdminProject.Project = project;
+
             return View(AdminProject);
-
-
         }
 
         //POST: RemoveUser
@@ -86,22 +95,23 @@ namespace BugTracker.Controllers
         public ActionResult RemoveUser(AdminProject model)
         {
 
-            ProjectHelper helper = new ProjectHelper();
-            foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
-            {
-                helper.RemoveUserFromProject(userrmv, model.Project.Id);
-            }
-
-
             //ProjectHelper helper = new ProjectHelper();
-            //var userrmv = dB.Users.Select(r => r.Id).ToList());
+            //foreach (var userrmv in dB.Users.Select(r => r.Id).ToList())
+            //{
+            //    helper.RemoveUserFromProject(userrmv, model.Project.Id);
+            //}
 
-            //helper.RemoveUserFromProject(userrmv, model.Project.Id);
 
+            //public Exception RemoveUserFromProject(string userId, int projectId)
+            //{
+              
+                    var prj = dB.Project.Find(model.Project.Id);
+                    var usr = dB.Users.Find(model.RmvUser.Id);
+                    prj.Users.Remove(usr);
+                    dB.SaveChanges();  
 
-            return RedirectToAction("Index", "Projects");
-        }
-
+                return RedirectToAction("Index", "Projects");
+        }       
 
     }
 }

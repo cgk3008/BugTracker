@@ -138,7 +138,7 @@ namespace BugTracker.Controllers
 
                 foreach (var prop in typeof(Ticket).GetProperties())
                 {
-                    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId"/*, "AssignedToUserId"*/))
+                    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId"))
                     {
                         var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
                         var newVal = model.GetType().GetProperty(prop.Name).GetValue(model).ToString();

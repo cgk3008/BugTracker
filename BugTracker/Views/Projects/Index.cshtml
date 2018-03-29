@@ -76,7 +76,7 @@
 											@foreach (var u in item.Users)
 											{
 												<li>
-													@u.FullName @Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
+													@u.FullName @Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Id, userId = u.Id }, null)
 												</li>
 											}
 										</ul>

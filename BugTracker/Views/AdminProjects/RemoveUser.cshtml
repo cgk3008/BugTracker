@@ -19,24 +19,32 @@
 			</div>
 
 
-			@using (Html.BeginForm())
-			{
-				@Html.AntiForgeryToken()
-				@Html.HiddenFor(m => m.Project.Id)
+			@using (Html.BeginForm("AdminProjects"))
+	{
+		@Html.AntiForgeryToken()
+		@Html.HiddenFor(m => m.Project.Id)
+		@Html.HiddenFor(m => m.RmvUser.Id)
 
-				@Html.ListBox("RmvUser", Model.Users, new { @class = "control-label col-md-2" })
-				@*ok need this changed, just one user*@
-				<br />
-				<br />
-				<br />
-				<h5>
-					Hold Ctrl Key to Select Multiple Users for the Project. <br /><br />
-					Hold Shift Key and Scroll through List to Select Multiple Users or All Users.
-				</h5>
-				<br />
-				<p><input type="submit" class="btn btn-info" /></p>
+		@Html.DisplayFor(model => model.Project.Name)
+		@*@Html.DisplayFor(model => model.Project.Id)*@
+		<br />
+		<br />
 
-			}
+		@Html.DisplayFor(model => model.RmvUser.FullName)
+
+
+		@*@Html.Display(m => m.RmvUser)*@
+		@*ok need this changed, just one user*@
+		<br />
+		<br />
+		<br />
+		<h5>
+			Are you sure you want to remove this User from the project?
+		</h5>
+		<br />
+		<p><input type="submit" class="btn btn-info" /></p>
+
+}
 
 
 			<br />
