@@ -43,7 +43,8 @@
 				<div class="form-group">
 					@Html.LabelFor(model => model.PmId, htmlAttributes: new { @class = "control-label col-md-2" })
 					<div class="col-md-10">
-						@User.Identity.Name
+						@*@User.Identity.Name*@
+						PM ssigned to yourself
 
 						@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 					</div>

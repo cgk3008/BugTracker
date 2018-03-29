@@ -144,39 +144,43 @@
 				</thead>
 				<tbody>
 					@foreach (var item in Model.History)
-					{
-						<tr>
-							<td>
-								@Html.DisplayFor(modelItem => item.Ticket.Title)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.User.FullName)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Property)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.OldValue)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.NewValue)
-							</td>
-							<td>
-								@Html.DisplayFor(modelItem => item.Changed)
-							</td>
-							<td>
+	{
+				
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Ticket.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.User.FullName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Property)
+					</td>
 
-								@if (User.IsInRole("Admin"))
-								{
-									@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
-									@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
-									@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
-								}
+					<td>
+						@Html.DisplayFor(modelItem => item.OldValue)
+					</td>
 
-							</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.NewValue)
+					</td>
 
-						</tr>
-					}
+					<td>
+						@Html.DisplayFor(modelItem => item.Changed)
+					</td>
+					<td>
+
+						@if (User.IsInRole("Admin"))
+		{
+				@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
+				@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
+				@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
+}
+
+					</td>
+
+				</tr>
+}
 				</tbody>
 			</table>
 

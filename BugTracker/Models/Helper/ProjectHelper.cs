@@ -61,6 +61,16 @@ namespace BugTracker.Models.Helper
             return dB.Project.Find(projectId).Users.ToList();
         }
 
+        public ICollection<User> ListPmForProject(int projectId)
+            //do i need to User above to "string"?
+        {
+            var pm = dB.Project.Find(projectId).PmId;
+            var usr = dB.Users.Find(pm).FullName;
+            //dB.Users.Find(pm).FullName;
+
+            return null;
+        }
+
         public ICollection<Project> ListProjectsForUser(string userId)
         {
 

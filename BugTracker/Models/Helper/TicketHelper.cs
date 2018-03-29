@@ -53,16 +53,20 @@ namespace BugTracker.Models.Helper
 
 
 
-
-        //public ICollection<User> ListUsersOnProject(int projectId)
+        //public List<Ticket> GetUsersTickets(string userId, int projectId)
         //{
-        //    return dB.Project.Find(projectId).Users.ToList();
+
+
+        //    //public ICollection<User> ListUsersOnProject(int projectId)
+        //    //{
+        //    //    return dB.Project.Find(projectId).Users.ToList();
+        //    //}
+
+
+
+        //    //var userId = User.Identity.GetUserId();
+        //    //var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+
         //}
-
-
-
-        //var userId = User.Identity.GetUserId();
-        //var tickets = dB.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-
     }
 }

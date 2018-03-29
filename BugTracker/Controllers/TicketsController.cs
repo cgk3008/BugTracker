@@ -318,32 +318,17 @@ namespace BugTracker.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var proj = db.Users.Find(userId).Project;          
+            var proj = db.Users.Find(userId).Project;   
+            
+            //I want to be able to show list of tickets if a person is in multiple user roles, right now I can't do that with code below. However, maybe there is a way with a foreach loop encapsulating all the if statements.......but I think I would need to pull return View outside of if statements
 
-            //foreach (var user in role)
-
-                if (User.IsInRole("Project Manager"))
+            if (User.IsInRole("Project Manager"))
             {
-                //var tickets = db.Ticket.Where(p => p.ProjectId == proj).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
-
                 var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).ToList();
-
-                //var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).Include(tx => tx.AssignedToUser).Include(tx => tx.OwnerUser).Include(tx => tx.Project).Include(tx => tx.Priority).Include(tx => tx.Status).Include(tx => tx.Type);
-
-
                 return View(tkts.ToList());
             }
 
-            //    TicketHelper helper = new TicketHelper();
-            //    var projtickets = helper.GetProjectTickets().;
 
-
-            //    GetProjectTickets(int projectId)
-
-            //    //return db.Project.Find(projectId).Ticket.ToList();
-
-            //}               
-            
             if (User.IsInRole("Developer"))
             {
                 var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
@@ -360,6 +345,7 @@ namespace BugTracker.Controllers
                 return View();
             }
             //return View(tickets.ToList());
+
         }
 
         //Get Assign Ticket

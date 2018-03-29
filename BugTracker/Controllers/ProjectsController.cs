@@ -20,7 +20,19 @@ namespace BugTracker.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            return View(dB.Project.ToList());
+            List<Project> projects = dB.Project.ToList();
+            List<ProjectIndexViewModel> vms = new List<ProjectIndexViewModel>();
+            foreach(Project project in projects)
+            {
+                ProjectIndexViewModel vm = new ProjectIndexViewModel()
+                {
+                    Project = project,
+                    ProjectManager = dB.Users.Find(project.PmId)
+                };
+
+                vms.Add(vm);
+            }
+            return View(vms);
         }
 
         // GET: Soft Delete Projects Index
