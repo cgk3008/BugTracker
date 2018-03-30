@@ -1,0 +1,155 @@
+﻿@model IEnumerable<BugTracker.Models.Ticket>
+
+@{
+	ViewBag.Title = "MyCompletedTix";
+}
+
+<div class="main-content">
+	<div class="container">
+
+		<div class="page-content">
+
+			<!-- Heading -->
+			<div class="single-head">
+				<!-- Heading -->
+				<h2 class="pull-left"><i class="fa fa-ticket green"></i> My Completed Tickets</h2>
+				<!-- Bread crumbs -->
+				<div class="breads pull-right">
+					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+
+
+			<br />
+			@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
+		{
+
+			<h3>
+				@Html.ActionLink("Create New Ticket", "Create")
+
+				@*Ok MyTickets not showing my assigned to tickets......Use partial view for each role, will have some redundancies but they will be sorted by role or PM ID.*@
+			</h3>
+			<br />
+
+	}
+
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							Assigned User
+						</th>
+						<th>
+							Ticket Owner
+						</th>
+						<th>
+							Priority
+						</th>
+						<th>
+							Project
+						</th>
+						<th>
+							Status
+						</th>
+						<th>
+							Type
+						</th>
+						<th>
+							Title
+						</th>
+						<th>
+							Description
+						</th>
+						<th>
+							Created
+						</th>
+						@*<th>
+							Updated
+						</th>*@
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+					@foreach (var item in Model)
+				{
+
+					if (item.IsDeleted == false && item.Status.Name == "Completed")
+
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Priority.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Project.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Status.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Type.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Title)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Description)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
+							</td>
+							@*<td>
+								@Html.DisplayFor(modelItem => item.Updated)
+							</td>*@
+							<td>
+
+								@Html.ActionLink("Details ", "Details", new { id = item.Id }) |
+
+
+								@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+							{
+								@Html.ActionLink(" Edit ", "Edit", new { id = item.Id }) <text> | </text>
+						}
+
+								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+							{
+								@Html.ActionLink(" Assign ", "AssignTicket", new { id = item.Id }) <text> | </text>
+
+								@Html.ActionLink(" Soft Delete ", "SoftDelete", new { id = item.Id }) <text> | </text>
+						}
+
+								@if (User.IsInRole("Admin"))
+							{
+
+								@Html.ActionLink(" Delete ", "Delete", new { id = item.Id })
+						}
+
+							</td>
+						</tr>
+				}
+			}
+				</tbody>
+			</table>
+		</div>
+
+		@Html.ActionLink("Back to My Tickets List", "MyTickets")
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+	$('#mytable').DataTable();
+</script>
+

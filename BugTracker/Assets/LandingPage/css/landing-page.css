@@ -12,6 +12,12 @@ h6 {
   font-weight: 700;
 }
 
+.divider {
+	width: 5px;
+	height: none;
+	display: inline-block;
+}
+
 header.masthead {
 	position: relative;
 	background-color: #343a40;

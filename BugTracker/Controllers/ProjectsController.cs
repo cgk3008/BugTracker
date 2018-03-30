@@ -22,7 +22,7 @@ namespace BugTracker.Controllers
         {
             List<Project> projects = dB.Project.ToList();
             List<ProjectIndexViewModel> vms = new List<ProjectIndexViewModel>();
-            foreach(Project project in projects)
+            foreach (Project project in projects)
             {
                 ProjectIndexViewModel vm = new ProjectIndexViewModel()
                 {
@@ -49,6 +49,12 @@ namespace BugTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Project project = dB.Project.Find(id);
+
+            //ProjectIndexViewModel vm = new ProjectIndexViewModel()
+            //{
+            //    ProjectManager = dB.Users.Find(project.PmId)
+            //};
+
             if (project == null)
             {
                 return HttpNotFound();
@@ -185,11 +191,11 @@ namespace BugTracker.Controllers
                 return RedirectToAction("Index");
 
             }
-           
+
             return View(project);
         }
-        
-      
+
+
         // GET: MyProjects
         [Authorize]
         public ActionResult MyProjects()
@@ -200,22 +206,7 @@ namespace BugTracker.Controllers
             //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
 
             return View(dB.Users.Find(userId).Project.ToList());
-        }
-
-
-
-       // GET: My Project list
-        [Authorize]
-        public ActionResult MyProjectList()
-        {
-            var userId = User.Identity.GetUserId();
-            //return View(dB.Users.Find(userId).Ticket.ToList());
-
-            //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
-
-            return View(dB.Users.Find(userId).Project.ToList());
-        }
-
+        }           
 
         // Get tickets each project
         public ActionResult TicketsForEachProject()

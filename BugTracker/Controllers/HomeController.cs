@@ -40,7 +40,7 @@ namespace BugTracker.Controllers
 
         public ActionResult DemoLogin()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult LP()

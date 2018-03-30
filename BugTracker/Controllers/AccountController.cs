@@ -113,6 +113,7 @@ namespace BugTracker.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+
         }
 
         //
@@ -124,7 +125,8 @@ namespace BugTracker.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                //return View(model);
+                return RedirectToAction("Index", "Home");
             }
 
             // This doesn't count login failures towards account lockout
@@ -474,7 +476,7 @@ namespace BugTracker.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("LP", "Home");
         }
 
         //

@@ -23,6 +23,7 @@ namespace BugTracker.Models
         public string OwnerUserId { get; set; }
         public string AssignedToUserId { get; set; }
         public bool IsDeleted { get; set; }
+        
 
         public virtual TicketType Type { get; set; }
         public virtual TicketPriority Priority { get; set; }

@@ -118,7 +118,7 @@
 				</dl>
 			</div>
 
-			<table id="mytable" class="table">
+			<table id="table_Histories" class="table">
 				<thead>
 					<tr>
 						<th>
@@ -139,54 +139,54 @@
 						<th>
 							Date Changed
 						</th>
-						<th></th>
+
 					</tr>
 				</thead>
 				<tbody>
 					@foreach (var item in Model.History)
-	{
-				
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.Ticket.Title)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.User.FullName)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Property)
-					</td>
+					{
 
-					<td>
-						@Html.DisplayFor(modelItem => item.OldValue)
-					</td>
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Ticket.Title)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.User.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Property)
+							</td>
 
-					<td>
-						@Html.DisplayFor(modelItem => item.NewValue)
-					</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.OldValue)
+							</td>
 
-					<td>
-						@Html.DisplayFor(modelItem => item.Changed)
-					</td>
-					<td>
+							<td>
+								@Html.DisplayFor(modelItem => item.NewValue)
+							</td>
 
-						@if (User.IsInRole("Admin"))
-		{
-				@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
-				@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
-				@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
-}
+							<td>
+								@Html.DisplayFor(modelItem => item.Changed)
+							</td>
+							@*<td>
 
-					</td>
+									@if (User.IsInRole("Admin"))
+									{
+										@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
+										@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
+										@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
+									}
 
-				</tr>
-}
+								</td>*@
+
+						</tr>
+					}
 				</tbody>
 			</table>
 
-			<script>
-				$('#mytable').DataTable();
-			</script>
+			@*<script>
+					$('#mytable').DataTable();
+				</script>*@
 
 
 
@@ -194,18 +194,18 @@
 			<div class="form-horizontal">
 				<hr />
 				<br />
-				<h4>Comments</h4>
+
 
 				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-				<table id="mytable" class="table">
+				<table id="table_Comments" class="table">
 					<thead>
 						<tr>
 							<th>
-								User
+								<h4>Comments</h4>
 							</th>
 							<th>
-								Created
+								<h4>Revision</h4>
 							</th>
 
 						</tr>
@@ -213,88 +213,105 @@
 					<tbody>
 
 						@foreach (var comm in Model.Comment)
-						{
-							<div class="page-grid">
-								<div class="container">
-									<div class="row show-grid">
-										<div class="col-md-10">
-											<h6>
-												@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-												, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-											</h6>
+			{
+				<tr>
+					<td>
+						@*<div class="page-grid">
+				<div class="container">
+					<div class="row show-grid">
+						<div class="col-md-10">*@
+						<h6>
+							@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+							, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+						</h6>
 
-											<h4>@Html.DisplayFor(model => comm.Body)</h4>
+						<h4>@Html.DisplayFor(model => comm.Body)</h4>
 
-											<img class="img-responsive" src="@comm.FileUrl" alt="">
-										</div>
+						<img class="img-responsive" src="@comm.FileUrl" alt="">
+						@*</div>*@
 
-										<div class="col-md-2">
+					</td>
+					<td>
+						@*<div class="col-md-2">*@
 
-											@if (comm.User.UserName == User.Identity.Name)
-											{
-												<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
-											}
+						@if (comm.User.UserName == User.Identity.Name)
+			{
+				<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
+}
 
 
-											@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-											{
-												<h3>
-													@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-													@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
-												</h3>
-											}
-										</div>
-									</div>
-								</div>
-							</div>
-						}
+						@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+			{
+				<h3>
+					@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+					@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+				</h3>
+}
+			@*</div>
+			</div>
+		</div>
+	</div>*@
+					</td>
+				</tr>
+}
 					</tbody>
 				</table>
 
 				<script>
-					$('#mytable').DataTable();
+					$('#table_Histories, #table_Comments').DataTable();
 				</script>
 
+				@*<script>
+					$(document).ready(function () {
+						$('#example').DataTable({
+							"scrollX": true
+						});
+					});
+				</script>*@
+
 				<br />
+				<div>
+					@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+		{
+			@Html.AntiForgeryToken()
+			@*@Html.Hidden("TicketId", Model.Id)*@
+//already passing the ticketId in Hidden statement above to the below in the input
 
-				@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
-				{
-					@Html.AntiForgeryToken()
-					@*@Html.Hidden("TicketId", Model.Id)*@
-					//already passing the ticketId in Hidden statement above to the below in the input
+			<input name="TicketId" value="@Model.Id" hidden />
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-12">
 
-					<input name="TicketId" value="@Model.Id" hidden />
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-12">
+					<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
 
-							<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
-
-							<input name="image" type="file" class="form-control" id="fileUpload" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-12">
-							@if (Request.IsAuthenticated)
-							{
-								<input type="submit" value="Submit Comment" class="btn btn-default" />
-							}
-							else
-							{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
-								<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
-							}
-						</div>
-					</div>
-				}
+					<input name="image" type="file" class="form-control" id="fileUpload" />
+				</div>
 			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-12">
+					@if (Request.IsAuthenticated)
+		{
+			<input type="submit" value="Submit Comment" class="btn btn-default" />
+}
+else
+{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
+			<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
+}
+				</div>
+			</div>
+}
+				</div>
 
-			<p>
-				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-				@Html.ActionLink("Back to List", "MyTickets")
-			</p>
+				<p>
+					@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+					@Html.ActionLink("Back to List", "MyTickets")
+				</p>
 
+			</div>
 		</div>
 	</div>
-</div>
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
-}
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	$(function(){
+		$().DataTable();
+	});
+	}

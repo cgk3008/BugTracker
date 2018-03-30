@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using PagedList;
+using PagedList.Mvc;
 using System.Web;
 using System.Web.Mvc;
 using BugTracker.Models;
@@ -17,8 +19,7 @@ namespace BugTracker.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Tickets
-
+        // GET: All Tickets
         public ActionResult Index()
         {
             var tickets = db.Ticket.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Priority).Include(t => t.Project).Include(t => t.Status).Include(t => t.Type);
@@ -31,26 +32,90 @@ namespace BugTracker.Controllers
             return View(db.Ticket.ToList());
         }
 
-
-
-
         // GET: Tickets/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id /*int? page, string searchStr*/)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Ticket.Find(id);
+            Ticket ticket = db.Ticket.Where(t => t.Id == id)
+                                     .Include(t => t.Comment)
+                                     .Include(t => t.History)
+                                     .FirstOrDefault();
             if (ticket == null)
             {
                 return HttpNotFound();
             }
+
+            //List<TicketHistory> histories = db.History.ToList();
+
+
+            //List<TicketDetailsViewModel> hist = new List<TicketDetailsViewModel>();
+            //foreach (TicketHistory history in histories)
+            //{
+            //    TicketDetailsViewModel vm1 = new TicketDetailsViewModel()
+            //    {
+            //        HistoryData = histories,
+
+            //    };
+            //    hist.Add(vm1);
+            //}
+
+            //List<TicketComment> comments = db.Comment.ToList();
+            //List<TicketDetailsViewModel> comm = new List<TicketDetailsViewModel>();
+            //foreach (TicketComment comment in comments)
+            //{
+            //    TicketDetailsViewModel vm2 = new TicketDetailsViewModel()
+            //    {
+            //        CommentData = comments,
+
+            //    };
+            //    comm.Add(vm2);
+            //}
+
             return View(ticket);
+
+            //var history = db.History.Include(t => t.TicketId).Include(t => t.Ticket.Title).Include(t => t.User.FullName).Include(t => t.Property).Include(t => t.OldValue).Include(t => t.Changed);
+
+
+            //var comment = db.Comment.Include(t => t.User.FullName).Include(t => t.Created).Include(t => t.Updated).Include(t => t.Body);
+            //return View(comment.ToList());
+
+            //    public IEnumerable<TicketHistory> TableHistoryData { get; set; }
+            //public IEnumerable<TicketComment> TableCommentData { get; set; }
+
+            //ViewBag.Search = searchStr;
+            //var commentList = CommentSearch(searchStr);
+            //int pageSize = 8; 
+            //int pageNumber = (page ?? 1);
+            //return View(commentList./*OrderByDescending(p => p.Created).*/ToPagedList(pageNumber, pageSize));
+
+            //return View(ticket);
         }
 
-        // GET: Tickets/Create
+        //public IQueryable<TicketComment> CommentSearch(string searchStr)
+        //{
+        //    IQueryable<TicketComment> result = null;
+        //    if (searchStr != null)
+        //    {
+        //        result = db.Comment.AsQueryable();
+        //        //use listposts method and add together queries to only show published blogposts (check marked posts in details)
+        //        result = result.Where(p => p.Body.Contains(searchStr))
+        //                        .Union(db.Comment.Where(p => p.User.FullName.Contains(searchStr)))
+        //                        //.Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.Created.DateTime(searchStr))))
+        //                        //.Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.Updated.Contains(searchStr))))
+        //                        .Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.Body.Contains(searchStr))))
+        //                        .Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.FileUrl.Contains(searchStr))));                           
+        //    }
+        //    else
+        //    {
+        //        result = db.Comment.AsQueryable();
+        //    }
+        //    return /*View(*/result.OrderByDescending(p => p.Created)/*.ToPagedList(pageNumber, pageSize))*/;
+        //}
 
+        // GET: Tickets/Create
         public ActionResult Create()
         {
             var userId = User.Identity.GetUserId();
@@ -276,7 +341,7 @@ namespace BugTracker.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Projects/SoftDelete
+        // GET: Tickets/SoftDelete
         public ActionResult SoftDelete(int? id)
         {
             if (id == null)
@@ -291,7 +356,7 @@ namespace BugTracker.Controllers
             return View(ticket);
         }
 
-        // POST: Projects/SoftDelete
+        // POST: Tickets/SoftDelete
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SoftDelete([Bind(Include = "Id,Title,Description,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId,IsDeleted")] Ticket ticket)
@@ -302,7 +367,7 @@ namespace BugTracker.Controllers
                 db.Entry(ticket).State = EntityState.Modified;
                 ticket.IsDeleted = true;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyTickets");
 
             }
 
@@ -318,8 +383,8 @@ namespace BugTracker.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var proj = db.Users.Find(userId).Project;   
-            
+            var proj = db.Users.Find(userId).Project;
+
             //I want to be able to show list of tickets if a person is in multiple user roles, right now I can't do that with code below. However, maybe there is a way with a foreach loop encapsulating all the if statements.......but I think I would need to pull return View outside of if statements
 
             if (User.IsInRole("Project Manager"))
@@ -347,6 +412,44 @@ namespace BugTracker.Controllers
             //return View(tickets.ToList());
 
         }
+
+
+        // GET: My Completed Tickets
+        [Authorize]
+        public ActionResult MyCompletedTix()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var proj = db.Users.Find(userId).Project;
+
+            //I want to be able to show list of tickets if a person is in multiple user roles, right now I can't do that with code below. However, maybe there is a way with a foreach loop encapsulating all the if statements.......but I think I would need to pull return View outside of if statements
+
+            if (User.IsInRole("Project Manager"))
+            {
+                var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).ToList();
+                return View(tkts.ToList());
+            }
+
+
+            if (User.IsInRole("Developer"))
+            {
+                var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                return View(tickets.ToList());
+            }
+
+            if (User.IsInRole("Submitter"))
+            {
+                var tickets = db.Ticket.Where(u => u.OwnerUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                return View(tickets.ToList());
+            }
+            else //temperory else statement until i get tickethelper to work
+            {
+                return View();
+            }
+            //return View(tickets.ToList());
+
+        }
+
 
         //Get Assign Ticket
         public ActionResult AssignTicket(int? id)
