@@ -52,36 +52,67 @@
 							<h3><i class="fa fa-desktop"></i> @Html.ActionLink("My Projects", "MyProjects", "Projects")</h3>
 						</div>
 
+						@*<div class="widget-body no-padd scroll">
+
+		<ul>*@
 
 						<div class="widget-body no-padd">
 
-							<ul class="list-unstyled">
+							<ol>
 
 
 								@foreach (var item in Model.Projects)
 
-								{
-									if (item.IsDeleted == false)
-									{
-										@Html.DisplayFor(modelItem => item.Name)
+			{
+				if (item.IsDeleted == false)
+				{
+					<li>
+						@Html.DisplayFor(modelItem => item.Name)
+					</li>
+}
+}
 
-									}
-								}
-
-							</ul>
+							</ol>
 
 						</div>
 
 
-						@*<div class="widget-foot">
-								<span class="pull-left"><i class="fa fa-time"></i> </span>
-								<a href="#" class="btn btn-success btn-xs pull-right">Refresh</a>
-								<div class="clearfix"></div>
-							</div>*@
+						<!-- Progress bar widget -->
+						<div class="ui-element-container">
+							<h3>Progress Bar</h3>
+							<h4>Basic Progress Bar</h4>
+							<div class="progress">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+							</div>
+							<div class="progress">
+								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+							</div>
+							<div class="progress">
+								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
+							</div>
+							<div class="progress">
+								<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
+							</div>
+							<div class="progress">
+								<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
+							</div>
+
+
+
+
+
+
+
+
+							@*<div class="widget-foot">
+				<span class="pull-left"><i class="fa fa-time"></i> </span>
+				<a href="#" class="btn btn-success btn-xs pull-right">Refresh</a>
+				<div class="clearfix"></div>
+			</div>*@
+
+						</div>
 
 					</div>
-
-				</div>
 
 				<div class="col-md-4">
 
@@ -215,8 +246,9 @@
 								{
 									if (item.IsDeleted == false)
 									{
-										@Html.DisplayFor(modelItem => item.Title)
-
+								<li>
+									@Html.DisplayFor(modelItem => item.Title)
+								</li>
 									}
 								}
 							</ul>
@@ -224,13 +256,13 @@
 						</div>
 
 						@*<div class="widget-foot">
-							<form class="form-inline" role="form">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Enter Task Here...">
-								</div>
-								<button type="submit" class="btn btn-info btn-sm">Add Task</button>
-							</form>
-						</div>*@
+								<form class="form-inline" role="form">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Enter Task Here...">
+									</div>
+									<button type="submit" class="btn btn-info btn-sm">Add Task</button>
+								</form>
+							</div>*@
 
 					</div>
 
@@ -751,13 +783,13 @@
 				});
 
 
-																									< !--Actual plotting-- >
+																										< !--Actual plotting-- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-																								 < !--Line chart ends-- >
+																									 < !--Line chart ends-- >
 
-																								 < !--Bar chart starts-- >
+																									 < !--Bar chart starts-- >
 
 			$(function () {
 
@@ -812,10 +844,10 @@
 
 			});
 
-																								< !--Bar chart ends-- >
+																									< !--Bar chart ends-- >
 
 
-																								< !--Realtime chart starts-- >
+																									< !--Realtime chart starts-- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -893,9 +925,9 @@
 
 			});
 
-																								< !--Realtime charts ends-- >
+																									< !--Realtime charts ends-- >
 
-																								< !--Pie chart start-- >
+																									< !--Pie chart start-- >
 
 			$(function () {
 
@@ -931,7 +963,7 @@
 
 
 			});
-																								< !--Pie chart ends-- >
+																									< !--Pie chart ends-- >
 
 			/* ****************************************** */
 			/* Main area sparkline */

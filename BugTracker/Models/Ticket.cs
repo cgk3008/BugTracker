@@ -16,6 +16,7 @@ namespace BugTracker.Models
         public string Description { get; set; }
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
+        public string TimeZoneCreate { get; set; }
         public int ProjectId { get; set; }
         public int TicketTypeId { get; set; }
         public int TicketPriorityId { get; set; }
@@ -23,12 +24,16 @@ namespace BugTracker.Models
         public string OwnerUserId { get; set; }
         public string AssignedToUserId { get; set; }
         public bool IsDeleted { get; set; }
-        
+        public DateTimeOffset? StartDate { get; set; }
+        public DateTimeOffset? DeadlineDate { get; set; }
+        public string TimeZoneDeadline { get; set; }
+
 
         public virtual TicketType Type { get; set; }
         public virtual TicketPriority Priority { get; set; }
         public virtual TicketStatus Status { get; set; }
         public virtual Project Project { get; set; }
+        public virtual Project PmId { get; set; }
         public virtual User OwnerUser { get; set; }
         public virtual User  AssignedToUser { get; set; }
 

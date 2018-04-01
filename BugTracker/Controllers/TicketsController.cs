@@ -357,7 +357,9 @@ namespace BugTracker.Controllers
 
             if (User.IsInRole("Developer"))
             {
-                var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
+                //@if(comm.User.UserName == User.Identity.Name) see ticket details comments
+
+                var tickets = db.Ticket.Where(u => u.AssignedToUserId == userId /*|| u.PmId == userId*/).Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.Priority).Include(t => t.Status).Include(t => t.Type);
                 return View(tickets.ToList());
             }
 
