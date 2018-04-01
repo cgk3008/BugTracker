@@ -1,10 +1,4 @@
-@*@using PagedList;
-	@using PagedList.Mvc;
-
-
-	@model IPagedList<BugTracker.Models.BugTracker>*@
-
-
+@model BugTracker.Models.DashboardViewModel
 @{
 	ViewBag.Title = "Index";
 }
@@ -55,7 +49,7 @@
 					<div class="widget projects-widget">
 
 						<div class="widget-head br-green">
-							<h3><i class="fa fa-desktop"></i> My Projects</h3>
+							<h3><i class="fa fa-desktop"></i> @Html.ActionLink("My Projects", "MyProjects", "Projects")</h3>
 						</div>
 
 
@@ -63,29 +57,27 @@
 
 							<ul class="list-unstyled">
 
-								@*@using (Html.BeginForm("MyProjectList", "Projects"))
-	{
-							@Html.AntiForgeryToken()
-							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-							@foreach (var item in Model)
-	if (item.IsDeleted == false)
-	{
 
-		{
-							@Html.DisplayFor(modelItem => item.Name)
+								@foreach (var item in Model.Projects)
 
-}*@
+								{
+									if (item.IsDeleted == false)
+									{
+										@Html.DisplayFor(modelItem => item.Name)
+
+									}
+								}
 
 							</ul>
 
 						</div>
 
 
-						<div class="widget-foot">
-							<span class="pull-left"><i class="fa fa-time"></i> Last Update - 55 mins ago</span>
-							<a href="#" class="btn btn-success btn-xs pull-right">Refresh</a>
-							<div class="clearfix"></div>
-						</div>
+						@*<div class="widget-foot">
+								<span class="pull-left"><i class="fa fa-time"></i> </span>
+								<a href="#" class="btn btn-success btn-xs pull-right">Refresh</a>
+								<div class="clearfix"></div>
+							</div>*@
 
 					</div>
 
@@ -210,34 +202,35 @@
 					<div class="widget tasks-widget">
 
 						<div class="widget-head br-lblue">
-							<h3><i class="fa fa-tasks"></i> My Tickets</h3>
+							<h3><i class="fa fa-tasks"></i> @Html.ActionLink("My Tickets", "MyTickets", "Tickets")</h3>
 						</div>
 
 						<div class="widget-body no-padd scroll">
 
 							<ul>
 								<!-- Checkbox - Task - Flag -->
-								<li class="task-important"> <input type="checkbox"> <span>Lorem dolor sit sit amet dolor feugiat sit consur.</span> </li>
-								<li class="task-normal"> <input type="checkbox"> <span>Duis dolor sit eut purus dolor feugiat sit ineuis.</span> </li>
-								<li class="task-pending"> <input type="checkbox"> <span>Mauris dolor sit adiin ipsum dolor feugiat posuere.</span> </li>
-								<li class="task-important"> <input type="checkbox"> <span>Ut non dolor sit feu sit amet dolor feugiat sit cquat.</span> </li>
-								<li class="task-normal"> <input type="checkbox"> <span>Duis dolor sit eut purus dolor feugt interum euis.</span> </li>
-								<li class="task-pending"> <input type="checkbox"> <span>Nullam dolor sit pla augue dolor feuiat comodo.</span> </li>
-								<li class="task-important"> <input type="checkbox"> <span>Vivamus dolor sit ali ondntum dolor feugiat sit ittis.</span> </li>
-								<li class="task-normal"> <input type="checkbox"> <span>Duis dolor sit eut purus dolor  sit interum euis.</span> </li>
-								<li class="task-pending"> <input type="checkbox"> <span>Duis dolor sit eut purus  feugiat sit interum euis.</span> </li>
+
+								@foreach (var item in Model.Tickets)
+
+								{
+									if (item.IsDeleted == false)
+									{
+										@Html.DisplayFor(modelItem => item.Title)
+
+									}
+								}
 							</ul>
 
 						</div>
 
-						<div class="widget-foot">
+						@*<div class="widget-foot">
 							<form class="form-inline" role="form">
 								<div class="form-group">
 									<input type="text" class="form-control" placeholder="Enter Task Here...">
 								</div>
 								<button type="submit" class="btn btn-info btn-sm">Add Task</button>
 							</form>
-						</div>
+						</div>*@
 
 					</div>
 
@@ -758,13 +751,13 @@
 				});
 
 
-																				< !--Actual plotting-- >
+																									< !--Actual plotting-- >
 					$.plot("#m-line-chart", [{ data: d1, label: "Revenue" }, { data: d2, label: "Profit" }], options);
 			});
 
-																			 < !--Line chart ends-- >
+																								 < !--Line chart ends-- >
 
-																			 < !--Bar chart starts-- >
+																								 < !--Bar chart starts-- >
 
 			$(function () {
 
@@ -819,10 +812,10 @@
 
 			});
 
-																			< !--Bar chart ends-- >
+																								< !--Bar chart ends-- >
 
 
-																			< !--Realtime chart starts-- >
+																								< !--Realtime chart starts-- >
 
 			$(function () {
 				// we use an inline data source in the example, usually data would
@@ -900,9 +893,9 @@
 
 			});
 
-																			< !--Realtime charts ends-- >
+																								< !--Realtime charts ends-- >
 
-																			< !--Pie chart start-- >
+																								< !--Pie chart start-- >
 
 			$(function () {
 
@@ -938,7 +931,7 @@
 
 
 			});
-																			< !--Pie chart ends-- >
+																								< !--Pie chart ends-- >
 
 			/* ****************************************** */
 			/* Main area sparkline */

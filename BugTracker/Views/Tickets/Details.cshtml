@@ -207,52 +207,63 @@
 							<th>
 								<h4>Revision</h4>
 							</th>
-
+							<th>
+								<h4>Comment Author</h4>
+							</th>
+							<th>
+								<h4>Created</h4>
+							</th>
+							<th>
+								<h4>Updated</h4>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 
 						@foreach (var comm in Model.Comment)
 			{
-				<tr>
-					<td>
-						@*<div class="page-grid">
-				<div class="container">
-					<div class="row show-grid">
-						<div class="col-md-10">*@
-						<h6>
-							@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-							, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-						</h6>
+						<tr>
+							<td>
 
-						<h4>@Html.DisplayFor(model => comm.Body)</h4>
+								<h6>
+									@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+									, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+								</h6>
 
-						<img class="img-responsive" src="@comm.FileUrl" alt="">
-						@*</div>*@
+								<h4>@Html.DisplayFor(model => comm.Body)</h4>
 
-					</td>
-					<td>
-						@*<div class="col-md-2">*@
+								<img class="img-responsive" src="@comm.FileUrl" alt="">
 
-						@if (comm.User.UserName == User.Identity.Name)
-			{
-				<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
+							</td>
+							<td>
+								@if (comm.User.UserName == User.Identity.Name)
+		{
+						<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
 }
 
 
-						@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-			{
-				<h3>
-					@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
-					@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
-				</h3>
+								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+		{
+						<h3>
+							@Html.ActionLink("Edit ----- ", "Edit", "TicketComments", new { id = comm.Id }, null)
+							@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+						</h3>
 }
-			@*</div>
-			</div>
-		</div>
-	</div>*@
-					</td>
-				</tr>
+
+							</td>
+
+							<td>
+								@Html.DisplayFor(model => comm.User.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+							</td>
+							<td>
+								@Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+							</td>
+
+
+						</tr>
 }
 					</tbody>
 				</table>
@@ -309,6 +320,7 @@ else
 			</div>
 		</div>
 	</div>
+
 	@section Scripts {
 		@Scripts.Render("~/bundles/jqueryval")
 	$(function(){

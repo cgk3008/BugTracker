@@ -48,72 +48,8 @@ namespace BugTracker.Controllers
                 return HttpNotFound();
             }
 
-            //List<TicketHistory> histories = db.History.ToList();
-
-
-            //List<TicketDetailsViewModel> hist = new List<TicketDetailsViewModel>();
-            //foreach (TicketHistory history in histories)
-            //{
-            //    TicketDetailsViewModel vm1 = new TicketDetailsViewModel()
-            //    {
-            //        HistoryData = histories,
-
-            //    };
-            //    hist.Add(vm1);
-            //}
-
-            //List<TicketComment> comments = db.Comment.ToList();
-            //List<TicketDetailsViewModel> comm = new List<TicketDetailsViewModel>();
-            //foreach (TicketComment comment in comments)
-            //{
-            //    TicketDetailsViewModel vm2 = new TicketDetailsViewModel()
-            //    {
-            //        CommentData = comments,
-
-            //    };
-            //    comm.Add(vm2);
-            //}
-
             return View(ticket);
-
-            //var history = db.History.Include(t => t.TicketId).Include(t => t.Ticket.Title).Include(t => t.User.FullName).Include(t => t.Property).Include(t => t.OldValue).Include(t => t.Changed);
-
-
-            //var comment = db.Comment.Include(t => t.User.FullName).Include(t => t.Created).Include(t => t.Updated).Include(t => t.Body);
-            //return View(comment.ToList());
-
-            //    public IEnumerable<TicketHistory> TableHistoryData { get; set; }
-            //public IEnumerable<TicketComment> TableCommentData { get; set; }
-
-            //ViewBag.Search = searchStr;
-            //var commentList = CommentSearch(searchStr);
-            //int pageSize = 8; 
-            //int pageNumber = (page ?? 1);
-            //return View(commentList./*OrderByDescending(p => p.Created).*/ToPagedList(pageNumber, pageSize));
-
-            //return View(ticket);
         }
-
-        //public IQueryable<TicketComment> CommentSearch(string searchStr)
-        //{
-        //    IQueryable<TicketComment> result = null;
-        //    if (searchStr != null)
-        //    {
-        //        result = db.Comment.AsQueryable();
-        //        //use listposts method and add together queries to only show published blogposts (check marked posts in details)
-        //        result = result.Where(p => p.Body.Contains(searchStr))
-        //                        .Union(db.Comment.Where(p => p.User.FullName.Contains(searchStr)))
-        //                        //.Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.Created.DateTime(searchStr))))
-        //                        //.Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.Updated.Contains(searchStr))))
-        //                        .Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.Body.Contains(searchStr))))
-        //                        .Union(db.Comment.Where(p => p.Ticket.Comment.Any(c => c.FileUrl.Contains(searchStr))));                           
-        //    }
-        //    else
-        //    {
-        //        result = db.Comment.AsQueryable();
-        //    }
-        //    return /*View(*/result.OrderByDescending(p => p.Created)/*.ToPagedList(pageNumber, pageSize))*/;
-        //}
 
         // GET: Tickets/Create
         public ActionResult Create()
@@ -203,6 +139,8 @@ namespace BugTracker.Controllers
 
                 foreach (var prop in typeof(Ticket).GetProperties())
                 {
+
+
                     if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId"))
                     {
                         var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
@@ -210,6 +148,8 @@ namespace BugTracker.Controllers
 
                         if (oldVal != newVal)
                         {
+
+
                             TicketHistory ticketHistory = new TicketHistory()
                             {
                                 TicketId = oldTicket.Id,
@@ -220,14 +160,35 @@ namespace BugTracker.Controllers
 
                                 Changed = DateTime.Now
                             };
+
+
+
                             db.History.Add(ticketHistory);
                         }
                     }
+
+                    //if (prop.Name.In("TicketTypeId"))
+                    //{
+                    //    string oldVal;
+                    //    switch (oldVal)
+                    //    {
+                    //        case "1":
+                    //            oldVal = "Production Fix";
+                    //            break;
+                    //        case "2":
+                    //            oldVal = "Project Task";
+                    //            break;
+                    //        case "3":
+                    //            oldVal = "Software Update";
+                    //            break;
+                    //        default:
+                    //            break;
+                    //    }
+                    //}
                 }
 
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-
 
                 var ticket = db.Ticket.Find(model.Id);
                 ticket.AssignedToUserId = model.AssignedToUserId;
