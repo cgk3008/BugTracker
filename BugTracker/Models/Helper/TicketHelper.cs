@@ -8,7 +8,7 @@ namespace BugTracker.Models.Helper
     public class TicketHelper
     {
         public static ApplicationDbContext db = new ApplicationDbContext();
-        public List<Ticket> GetProjectTickets(string userId, int projectId)
+        public List<Ticket> GetProjectTickets(/*string userId, */int projectId)
         {
 
             //var usr = db.Users.Find(userId);
@@ -16,7 +16,7 @@ namespace BugTracker.Models.Helper
 
             //return db.prj.Users.Ticket.ToList();
 
-            return db.Project.Find(userId, projectId).Ticket.ToList();
+            return db.Project.Find(projectId).Ticket.ToList();
 
 
 

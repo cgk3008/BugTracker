@@ -25,7 +25,7 @@ namespace BugTracker.Controllers
             var userId = User.Identity.GetUserId();
             //var user = dB.Users.Find(userId);
             var userProjects = dB.Project.Where(p => p.Users.Any(u => u.Id == userId)).ToList();
-            var userTickets = dB.Ticket.Where(t => t.AssignedToUserId == userId || t.OwnerUserId == userId /*|| t.PmId == userId*/).ToList();
+            var userTickets = dB.Ticket.Where(t => t.AssignedToUserId == userId || t.OwnerUserId == userId || t.Project.PmId == userId).ToList();
             var userNotifications = dB.Notification.Where(n => n.UserId == userId).ToList();
 
             DashboardViewModel model = new DashboardViewModel()

@@ -61,7 +61,7 @@
 							<ol>
 
 
-								@foreach (var item in Model.Projects)
+								@foreach (var item in Model.Projects.Take(10)) //takes ten, need to specify sort method or order in home controller.
 
 								{
 									if (item.IsDeleted == false)
@@ -163,7 +163,7 @@
 							<ol>
 
 
-								@foreach (var item in Model.Tickets)
+								@foreach (var item in Model.Tickets.Take(10)) //taking 10, but not sure hierarchy or selection
 
 								{
 									if (item.IsDeleted == false)

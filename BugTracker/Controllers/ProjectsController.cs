@@ -51,13 +51,14 @@ namespace BugTracker.Controllers
 
             Project project = dB.Project.Find(id);
             var proj = id;
-            var tix = dB.Project.Where(t => t.Id == proj).SelectMany(t => t.Ticket).ToList();
+            //var tix = dB.Ticket.Where()
+            //var tix = dB.Project.Where(t => t.Id == proj).SelectMany(t => t.Ticket).ToList();
             
             if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(tix.ToList());
+            return View(project);
         }
 
         // GET: Projects/Create

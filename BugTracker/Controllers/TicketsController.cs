@@ -57,6 +57,7 @@ namespace BugTracker.Controllers
             var userId = User.Identity.GetUserId();
             ProjectHelper helper = new ProjectHelper();
             var projlist = helper.ListProjectsForUser(userId);
+            
             //Ticket.AssignedToUserId = new MultiSelectList(db, "id", "FullName", devlist);
 
             ViewBag.ProjectId = new SelectList(projlist, "Id", "Name");

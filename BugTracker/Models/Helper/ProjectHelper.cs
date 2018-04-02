@@ -8,19 +8,6 @@ namespace BugTracker.Models.Helper
     public class ProjectHelper
     {
 
-        //        Your project helper class should include but is not limited to...
-
-        //IsUserOnProject
-        //ListUserProjects-done
-        //AddUserToProject-done
-        //RemoveUserFromProject-done
-        //UsersOnProject-donedB
-        //UserNotOnProject(edited)-done?
-
-
-
-        //dB.Project.Any (p => p.) "Any" returns a boolean??
-
 
         private ApplicationDbContext dB = new ApplicationDbContext();
 
@@ -74,6 +61,15 @@ namespace BugTracker.Models.Helper
         public ICollection<Project> ListProjectsForUser(string userId)
         {
 
+            //var isnotdeleted = dB.Project.Where(p => p.IsDeleted == false).ToList();
+            //var proj = isnotdeleted.Users.Find(userId).
+            //    var projects = dB.Users.Find(userId).Project.ToList();
+
+            //if (projects != null)
+            //{
+            //    projects.
+            //}
+
             return dB.Users.Find(userId).Project.ToList();
 
             //all this code simplified above
@@ -98,11 +94,10 @@ namespace BugTracker.Models.Helper
             //    return null;
             //}                
         }
-        //add function to not allow same user on same project twice!!! wait, code already is not allowing that due to multiselect list
+        
 
 
         //IsUserOnProject
-
         public bool IsUserOnProject(string userId, int projectId)
         {
             try
