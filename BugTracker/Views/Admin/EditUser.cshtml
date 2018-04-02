@@ -29,12 +29,9 @@
 
 
 
-				@Html.ListBox("SelectedRoles", Model.Roles, new { @class = "control-label col-md-2" }) @*Model.Roles)*@
+				@Html.DropDownList("SelectedRoles", Model.Roles, new { @class = "control-label col-md-2" }) 
 
-				<h5>
-					Hold Ctrl Key to Select Multiple Roles for the User. <br /><br />
-					Hold Shift Key and Scroll through List to Select All Roles.
-				</h5>
+				
 				<br />
 
 				<p><input type="submit" class="btn btn-info" /></p>

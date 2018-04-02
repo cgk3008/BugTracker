@@ -48,18 +48,16 @@ namespace BugTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Project project = dB.Project.Find(id);
-
-            //ProjectIndexViewModel vm = new ProjectIndexViewModel()
-            //{
-            //    ProjectManager = dB.Users.Find(project.PmId)
-            //};
-
+            var proj = id;
+            var tix = dB.Project.Where(t => t.Id == proj).SelectMany(t => t.Ticket).ToList();
+            
             if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(tix.ToList());
         }
 
         // GET: Projects/Create

@@ -224,56 +224,7 @@ namespace BugTracker.Controllers
             ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name", model.TicketTypeId);
             return View(model);
 
-        }
-
-        //if (ModelState.IsValid)
-        //{
-        //    ticket.OwnerUserId = User.Identity.GetUserId();
-        //    ticket.Updated = DateTime.Now;
-        //    db.Entry(ticket).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-
-        //if (ModelState.IsValid)
-        //{
-        //   
-        //    var oldTic = db.Ticket.AsNoTracking().FirstOrDefault(t => t.Id == ticket.Id);
-        //    foreach (var prop in typeof(Ticket).GetProperties())
-        //    {
-        //        
-        //        if (prop.Name != null)
-
-        //            //if (prop.Name != null && prop.Name.IndexOf("Description", "TicketComments", "Title", "Notifications"))
-        //            //need to change Body to Title
-        //            var OldValue = oldTic.GetType().GetField(prop.Name).ToString();
-        //        var NewValue = ticket.GetType().GetField(prop.Name).ToString();
-        //        
-        //if (OldValue != NewValue_)
-        //        {
-        //            
-        //            TicketHistory ticketHistory = new TicketHistory()
-        //            {
-        //                TicketId = ticket.Id,
-        //                UserId = User.Identity.GetUserId(),
-        //                Property = prop.Name,
-        //                OldValue = oldTic.GetType().GetField(prop.Name).ToString(),
-        //                NewValue = ticket.GetType().GetField(prop.Name).ToString(),
-        //                Changed = DateTime.Now
-        //            };
-        //            db.TicketHistories.Add(ticketHistory);
-        //            db.SaveChanges();
-        //        }
-
-        //    }
-        //    return RedirectToAction("Details", new { id = ticket.Id });
-        //}
-
-
-        //ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
-
-
+        }        
 
 
         // GET: Tickets/Delete/5
