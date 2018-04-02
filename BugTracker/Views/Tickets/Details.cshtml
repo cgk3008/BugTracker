@@ -4,6 +4,8 @@
 	ViewBag.Title = "Details";
 }
 
+
+
 <div class="main-content">
 	<div class="container">
 
@@ -16,15 +18,15 @@
 
 
 				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-		{
-			<div class="col-md-4">
-				<h2>
-					<i class="fa fa-ticket green"></i>
-					@Html.ActionLink("Assign This Ticket", "AssignTicket", new { id = Model.Id })
-				</h2>
-			</div>
+				{
+					<div class="col-md-4">
+						<h2>
+							<i class="fa fa-ticket green"></i>
+							@Html.ActionLink("Assign This Ticket", "AssignTicket", new { id = Model.Id })
+						</h2>
+					</div>
 
-}
+				}
 
 				<!-- Bread crumbs -->
 				<div class="breads pull-right">
@@ -35,9 +37,10 @@
 
 			<div>
 				<br />
-				<dl class="dl-horizontal">
+				<div class="col-md-8">
+					<dl class="dl-horizontal">
 
-					<div class="col-md-4">
+
 						<dt>
 							Title
 						</dt>
@@ -69,10 +72,11 @@
 						<dd>
 							@Html.DisplayFor(model => model.Updated)
 						</dd>
-					</div>
+					</dl>
+				</div>
 
-					<div class="col-md-4">
-
+				<div class="col-md-4">
+					<dl class="dl-horizontal">
 						<dt>
 							Assigned to User
 						</dt>
@@ -120,10 +124,10 @@
 						<dd>
 							@Html.DisplayFor(model => model.Type.Name)
 						</dd>
+					</dl>
 
+				</div>
 
-					</div>
-				</dl>
 			</div>
 			<br />
 			<br /><br /><br /><br /><br /><br />
@@ -155,49 +159,49 @@
 				</thead>
 				<tbody>
 					@foreach (var item in Model.History)
-			{
-
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.Ticket.Title)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.User.FullName)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Property)
-					</td>
-
-					<td>
-						@Html.DisplayFor(modelItem => item.OldValue)
-					</td>
-
-					<td>
-						@Html.DisplayFor(modelItem => item.NewValue)
-					</td>
-
-					<td>
-						@Html.DisplayFor(modelItem => item.Changed)
-					</td>
-					@*<td>
-
-					@if (User.IsInRole("Admin"))
 					{
-						@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
-						@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
-						@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
+
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Ticket.Title)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.User.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Property)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.OldValue)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.NewValue)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.Changed)
+							</td>
+							@*<td>
+
+									@if (User.IsInRole("Admin"))
+									{
+										@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
+										@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
+										@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
+									}
+
+								</td>*@
+
+						</tr>
 					}
-
-				</td>*@
-
-				</tr>
-	}
 				</tbody>
 			</table>
 
 			@*<script>
-			$('#mytable').DataTable();
-		</script>*@
+					$('#mytable').DataTable();
+				</script>*@
 
 
 
@@ -209,7 +213,10 @@
 
 				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-				<table id="table_Comments" class="table">
+
+				<table id="table_Comments" class="display nowrap" style="width:100%">
+
+					@*<table id="table_Comments" class="table">*@
 					<thead>
 						<tr>
 							<th>
@@ -232,50 +239,50 @@
 					<tbody>
 
 						@foreach (var comm in Model.Comment)
-				{
-					<tr>
-						<td>
+						{
+							<tr>
+								<td>
 
-							<h6>
-								@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-								, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-							</h6>
+									<h6>
+										@Html.DisplayFor(model => comm.User.FullName) at @Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+										, updated on @Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+									</h6>
 
-							<h4>@Html.DisplayFor(model => comm.Body)</h4>
+									<h4>@Html.DisplayFor(model => comm.Body)</h4>
 
-							<img class="img-responsive" src="@comm.FileUrl" alt="">
+									<img class="img-responsive" src="@comm.FileUrl" alt="">
 
-						</td>
-						<td>
-							@if (comm.User.UserName == User.Identity.Name)
-					{
-						<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
-			}
-
-
-							@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-					{
-						<h3>
-							@Html.ActionLink("PM Edit", "Edit", "TicketComments", new { id = comm.Id }, null) <text> | </text>
-							@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
-						</h3>
-			}
-
-						</td>
-
-						<td>
-							@Html.DisplayFor(model => comm.User.FullName)
-						</td>
-						<td>
-							@Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
-						</td>
-						<td>
-							@Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
-						</td>
+								</td>
+								<td>
+									@if (comm.User.UserName == User.Identity.Name)
+									{
+										<h3>@Html.ActionLink("Edit", "Edit", "TicketComments", new { id = comm.Id }, null)</h3>
+									}
 
 
-					</tr>
-		}
+									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+									{
+										<h3>
+											@Html.ActionLink("PM Edit", "Edit", "TicketComments", new { id = comm.Id }, null) <text> | </text>
+											@Html.ActionLink("Delete", "Delete", "TicketComments", new { id = comm.Id }, null)
+										</h3>
+									}
+
+								</td>
+
+								<td>
+									@Html.DisplayFor(model => comm.User.FullName)
+								</td>
+								<td>
+									@Html.DisplayFor(model => comm.Created, "{0:dd-MMM-yyyy}")
+								</td>
+								<td>
+									@Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
+								</td>
+
+
+							</tr>
+						}
 					</tbody>
 				</table>
 
@@ -283,44 +290,44 @@
 					$('#table_Histories, #table_Comments').DataTable();
 				</script>
 
-				@*<script>
-				$(document).ready(function () {
-					$('#example').DataTable({
-						"scrollX": true
+				<script>
+					$(document).ready(function () {
+						$('#table_Comments').DataTable({
+							"scrollX": true
+						});
 					});
-				});
-			</script>*@
+				</script>
 
 				<br />
 				<div>
 					@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
-			{
-				@Html.AntiForgeryToken()
-				@*@Html.Hidden("TicketId", Model.Id)*@
-		//already passing the ticketId in Hidden statement above to the below in the input
+					{
+						@Html.AntiForgeryToken()
+						@*@Html.Hidden("TicketId", Model.Id)*@
+						//already passing the ticketId in Hidden statement above to the below in the input
 
-		<input name="TicketId" value="@Model.Id" hidden />
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-12">
+						<input name="TicketId" value="@Model.Id" hidden />
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-12">
 
-				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
+								<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
 
-				<input name="image" type="file" class="form-control" id="fileUpload" />
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-12">
-				@if (Request.IsAuthenticated)
-		{
-			<input type="submit" value="Submit Comment" class="btn btn-default" />
-}
-else
-{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
-		<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
-}
-			</div>
-		</div>
-}
+								<input name="image" type="file" class="form-control" id="fileUpload" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-12">
+								@if (Request.IsAuthenticated)
+								{
+									<input type="submit" value="Submit Comment" class="btn btn-default" />
+								}
+								else
+								{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
+									<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
+								}
+							</div>
+						</div>
+					}
 				</div>
 
 				<p>
@@ -331,10 +338,15 @@ else
 			</div>
 		</div>
 	</div>
+	<!-- Data Tables JS -->
+	<script src="~/Assets/SliderDatatable/jquery-1.12.4.js"></script>
+	<script src="~/Assets/SliderDatatable/jquery.dataTables.min.js"></script>
+
+
 
 	@section Scripts {
 		@Scripts.Render("~/bundles/jqueryval")
-		$(function(){
-		$().DataTable();
-		});
+		@*$(function(){
+			$().DataTable();
+			});*@
 	}

@@ -1,0 +1,355 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+
+	<!-- Custom CSS -->
+	<link href="~/Assets/SliderDatatable/jquery.dataTables.min.css" rel="stylesheet">
+	<!-- Data Tables JS -->
+	<script src="~/Assets/SliderDatatable/jquery-1.12.4.js"></script>
+	<script src="~/Assets/SliderDatatable/jquery.dataTables.min.js"></script>
+
+
+	<!-- Styles -->
+	<!-- Bootstrap CSS -->
+	<link href="~/Assets/bug-temp/theme/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery gritter -->
+	<link href="~/Assets/bug-temp/theme/css/jquery.gritter.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="~/Assets/bug-temp/theme/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Custom Color CSS -->
+	<link href="~/Assets/bug-temp/theme/css/less-style.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="~/Assets/bug-temp/theme/css/style.css" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="#">
+
+
+
+</head>
+<body>
+	
+
+
+
+
+
+	<!-- Sidebar starts -->
+	<div class="sidebar">
+
+		<div class="sidey">
+
+		
+			<!-- Sidebar navigation starts -->
+			<!-- Responsive dropdown -->
+			<div class="sidebar-dropdown"><a href="#" class="br-red"><i class="fa fa-bars"></i></a></div>
+
+			<div class="side-nav">
+
+				<div class="side-nav-block">
+					<!-- Sidebar heading -->
+					<h4>Main</h4>
+					<!-- Sidebar links -->
+					<ul class="list-unstyled">
+						<li>
+							<a>
+								<i class="fa fa-desktop">
+								</i>   @Html.ActionLink("Dashboard", "Index", "Home")
+							</a>
+						</li>
+						
+					</ul>
+				</div>
+
+				<div class="side-nav-block">
+					<h4>Menu</h4>
+					<ul class="list-unstyled">
+						<li>
+
+							<a>
+								@if (User.IsInRole("Admin"))
+								{
+									<i class="fa fa-desktop">
+									</i>
+									@Html.ActionLink("Admin User View", "Index", "Admin")
+								}
+							</a>
+
+						</li>
+						<li>
+
+							<a>
+								@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+								{
+									<i class="fa fa-desktop">
+									</i>
+									@Html.ActionLink("All Projects", "Index", "Projects")
+								}
+
+							</a>
+
+						</li>
+						<li>
+							<a>
+								<i class="fa fa-desktop">
+								</i>   @*@Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
+									<br />*@
+
+								@Html.ActionLink("My Projects", "MyProjects", "Projects")
+							</a>
+						</li>
+						<li>
+							<a href="~/Assets/bug-temp/theme/login.html">
+
+
+								@if (User.IsInRole("Admin"))
+								{
+									<i class="fa fa-ticket">
+									</i>
+									@Html.ActionLink("All Tickets", "Index", "Tickets")
+								}
+							</a>
+
+						</li>
+						<li>
+							<a>
+								<i class="fa fa-ticket"></i>
+
+								@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+
+							
+
+
+							</a>
+						</li>
+
+						
+					</ul>
+				</div>
+
+
+			</div>
+
+			<!-- Sidebar navigation ends -->
+
+		</div>
+	</div>
+	<!-- Sidebar ends -->
+	<!-- Mainbar starts -->
+	<div class="mainbar">
+
+		<!-- Mainbar head starts -->
+		<div class="main-head">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-4 col-xs-6">
+						<!-- Page title -->
+						<h2><i class="fa fa-desktop lblue"></i> @Html.ActionLink("Dashboard", "Index", "Home")</h2>
+					</div>
+					<div class="col-md-3 col-sm-4 col-xs-6">
+						<!-- Page title -->
+						<h2>@*<i class="fa fa-desktop lblue"></i>*@ @Html.Partial("_LoginPartial")</h2>
+					</div>
+
+
+					<div class="col-md-3 col-sm-4 hidden-xs">
+						<!-- Notifications -->
+						<div class="head-noty text-center">
+
+							<!-- Notifications -->
+							<div class="dropdown">
+								<a href="#" id="notifications" data-toggle="dropdown" class="mhead-icon"><i class="fa fa-bell"></i> <span class="label label-info">5</span></a>
+								<!-- Dropdown -->
+								<ul class="dropdown-menu" role="button" aria-labelledby="notifications">
+
+									<!-- Dropdown menu head -->
+									<li class="dropdown-head">
+										Notifications <span class="label label-info pull-right">5</span>
+									</li>
+									<!-- Content -->
+									<li>
+										<a href="#">
+											<!-- Colored icon with text and time -->
+											<i class="fa fa-user"></i> New User Registered <b class="pull-right">5 mins ago</b>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-shopping-cart"></i> New Order for Dress <b class="pull-right">10 mins ago</b>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-sign-out"></i> User Ravi Kumar Sign Out <b class="pull-right">20 hr ago</b>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-envelope"></i> New Message from Ravi <b class="pull-right">1 day ago</b>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fa fa-laptop"></i> Full Backup Completed <b class="pull-right">2 day ago</b>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+
+									<li class="dropdown-foot text-center">
+										<a href="#">View All</a>
+									</li>
+
+								</ul>
+							</div>
+
+							<!-- Messages -->
+							<div class="dropdown">
+								<a href="#" id="messages" data-toggle="dropdown" class="mhead-icon"><i class="fa fa-envelope"></i> <span class="label label-danger">5</span></a>
+								<ul class="dropdown-menu" role="button" aria-labelledby="messages">
+
+									<!-- Dropdown menu head -->
+									<li class="dropdown-head">
+										Messages <span class="label label-danger pull-right">5</span>
+									</li>
+									<!-- Content -->
+									<li>
+										<a href="#">
+											<!-- Title -->
+											Hello How are you? <i class="fa fa-reply pull-right"></i>
+											<!-- Para -->
+											<span>Lorem ipsum dolor sit amet something elit.</span>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											What are you doing today? <i class="fa fa-reply pull-right"></i>
+											<span>Lorem ipsum dolor sit amet something elit.</span>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Why don't you come here? <i class="fa fa-reply pull-right"></i>
+											<span>Lorem ipsum dolor sit amet something elit.</span>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+
+									<li class="dropdown-foot text-center">
+										<a href="#">View All</a>
+									</li>
+
+								</ul>
+							</div>
+
+							<!-- Users -->
+							<div class="dropdown">
+								<a href="#" id="users" data-toggle="dropdown" class="mhead-icon"><i class="fa fa-user"></i> <span class="label label-success">5</span></a>
+								<!-- Dropdown -->
+								<ul class="dropdown-menu drop-users" role="button" aria-labelledby="users">
+
+									<!-- Dropdown menu head -->
+									<li class="dropdown-head">
+										Users <span class="label label-success pull-right">5</span>
+									</li>
+									<!-- Content -->
+									<li>
+										<a href="#">
+											<!-- User image -->
+											<img src="~/Assets/bug-temp/theme/theme/img/user1.png" alt="" class="img-responsive img-circle" />
+											<!-- User details -->
+											<div class="duser-content">
+												Anjelina Jolie
+												<span>Lorem ipsum dolor sit amet elit.</span>
+											</div>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<img src="~/Assets/bug-temp/theme/theme/img/user2.png" alt="" class="img-responsive img-circle" />
+											<div class="duser-content">
+												Brad Pitt
+												<span>Lorem ipsum dolor sit amet elit.</span>
+											</div>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<img src="~/Assets/bug-temp/theme/theme/img/user1.png" alt="" class="img-responsive img-circle" />
+											<div class="duser-content">
+												Al Pacino
+												<span>Lorem ipsum dolor sit amet elit.</span>
+											</div>
+											<div class="clearfix"></div>
+										</a>
+									</li>
+
+									<li class="dropdown-foot text-center">
+										<a href="#">View All</a>
+									</li>
+
+								</ul>
+							</div>
+
+						</div>
+						<div class="clearfix"></div>
+					</div>
+
+
+
+
+					<div class="col-md-3 hidden-sm hidden-xs">
+						<!-- Head user -->
+						<div class="head-user dropdown pull-right">
+							<a href="#" data-toggle="dropdown" id="profile">
+								<!-- Icon
+							<i class="fa fa-user"></i>  -->
+
+								<img src="~/Assets/bug-temp/theme/theme/img/user2.png" alt="" class="img-responsive img-circle" />
+
+								<!-- User name -->
+								<span class="label label-danger">5</span>
+								<i class="fa fa-caret-down"></i>
+							</a>
+							<!-- Dropdown -->
+							<ul class="dropdown-menu" aria-labelledby="profile">
+								<li><a href="#">View/Edit Profile <span class="badge badge-info pull-right">6</span></a></li>
+								<li><a href="#">Change Settings</a></li>
+								<li><a href="#">Messages <span class="badge badge-danger pull-right">5</span></a></li>
+								<li><a href="#">Sign Out</a></li>
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		@RenderBody()
+
+
+	
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@RenderSection("scripts", required: false)
+
+
+
+
+</body>
+</html>

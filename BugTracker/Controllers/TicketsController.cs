@@ -48,7 +48,7 @@ namespace BugTracker.Controllers
                 return HttpNotFound();
             }
 
-            return View(ticket);
+            return View("Details", "~/Views/Shared/_TicketDetails.cshtml", ticket);
         }
 
         // GET: Tickets/Create
@@ -424,6 +424,8 @@ namespace BugTracker.Controllers
 
             var users = helper.ListUsersInRole("Developer").ToList();
 
+            var deadline = 
+
             ViewBag.AssignedToUserId = new SelectList(users, "Id", "FullName", ticket.AssignedToUserId);
 
             return View(ticket);
@@ -436,6 +438,11 @@ namespace BugTracker.Controllers
         {
             var ticket = db.Ticket.Find(model.Id);
             ticket.AssignedToUserId = model.AssignedToUserId;
+
+
+
+
+
             db.SaveChanges();
             var callbackUrl = Url.Action("Details", "Tickets", new { id = ticket.Id }, protocol: Request.Url.Scheme);
 

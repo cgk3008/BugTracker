@@ -461,7 +461,7 @@
     <Content Include="Assets\DataTable\DataTables-1.10.16\js\jquery.dataTables.min.js" />
     <Content Include="Assets\DataTable\datatables.css" />
     <Content Include="Assets\DataTable\datatables.js" />
-    <Content Include="Assets\DataTable\datatables.min.css" />
+    <Content Include="Assets\DataTable\jquery.dataTables.min.css" />
     <Content Include="Assets\DataTable\datatables.min.js" />
     <Content Include="Assets\LandingPage\css\landing-page.css" />
     <Content Include="Assets\LandingPage\css\landing-page.min.css" />
@@ -493,6 +493,7 @@
     <Content Include="Assets\LandingPage\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Assets\LandingPage\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="Assets\LandingPage\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Assets\SliderDatatable\jquery.dataTables.min.css" />
     <Content Include="Assets\SliderDatatable\jquery.dataTables.min.js" />
     <Content Include="Assets\SliderDatatable\jquery-1.12.4.js" />
     <Content Include="Content\PagedList.css" />
@@ -730,6 +731,7 @@
     <Content Include="Views\Projects\MyProjectList.cshtml" />
     <Content Include="Views\Home\LP.cshtml" />
     <Content Include="Views\Tickets\MyCompletedTix.cshtml" />
+    <Content Include="Views\Shared\_TicketDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

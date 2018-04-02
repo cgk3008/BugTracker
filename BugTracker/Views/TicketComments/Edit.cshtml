@@ -22,7 +22,7 @@
 
 
 
-			@using (Html.BeginForm())
+			@using (Html.BeginForm("Edit", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
 			{
 				@Html.AntiForgeryToken()
 
@@ -35,59 +35,48 @@
 					@Html.HiddenFor(model => model.Created)
 					@Html.HiddenFor(model => model.TicketId)
 					@Html.HiddenFor(model => model.UserId)
+					@Html.HiddenFor(model => model.Ticket.AssignedToUserId)
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
 						<div class="col-md-10">
-							@Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+							<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000">@Model.Body</textarea>
+							
+						
 							@Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
 						</div>
 					</div>
 
-					@*<div class="form-group">
-							@Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10">
-								@Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-								@Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-							</div>
-						</div>*@
-
-					@*<div class="form-group">
-							@Html.LabelFor(model => model.TicketId, "TicketId", htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10">
-								@Html.DropDownList("TicketId", null, htmlAttributes: new { @class = "form-control" })
-								@Html.ValidationMessageFor(model => model.TicketId, "", new { @class = "text-danger" })
-							</div>
-						</div>*@
-
-					@*<div class="form-group">
-							@Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10">
-								@Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-								@Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-							</div>
-						</div>*@
-
+					
+					<input name="TicketId" value="@Model.Id" hidden />
 					<div class="form-group">
-						@Html.LabelFor(model => model.FileUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+						@Html.LabelFor(model => model.FileUrl, "File URL", htmlAttributes: new { @class = "control-label col-md-2" })
 						<div class="col-md-10">
 							<input name="image" type="file" class="form-control" id="fileUpload" />
-							@*@Html.EditorFor(model => model.FileUrl, new { htmlAttributes = new { @class = "form-control" } })*@
+							@Html.EditorFor(model => model.FileUrl, new { htmlAttributes = new { @class = "form-control" } })
+							<img class="img-responsive" src="@Model.FileUrl" alt="">
 							@Html.ValidationMessageFor(model => model.FileUrl, "", new { @class = "text-danger" })
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-md-offset-2 col-md-10">
-							<input type="submit" value="Save" class="btn btn-default" />
+							@if (Request.IsAuthenticated)
+							{
+								<input type="submit" value="Save" class="btn btn-default" />
+							}
+							else
+							{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
+								<input disabled type="submit" value="Save" class="btn btn-default" />
+							}
 						</div>
 					</div>
 				</div>
 			}
 
-			<div>
-				@Html.ActionLink("Back to List", "Index")
-			</div>
+				<div>
+					@Html.ActionLink("Detials", "Details", "Tickets", new { id = Model.Id })
+				</div>
 
 		</div>
 	</div>

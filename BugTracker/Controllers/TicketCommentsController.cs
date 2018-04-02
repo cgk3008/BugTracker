@@ -71,30 +71,7 @@ namespace BugTracker.Controllers
                 db.SaveChanges();
                 var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
 
-                //var ticket = db.Comment.Find(ticketComment.TicketId);
-                //ticket.User. = ticketComment.AssignedToUserId;
-
-                ////var ticket = db.Ticket.Find(model.Id);
-                ////ticket.AssignedToUserId = model.AssignedToUserId;
-
-                //var callbackUrl = Url.Action("Details", "Tickets", new { id = ticketComment.Id }, protocol: Request.Url.Scheme);
                 
-                //try
-                //{
-                //    EmailService ems = new EmailService();
-                //    IdentityMessage msg = new IdentityMessage();
-                //    User user = db.Users.Find(model.AssignedToUserId);
-
-                //    msg.Body = "New Ticket Comment." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">NEW COMMENT</a>";
-
-                //    msg.Destination = user.Email;
-                //    msg.Subject = "New Ticket Comment";
-                //    await ems.SendMailAsync(msg);
-                //}
-                //catch (Exception ex)
-                //{
-                //    await Task.FromResult(0);
-                //}
 
                 return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
                 //return RedirectToAction("Index");

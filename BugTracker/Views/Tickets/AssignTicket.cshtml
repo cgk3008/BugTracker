@@ -3,55 +3,173 @@
 	ViewBag.Title = "Assign Ticket";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Title here -->
+	<title>User Interface - Barnie</title>
+	<!-- Description, Keywords and Author -->
+	<meta name="description" content="Your description">
+	<meta name="keywords" content="Your,Keywords">
+	<meta name="author" content="ResponsiveWebInc">
 
-<div class="main-content">
-	<div class="container">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<div class="page-content">
+	<!-- Styles -->
+	<!-- Bootstrap CSS -->
+	<link href="~/Assets/bug-temp/theme/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap Date-Time Picker CSS -->
+	<link href="~/Assets/bug-temp/theme/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<!-- jQuery gritter -->
+	<link href="~/Assets/bug-temp/theme/css/jquery.gritter.css" rel="stylesheet">
+	<!-- JQuery On Off CSS -->
+	<link rel="stylesheet" href="~/Assets/bug-temp/theme/css/jquery.onoff.css" media="screen" />
+	<!-- JQuery UI CSS -->
+	<link href="~/Assets/bug-temp/theme/css/jquery-ui.css" rel="stylesheet">
+	<!-- JQuery Rateit CSS -->
+	<link href="~/Assets/bug-temp/theme/css/rateit.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="~/Assets/bug-temp/theme/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Custom Color CSS -->
+	<link href="~/Assets/bug-temp/theme/css/less-style.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="~/Assets/bug-temp/theme/css/style.css" rel="stylesheet">
 
-			<!-- Heading -->
-			<div class="single-head">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="#">
+</head>
+
+<body>
+
+
+
+
+	<div class="main-content">
+		<div class="container">
+
+			<div class="page-content">
+
 				<!-- Heading -->
-				<h2 class="pull-left"><i class="fa fa-ticket green"></i> Assign Ticket</h2>
-				<!-- Bread crumbs -->
-				<div class="breads pull-right">
-					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+				<div class="single-head">
+					<!-- Heading -->
+					<h2 class="pull-left"><i class="fa fa-ticket green"></i> Assign Ticket</h2>
+					<!-- Bread crumbs -->
+					<div class="breads pull-right">
+						@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+					</div>
+					<div class="clearfix"></div>
 				</div>
-				<div class="clearfix"></div>
-			</div>
 
-			@using (Html.BeginForm("AssignTicket", "Tickets", FormMethod.Post))
-			{
-				@Html.AntiForgeryToken()
+				@using (Html.BeginForm("AssignTicket", "Tickets", FormMethod.Post))
+				{
+					@Html.AntiForgeryToken()
 
-				<div class="form-horizontal">
-					<h4>Ticket</h4>
-					<hr />
-					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-					@Html.HiddenFor(model => model.Id)
-					@Html.HiddenFor(model => model.OwnerUserId)
-					@Html.HiddenFor(model => model.Created)
+					<div class="form-horizontal">
+						<h4>Ticket</h4>
+						<hr />
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+						@Html.HiddenFor(model => model.Id)
+						@Html.HiddenFor(model => model.OwnerUserId)
+						@Html.HiddenFor(model => model.Created)
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.AssignedToUserId, "Assign Developer", new	{ @class = "control-label col-md-2"})
-						<div class="col-md-10">
-							@Html.DropDownList("AssignedToUserId", null, new { @class = "form-control" })
-							@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new	{ @class = "text-danger"})
+						<div class="form-group">
+							@Html.LabelFor(model => model.AssignedToUserId, "Assign Developer", new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.DropDownList("AssignedToUserId", null, new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+
+						<!-- Heading -->
+						<h4>Date Picker</h4>
+						<!-- Date Picker -->
+						<div id="datetimepicker1" class="input-append input-group dtpicker">
+							<input data-format="yyyy-MM-dd" type="text" class="form-control">
+							<span class="input-group-addon add-on">
+								<i data-time-icon="fa fa-times" data-date-icon="fa fa-calendar"></i>
+							</span>
+						</div>
+						<hr />
+						<!-- Heading -->
+						<h4>Time Picker</h4>
+						<!-- Time Picker -->
+						<div id="datetimepicker2" class="input-append input-group dtpicker">
+							<input data-format="hh:mm:ss" class="form-control" type="text">
+							<span class="input-group-addon add-on">
+								<i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar"></i>
+							</span>
+						</div>
+
+
+
+
+
+						<div class="form-group">
+							<div class="col-md-offset-2 col-md-10">
+								<input type="submit" value="Save" class="btn btn-default" />
+							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-10">
-							<input type="submit" value="Save" class="btn btn-default" />
-						</div>
-					</div>
+				}
+				<div>
+					@Html.ActionLink("Back to List", "MyTickets")
 				</div>
-			}
-			<div>
-				@Html.ActionLink("Back to List", "MyTickets")
 			</div>
 		</div>
 	</div>
-</div>
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
-}
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}
+
+	<!-- Javascript files -->
+	<!-- jQuery -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.js"></script>
+	<!-- jQuery UI -->
+	<script src="~/Assets/bug-temp/theme/js/jquery-ui.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="~/Assets/bug-temp/theme/js/bootstrap.min.js"></script>
+	<!-- Date Time Picker JS -->
+	<script src="~/Assets/bug-temp/theme/js/bootstrap-datetimepicker.min.js"></script>
+	<!-- Bootstrap wysihtml5 JS -->
+	<script src="~/Assets/bug-temp/theme/js/wysihtml5-0.3.0.js"></script>
+	<script src="~/Assets/bug-temp/theme/js/prettify.js"></script>
+	<script src="~/Assets/bug-temp/theme/js/bootstrap-wysihtml5.min.js"></script>
+	<!-- Validate JS -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.validate.js"></script>
+	<!-- Form wizard steps  JS -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.steps.min.js"></script>
+	<!-- jQuery Knob -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.knob.js"></script>
+	<!-- jQuery slim scroll -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.slimscroll.min.js"></script>
+	<!-- Data Tables JS -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.dataTables.min.js"></script>
+	<!-- Pretty Photo JS -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.prettyPhoto.js"></script>
+	<!-- Rate It JS -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.rateit.min.js"></script>
+	<!-- Full calendar -->
+	<script src="~/Assets/bug-temp/theme/js/moment.min.js"></script>
+	<script src="~/Assets/bug-temp/theme/js/fullcalendar.min.js"></script>
+	<!-- jQuery gritter -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.gritter.min.js"></script>
+	<!-- On Off Switch JS -->
+	<script src="~/Assets/bug-temp/theme/js/jquery.onoff.min.js"></script>
+	<!-- Respond JS for IE8 -->
+	<script src="~/Assets/bug-temp/theme/js/respond.min.js"></script>
+	<!-- HTML5 Support for IE -->
+	<script src="~/Assets/bug-temp/theme/js/html5shiv.js"></script>
+	<!-- Custom JS -->
+	<script src="~/Assets/bug-temp/theme/js/custom.js"></script>
+	<!-- jQuery gritter notification -->
+	<script src="~/Assets/bug-temp/theme/js/custom.notification.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.checkboxes').onoff();
+		});
+	</script>
+
+</body>
+</html>

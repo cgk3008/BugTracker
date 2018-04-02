@@ -135,6 +135,8 @@ namespace BugTracker.Migrations
                     });
             }
 
+            if (!context.Priority.Any(u => u.Name == "Urgent"))
+            { context.Priority.Add(new TicketPriority { Name = "Urgent" }); }
 
             if (!context.Priority.Any(u => u.Name == "High"))
             { context.Priority.Add(new TicketPriority { Name = "High" }); }
@@ -144,9 +146,7 @@ namespace BugTracker.Migrations
 
             if (!context.Priority.Any(u => u.Name == "Low"))
             { context.Priority.Add(new TicketPriority { Name = "Low" }); }
-
-            if (!context.Priority.Any(u => u.Name == "Urgent"))
-            { context.Priority.Add(new TicketPriority { Name = "Urgent" }); }
+                      
 
             if (!context.Type.Any(u => u.Name == "Production Fix"))
             { context.Type.Add(new TicketType { Name = "Production Fix" }); }
