@@ -41,7 +41,7 @@
 			<ul class="nav nav-tabs nav-justified">
 				<li class="active"><a href="#login" data-toggle="tab" class="br-lblue"><i class="fa fa-sign-in"></i> Sign In</a></li>
 				<li><a href="#register" data-toggle="tab" class="br-lblue"><i class="fa fa-pencil"></i> Sign Up</a></li>
-				<li><a href="#contact" data-toggle="tab" class="br-lblue"><i class="fa fa-envelope"></i> Mail Us</a></li>
+				@*<li><a href="#contact" data-toggle="tab" class="br-lblue"><i class="fa fa-envelope"></i> Mail Us</a></li>*@
 			</ul>
 
 			<!-- Tab panes -->
@@ -87,7 +87,7 @@
 						//Enable this once you have account confirmation enabled for password reset functionality
 						<p>
 							<br />
-							@Html.ActionLink("Forgot your password?", "ForgotPassword")
+							<h3>@Html.ActionLink("Forgot your password?", "ForgotPassword")</h3>
 							<br />
 							<br />
 							Click On The Sign Up Tab To Register As A New User
@@ -100,20 +100,22 @@
 					<div class="tab-pane fade" id="register">
 						<!-- Register form -->
 
-						<input type="submit" value="Log in" class="btn btn-default" />
+						@*<input type="submit" value="Log in" class="btn btn-default" />*@
 
-						@Html.ActionLink("Register as a new user", "Register")
-
-
-
-						@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+						<button type="submit" class="btn btn-outline-info btn-large">
+							@Html.ActionLink("Register as a new user", "Register")
+						</button>
 
 
-						<div class="tab-pane fade" id="contact">
+
+						@*@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+
+
+						@*<div class="tab-pane fade" id="contact">*@
 
 							<!-- Contact Form -->
 
-							<form role="form" action="index.html">
+							@*<form role="form" action="index.html">
 								<div class="form-group">
 									<label for="name">Name</label>
 									<input type="text" class="form-control" id="name" placeholder="Name">
@@ -130,7 +132,7 @@
 								<button type="reset" class="btn btn-default btn-sm">Reset</button>
 							</form>
 
-						</div>
+						</div>*@
 					</div>
 
 				</div>
