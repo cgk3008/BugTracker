@@ -89,7 +89,7 @@ namespace BugTracker.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "Tickets");
+                    return RedirectToAction("Index", "Home");
                 //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

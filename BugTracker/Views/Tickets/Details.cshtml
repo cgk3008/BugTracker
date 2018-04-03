@@ -38,7 +38,7 @@
 
 			<div>
 				<br />
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<dl class="dl-horizontal">
 
 						<dt>
@@ -72,11 +72,6 @@
 						<dd>
 							@Html.DisplayFor(model => model.Updated)
 						</dd>
-					</dl>
-				</div>
-
-				<div class="col-md-4">
-					<dl class="dl-horizontal">
 						<dt>
 							Assigned to User
 						</dt>
@@ -92,6 +87,12 @@
 						<dd>
 							@Html.DisplayFor(model => model.OwnerUser.FullName)
 						</dd>
+					</dl>
+				</div>
+
+				<div class="col-md-6">
+					<dl class="dl-horizontal">
+
 
 						<dt>
 							Priority
@@ -164,56 +165,46 @@
 
 										</tr>
 									</thead>
+									<tbody>
+										@foreach (var item in Model.History)
+										{
+											//if (item.Property == "Status" || "Type" || "Priority"
+											//OldNewTicketHelper helper = new OldNewTicketHelper();
+											//if (item.Property == "Status")
+											//{
 
-									@foreach (var item in Model.History)
-									{
-										//if (item.Property == "Status" || "Type" || "Priority"
-										//OldNewTicketHelper helper = new OldNewTicketHelper();
-										//if (item.Property == "Status")
-										//{
+											//	//item.OldValue =
+											//}
 
-										//	//item.OldValue =
-										//}
+											<tr>
+												<td>
+													@Html.DisplayFor(modelItem => item.Ticket.Title)
+												</td>
+												<td>
+													@Html.DisplayFor(modelItem => item.User.FullName)
+												</td>
+												<td>
+													@Html.DisplayFor(modelItem => item.Property)
+												</td>
 
-										<tr>
-											<td>
-												@Html.DisplayFor(modelItem => item.Ticket.Title)
-											</td>
-											<td>
-												@Html.DisplayFor(modelItem => item.User.FullName)
-											</td>
-											<td>
-												@Html.DisplayFor(modelItem => item.Property)
-											</td>
+												<td>
+													@*.Getuser.Pr.....*@
+													@*@OldNewTicketHelper(modelItem => item.OldValue)*@
 
-											<td>@*.Getuser.Pr.....*@
-												@*@OldNewTicketHelper(modelItem => item.OldValue)*@
-									
-												
-												@Html.DisplayFor(modelItem => item.OldValue)
-											</td>
 
-											<td>
-												@*@OldNewTicketHelper(modelItem => item.NewdValue)*@
-												@Html.DisplayFor(modelItem => item.NewValue)
-											</td>
+													@Html.DisplayFor(modelItem => item.OldValue)
+												</td>
 
-											<td>
-												@Html.DisplayFor(modelItem => item.Changed)
-											</td>
-											@*<td>
+												<td>
+													@*@OldNewTicketHelper(modelItem => item.NewdValue)*@
+													@Html.DisplayFor(modelItem => item.NewValue)
+												</td>
 
-													@if (User.IsInRole("Admin"))
-													{
-														@Html.ActionLink("Edit | ", "Edit", "TicketHistories", new { id = item.Id }, null)
-														@Html.ActionLink("Details | ", "Details", "TicketHistories", new { id = item.Id }, null)
-														@Html.ActionLink("Delete", "Delete", "TicketHistories", new { id = item.Id }, null)
-													}
-
-												</td>*@
-
-										</tr>
-									}
+												<td>
+													@Html.DisplayFor(modelItem => item.Changed)
+												</td>
+											</tr>
+										}
 									</tbody>
 								</table>
 
@@ -295,8 +286,6 @@
 													<td>
 														@Html.DisplayFor(model => comm.Updated, "{0:dd-MMM-yyyy}")
 													</td>
-
-
 												</tr>
 											}
 										</tbody>
@@ -364,31 +353,33 @@
 					}
 				</div>
 
-				<p>
-					@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-					@Html.ActionLink("Back to List", "MyTickets")
-				</p>
 
 			</div>
+
 		</div>
+		<p>
+			@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+			@Html.ActionLink("Back to List", "MyTickets")
+		</p>
 	</div>
-	<!-- Data Tables JS -->
-	<script src="~/Assets/SliderDatatable/jquery-1.12.4.js"></script>
-	<script src="~/Assets/SliderDatatable/jquery.dataTables.min.js"></script>
+</div>
+<!-- Data Tables JS -->
+<script src="~/Assets/SliderDatatable/jquery-1.12.4.js"></script>
+<script src="~/Assets/SliderDatatable/jquery.dataTables.min.js"></script>
 
 
 
 
 
 
-	@section Scripts {
-		@Scripts.Render("~/bundles/jqueryval")
-		@*$(function(){
-			$().DataTable();
-			});*@
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@*$(function(){
+		$().DataTable();
+		});*@
 
 
 
 
 
-	}
+}
