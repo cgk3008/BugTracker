@@ -311,8 +311,8 @@ namespace BugTracker.Controllers
 
             if (User.IsInRole("Project Manager"))
             {
-                var tkts = db.Project.Where(p => p.PmId == userId).SelectMany(t => t.Ticket).ToList();
-                return View(tkts.ToList());
+                var tickets = db.Ticket.Where(t => t.Project.PmId == userId).ToList();
+                return View(tickets.ToList());
             }
 
 

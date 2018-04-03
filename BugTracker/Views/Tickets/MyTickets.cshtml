@@ -18,9 +18,7 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-
-
-
+			
 			<br />
 			@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
 {
@@ -75,11 +73,9 @@
 					{
 
 						if (item.IsDeleted == false || item.Status.Name != "Completed")
-
 					
 						{
-
-
+							
 							<tr>
 								<td>
 									@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)

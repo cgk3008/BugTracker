@@ -53,7 +53,7 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Body,Created,TicketId,UserId,FileUrl")] TicketComment ticketComment, HttpPostedFileBase image)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Body,Created,TicketId,UserId,FileUrl")] TicketComment ticketComment, Ticket ticket, HttpPostedFileBase image)
       
         {
             if (ModelState.IsValid)
@@ -71,7 +71,31 @@ namespace BugTracker.Controllers
                 db.SaveChanges();
                 var tix = db.Comment.Include("Ticket").FirstOrDefault(c => c.Id == ticketComment.Id);
 
-                
+
+                var callbackUrl = Url.Action("Details", "Tickets", new { id = ticketComment.Id }, protocol: Request.Url.Scheme);
+
+                try
+                {
+                    EmailService ems = new EmailService();
+                    IdentityMessage msg = new IdentityMessage();
+                    //User user = db.Users.Find(model.AssignedToUserId);
+                    User user = db.Users.Find(ticket.AssignedToUserId);
+
+                    msg.Body = "New Ticket Comment." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">CHANGE TO YOUR COMMENTS ON YOUR TICKET</a>";
+
+                    msg.Destination = user.Email;
+                    msg.Subject = "Changes to your ticket";
+                    await ems.SendMailAsync(msg);
+                }
+                catch (Exception ex)
+                {
+                    await Task.FromResult(0);
+                }
+
+
+
+
+
 
                 return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
                 //return RedirectToAction("Index");
