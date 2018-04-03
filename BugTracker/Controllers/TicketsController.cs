@@ -86,7 +86,7 @@ namespace BugTracker.Controllers
                 ticket.IsDeleted = false;
                 db.Ticket.Add(ticket);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyTickets");
             }
 
             ViewBag.AssignedToUserId = new SelectList(db.Users, "Id", "FullName", ticket.AssignedToUserId);
@@ -251,7 +251,7 @@ namespace BugTracker.Controllers
             Ticket ticket = db.Ticket.Find(id);
             db.Ticket.Remove(ticket);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyTickets");
         }
 
         // GET: Tickets/SoftDelete
@@ -284,7 +284,7 @@ namespace BugTracker.Controllers
 
             }
 
-            return View(ticket);
+            return RedirectToAction("MyTickets");
         }
 
 

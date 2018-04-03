@@ -18,13 +18,13 @@
 				</div>
 
 				@if (User.IsInRole("Submitter"))
-				{<div class="col-md-4">
-						<h2 class="pull-left">
-							<i class="fa fa-ticket green"></i>
-							@Html.ActionLink("Create New Ticket", "Create", "Tickets")
-						</h2>
-					</div>
-				}
+		{<div class="col-md-4">
+				<h2 class="pull-left">
+					<i class="fa fa-ticket green"></i>
+					@Html.ActionLink("Create New Ticket", "Create", "Tickets")
+				</h2>
+			</div>
+}
 
 				<!-- Bread crumbs -->
 				<div class="breads pull-right">
@@ -52,7 +52,7 @@
 
 						</div>
 						<br />	<br />
-						<table id="mytable" class="table">
+						<table id="Users" class="table">
 							<thead>
 								<tr>
 									<th>
@@ -71,11 +71,11 @@
 
 										<ul>
 											@foreach (var u in Model.Users)
-											{
-												<li>
-													@u.FullName
-												</li>
-											}
+									{
+										<li>
+											@u.FullName
+										</li>
+							}
 										</ul>
 									</td>
 									<td>
@@ -85,21 +85,21 @@
 											@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = Model.Id }, null)
 										</strong>
 										@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-										{
-											<strong>
-												@Html.ActionLink("Edit Project ", "Edit", new { id = Model.Id })
-											</strong>
+								{
+									<strong>
+										@Html.ActionLink("Edit Project ", "Edit", new { id = Model.Id })
+									</strong>
 
-										}
+						}
 
 
 										@if (User.IsInRole("Admin"))
-										{
+								{
 
-											<strong>
-												@Html.ActionLink(" | Delete Project", "Delete", new { id = Model.Id })
-											</strong>
-										}
+									<strong>
+										@Html.ActionLink(" | Delete Project", "Delete", new { id = Model.Id })
+									</strong>
+						}
 									</td>
 								</tr>
 
@@ -107,20 +107,14 @@
 						</table>
 
 
-						<table id="mytable" class="table">
+						<table id="projTickets" class="table">
 
 							<thead>
 								<tr>
 									<th>
-
 										Project Tickets
 									</th>
 								</tr>
-
-
-
-
-
 							</thead>
 							<tbody>
 
@@ -128,19 +122,24 @@
 									<td>
 
 										@foreach (var d in Model.Ticket)
-										{
+								{
 
-											@d.Title @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", new { id = d.Id }, null)
-											<ul>
-												<li>@d.Description</li>
+									@d.Title @Html.ActionLink("  |   Go to Ticket Details", "Details", "Tickets", new { id = d.Id }, null)
+									<ul>
+										<li>@d.Description</li>
 
-											</ul>
-										}
+									</ul>
+						}
 
 									</td>
 								</tr>
 							</tbody>
 						</table>
+						<script>
+							$('#Users, #projTickets').DataTable();
+						</script>
+
+
 					</div>
 				</div>
 			</div>
@@ -153,11 +152,10 @@
 
 			@section Scripts {
 				@Scripts.Render("~/bundles/jqueryval")
+				
 			}
 
-			<script>
-				$('#mytable').DataTable();
-			</script>
+
 
 
 

@@ -92,54 +92,7 @@
 								<i class="fa fa-desktop">
 								</i>   @Html.ActionLink("Dashboard", "Index", "Home")
 							</a>
-						</li>
-						@*<li><a href="~/Assets/bug-temp/theme/widgets.html"><i class="fa fa-bullseye"></i> Widget <span class="badge badge-danger pull-right">6</span></a></li>
-						<li><a href="~/Assets/bug-temp/theme/charts.html"><i class="fa fa-signal"></i> Charts <span class="badge badge-info pull-right">5</span></a></li>
-						<li><a href="~/Assets/bug-temp/theme/ui.html"><i class="fa fa-wrench"></i> UI</a></li>
-						<!-- Mainmenu with submenu -->
-						<li class="has_submenu">
-							<a href="#"><i class="fa fa-file"></i> Pages <span class="nav-caret fa fa-caret-down"></span></a>
-							<!-- Submenu -->
-							<ul class="list-unstyled">
-								<li><a href="~/Assets/bug-temp/theme/calendar.html"><i class="fa fa-angle-double-right"></i> Calendar</a></li>
-								<li><a href="~/Assets/bug-temp/theme/errorlog.html"><i class="fa fa-angle-double-right"></i> Error Logs</a></li>
-								<li><a href="~/Assets/bug-temp/theme/gallery.html"><i class="fa fa-angle-double-right"></i> Gallery</a></li>
-								<li><a href="~/Assets/bug-temp/theme/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-								<li><a href="~/Assets/bug-temp/theme/media.html"><i class="fa fa-angle-double-right"></i> Media</a></li>
-								<li><a href="~/Assets/bug-temp/theme/posts.html"><i class="fa fa-angle-double-right"></i> Posts</a></li>
-								<li><a href="~/Assets/bug-temp/theme/statement.html"><i class="fa fa-angle-double-right"></i> Statement</a></li>
-							</ul>
-						</li>
-						<li><a href="~/Assets/bug-temp/theme/users.html"><i class="fa fa-user"></i> Users</a></li>
-						<!-- Mainmenu with submenu -->
-						<li class="has_submenu">
-							<a href="#"><i class="fa fa-file-text-o"></i> Forms <span class="nav-caret fa fa-caret-down"></span></a>
-							<!-- Submenu -->
-							<ul class="list-unstyled">
-								<li><a href="~/Assets/bug-temp/theme/form.html"><i class="fa fa-angle-double-right"></i> General Form</a></li>
-								<li><a href="~/Assets/bug-temp/theme/form-validate.html"><i class="fa fa-angle-double-right"></i> Validate Form</a></li>
-								<li><a href="~/Assets/bug-temp/theme/form-wizard.html"><i class="fa fa-angle-double-right"></i> Wizard Form</a></li>
-							</ul>
-						</li>
-						<!-- Mainmenu with submenu -->
-						<li class="has_submenu">
-							<a href="#"><i class="fa fa-table"></i> Tables <span class="nav-caret fa fa-caret-down"></span></a>
-							<!-- Submenu -->
-							<ul class="list-unstyled">
-								<li><a href="~/Assets/bug-temp/theme/tables.html"><i class="fa fa-angle-double-right"></i> General Tables</a></li>
-								<li><a href="~/Assets/bug-temp/theme/tables-data.html"><i class="fa fa-angle-double-right"></i> Data Table</a></li>
-							</ul>
-						</li>
-						<!-- Mainmenu with submenu -->
-						<li class="has_submenu">
-							<a href="#"><i class="fa fa-envelope"></i> Mail <span class="nav-caret fa fa-caret-down"></span></a>
-							<!-- Submenu -->
-							<ul class="list-unstyled">
-								<li><a href="~/Assets/bug-temp/theme/inbox.html"><i class="fa fa-angle-double-right"></i> Inbox</a></li>
-								<li><a href="~/Assets/bug-temp/theme/mail-read.html"><i class="fa fa-angle-double-right"></i> Mail Read</a></li>
-								<li><a href="~/Assets/bug-temp/theme/mail-write.html"><i class="fa fa-angle-double-right"></i> Mail Compose</a></li>
-							</ul>
-						</li>*@
+						</li>						
 					</ul>
 				</div>
 
@@ -195,35 +148,19 @@
 						</li>
 						<li>
 							<a>
-								<i class="fa fa-ticket"></i>
+								@if (User.IsInRole("Submitter") || User.IsInRole("Project Manager") || User.IsInRole("Developer"))
+								{
+							<i class="fa fa-ticket"></i>
 
-								@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+							@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+								}
 
-								@*@if (User.IsInRole("Submitter"))
-									{
-										@Html.ActionLink("My Tickets", "MyTicketsSub", "Tickets")
-									}
-
-									@if (User.IsInRole("Developer"))
-									{
-										@Html.ActionLink("My Tickets", "MyTicketsDev", "Tickets")
-									}
-									@if (User.IsInRole("Admin"))
-									{
-										@Html.ActionLink("My Tickets", "MyTicketsAdmin", "Tickets")
-									}
-									@if (User.IsInRole("Project Manager"))
-									{
-										@Html.ActionLink("My Tickets", "MyTicketsProjMan", "Tickets")
-									}*@
 
 
 							</a>
 						</li>
 
-						@*<li><a href="~/Assets/bug-temp/theme/404.html"><i class="fa fa-times"></i> Error Page</a></li>
-						<li><a href="~/Assets/bug-temp/theme/grid.html"><i class="fa fa-th-large"></i> Grids</a></li>
-						<li><a href="~/Assets/bug-temp/theme/lock.html"><i class="fa fa-lock"></i> Lock</a></li>*@
+				
 					</ul>
 				</div>
 
@@ -250,22 +187,9 @@
 						<!-- Page title -->
 						<h2>@*<i class="fa fa-desktop lblue"></i>*@ @Html.Partial("_LoginPartial")</h2>
 					</div>
-					<!-- Search block -->
-					@*<div class="col-md-3 col-sm-4 col-xs-6">
+					
 
-							<div class="head-search">
-								<form class="form" role="form">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Search...">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-										</span>
-									</div>
-								</form>
-							</div>
-						</div>*@
-
-					<div class="col-md-3 col-sm-4 hidden-xs">
+					@*<div class="col-md-3 col-sm-4 hidden-xs">
 						<!-- Notifications -->
 						<div class="head-noty text-center">
 
@@ -413,7 +337,7 @@
 
 						</div>
 						<div class="clearfix"></div>
-					</div>
+					</div>*@
 
 
 
@@ -428,8 +352,8 @@
 								<img src="~/Assets/bug-temp/theme/theme/img/user2.png" alt="" class="img-responsive img-circle" />
 
 								<!-- User name -->
-								<span class="label label-danger">5</span>
-								<i class="fa fa-caret-down"></i>
+								@*<span class="label label-danger">5</span>
+								<i class="fa fa-caret-down"></i>*@
 							</a>
 							<!-- Dropdown -->
 							<ul class="dropdown-menu" aria-labelledby="profile">
