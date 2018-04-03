@@ -22,13 +22,16 @@ namespace BugTracker.Controllers
         {
             List<Project> projects = dB.Project.ToList();
             List<ProjectIndexViewModel> vms = new List<ProjectIndexViewModel>();
+            var userId = User.Identity.GetUserId();
             foreach (Project project in projects)
             {
                 ProjectIndexViewModel vm = new ProjectIndexViewModel()
                 {
                     Project = project,
-                    ProjectManager = dB.Users.Find(project.PmId)
-                };
+                    ProjectManager = dB.Users.Find(project.PmId),
+
+                    UserId = userId
+            };
 
                 vms.Add(vm);
             }

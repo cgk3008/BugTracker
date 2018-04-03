@@ -76,15 +76,31 @@
 											@foreach (var u in item.Project.Users)
 											{
 												<li>
-													@u.FullName @Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = u.Id }, null)
+													@u.FullName 
+													
+
+													
+													@Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = u.Id }, null)
+
+
 												</li>
 											}
 										</ul>
 									</td>
 									<td>
 										@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Project.Id }, null) |
-										@Html.ActionLink("Edit", "Edit", new { id = item.Project.Id }) |
-										@Html.ActionLink("Details", "Details", new { id = item.Project.Id }) |
+
+										@if (User.IsInRole("Admin"))
+										{
+											@Html.ActionLink("Edit", "Edit", new { id = item.Project.Id }) <p>|</p>
+										}
+
+										@if (item.ProjectManager.Id  == item.UserId)
+										{
+											@Html.ActionLink("Edit", "Edit", new { id = item.Project.Id }) <p>|</p>
+										}
+
+										@Html.ActionLink("Details", "Details", new { id = item.Project.Id }) <p>|</p>
 
 										@if (User.IsInRole("Admin"))
 										{

@@ -9,5 +9,7 @@ namespace BugTracker.Models
     {
         public Project Project { get; set; }
         public User ProjectManager { get; set; }
+        //public User UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

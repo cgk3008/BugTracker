@@ -114,11 +114,13 @@
 						</li>
 						<li>
 							<a>
-								<i class="fa fa-ticket"></i>
+								@if (User.IsInRole("Submitter") || User.IsInRole("Project Manager") || User.IsInRole("Developer"))
+								{
+							<i class="fa fa-ticket"></i>
 
-								@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+							@Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+								}
 
-							
 
 
 							</a>

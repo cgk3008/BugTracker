@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -48,6 +49,11 @@ namespace BugTracker.Models
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("Name", FullName));
             return userIdentity;
+        }
+
+        public static implicit operator User(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 

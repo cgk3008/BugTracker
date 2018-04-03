@@ -48,7 +48,8 @@ namespace BugTracker.Controllers
                 return HttpNotFound();
             }
 
-            return View("Details", "~/Views/Shared/_TicketDetails.cshtml", ticket);
+            //return View("Details", "~/Views/Shared/_TicketDetails.cshtml", ticket);
+            return View(ticket);
         }
 
         // GET: Tickets/Create
@@ -77,13 +78,14 @@ namespace BugTracker.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId,IsDeleted")] Ticket ticket)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId,AssignedToUserId,IsDeleted, PmId")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
                 ticket.OwnerUserId = User.Identity.GetUserId();
                 ticket.Created = DateTime.Now;
                 ticket.IsDeleted = false;
+                //ticket.PmId = 
                 db.Ticket.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("MyTickets");
@@ -298,7 +300,7 @@ namespace BugTracker.Controllers
 
             var proj = db.Users.Find(userId).Project;
 
-            //I want to be able to show list of tickets if a person is in multiple user roles, right now I can't do that with code below. However, maybe there is a way with a foreach loop encapsulating all the if statements.......but I think I would need to pull return View outside of if statements
+            //I want to be able to show list of tickets if a person is in multiple user roles, right now I can't do that with code below. However, maybe there is a way with a foreach loop encapsulating all the if statements.....
 
             if (User.IsInRole("Project Manager"))
             {

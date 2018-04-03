@@ -221,9 +221,9 @@
 									@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-									<table id="table_Comments" class="display nowrap" style="width:100%">
+									<@*table id="table_Comments" class="display nowrap" style="width:100%">*@
 
-										@*<table id="table_Comments" class="table">*@
+										<table id="table_Comments" class="table">
 										<thead>
 											<tr>
 												<th>
@@ -299,14 +299,14 @@
 					$('#table_Histories, #table_Comments').DataTable();
 				</script>
 
-				<script>
+				@*<script>
 					$(document).ready(function () {
 						$('#table_Comments').DataTable({
 							"scrollX": true
 						});
 					});
-				</script>
-				<script>
+				</script>*@
+				@*<script>
 					$(function () {
 						$('.tab-header').click(function () {
 							let padLeft = $('tab-header > a').css('padding-left');
@@ -319,7 +319,7 @@
 						});
 					});
 
-				</script>
+				</script>*@
 
 				<br />
 				<div>
@@ -374,9 +374,9 @@
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
-	@*$(function(){
+	$(function(){
 		$().DataTable();
-		});*@
+		});
 
 
 
