@@ -138,65 +138,68 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                var oldTicket = db.Ticket.AsNoTracking().FirstOrDefault(t => t.Id == model.Id);
-
-                foreach (var prop in typeof(Ticket).GetProperties())
-                {
-
-
-                    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId"))
-                    {
-                        var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
-                        var newVal = model.GetType().GetProperty(prop.Name).GetValue(model).ToString();
-
-                        if (oldVal != newVal)
-                        {
+               
+               model.CreateHistories();
+                //ticket.AssignedToUserId = model.AssignedToUserId;
 
 
-                            TicketHistory ticketHistory = new TicketHistory()
-                            {
-                                TicketId = oldTicket.Id,
-                                UserId = User.Identity.GetUserId(),
-                                Property = prop.Name,
-                                OldValue = oldVal,
-                                NewValue = newVal,
+                //var oldTicket = db.Ticket.AsNoTracking().FirstOrDefault(t => t.Id == model.Id);
 
-                                Changed = DateTime.Now
-                            };
+                //foreach (var prop in typeof(Ticket).GetProperties())
+                //{
 
 
+                //    if (prop.Name != null && prop.Name.In("Title", "Description", "TicketTypeId", "TicketPriorityId", "TicketStatusId"))
+                //    {
+                //        var oldVal = oldTicket.GetType().GetProperty(prop.Name).GetValue(oldTicket).ToString();
+                //        var newVal = model.GetType().GetProperty(prop.Name).GetValue(model).ToString();
 
-                            db.History.Add(ticketHistory);
-                        }
-                    }
+                //        if (oldVal != newVal)
+                //        {
 
-                    //if (prop.Name.In("TicketTypeId"))
-                    //{
-                    //    string oldVal;
-                    //    switch (oldVal)
-                    //    {
-                    //        case "1":
-                    //            oldVal = "Production Fix";
-                    //            break;
-                    //        case "2":
-                    //            oldVal = "Project Task";
-                    //            break;
-                    //        case "3":
-                    //            oldVal = "Software Update";
-                    //            break;
-                    //        default:
-                    //            break;
-                    //    }
-                    //}
-                }
 
+                //            TicketHistory ticketHistory = new TicketHistory()
+                //            {
+                //                TicketId = oldTicket.Id,
+                //                UserId = User.Identity.GetUserId(),
+                //                Property = prop.Name,
+                //                OldValue = oldVal,
+                //                NewValue = newVal,
+
+                //                Changed = DateTime.Now
+                //            };
+
+
+
+                //            db.History.Add(ticketHistory);
+                //        }
+                //    }
+
+                //    //if (prop.Name.In("TicketTypeId"))
+                //    //{
+                //    //    string oldVal;
+                //    //    switch (oldVal)
+                //    //    {
+                //    //        case "1":
+                //    //            oldVal = "Production Fix";
+                //    //            break;
+                //    //        case "2":
+                //    //            oldVal = "Project Task";
+                //    //            break;
+                //    //        case "3":
+                //    //            oldVal = "Software Update";
+                //    //            break;
+                //    //        default:
+                //    //            break;
+                //    //    }
+                //    //}
+                //}
+               
+                //db.Entry(model).State = EntityState.Added;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-
-                var ticket = db.Ticket.Find(model.Id);
-                ticket.AssignedToUserId = model.AssignedToUserId;
-                //db.SaveChanges();
-                var callbackUrl = Url.Action("Details", "Tickets", new { id = ticket.Id }, protocol: Request.Url.Scheme);
+                              
+                var callbackUrl = Url.Action("Details", "Tickets", new { id = model.Id }, protocol: Request.Url.Scheme);
 
                 try
                 {
@@ -215,10 +218,14 @@ namespace BugTracker.Controllers
                 {
                     await Task.FromResult(0);
                 }
-
-
-
-                return RedirectToAction("MyTickets");
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("Index)");
+                }
+                else
+                {
+                    return RedirectToAction("MyTickets");
+                }
             }
             ViewBag.OwnerUserId = new SelectList(db.Users, "Id", "FullName", model.OwnerUserId);
             ViewBag.TicketPriorityId = new SelectList(db.Priority, "Id", "Name", model.TicketPriorityId);
