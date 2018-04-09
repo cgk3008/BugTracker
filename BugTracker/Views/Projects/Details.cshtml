@@ -79,27 +79,33 @@
 										</ul>
 									</td>
 									<td>
-										<strong>@Html.ActionLink("Remove User from Project | ", "RemoveUser", "AdminProjects", new { id = Model.Id }, null)</strong>
-
-										<strong>
-											@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = Model.Id }, null)
-										</strong>
 										@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-								{
+	{
+									<strong>@Html.ActionLink("Remove User from Project | ", "RemoveUser", "AdminProjects", new { id = Model.Id }, null)</strong> <text>|</text>
+
 									<strong>
-										@Html.ActionLink("Edit Project ", "Edit", new { id = Model.Id })
+										@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = Model.Id }, null)  <text>|</text>
 									</strong>
 
-						}
+									<strong>
+										@Html.ActionLink("Edit Project ", "Edit", new { id = Model.Id })
+									</strong> <text>|</text>
+
+}
 
 
 										@if (User.IsInRole("Admin"))
-								{
+	{
 
 									<strong>
-										@Html.ActionLink(" | Delete Project", "Delete", new { id = Model.Id })
+										<br />
+										<br />
+										@Html.ActionLink("Soft Delete Project", "SoftDelete", new { id = Model.Id })
+										<br />
+										<br />
+										@Html.ActionLink("Delete Project", "Delete", new { id = Model.Id })
 									</strong>
-						}
+}
 									</td>
 								</tr>
 

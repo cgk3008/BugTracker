@@ -31,7 +31,7 @@ namespace BugTracker.Controllers
                     ProjectManager = dB.Users.Find(project.PmId),
 
                     UserId = userId
-            };
+                };
 
                 vms.Add(vm);
             }
@@ -56,7 +56,7 @@ namespace BugTracker.Controllers
             var proj = id;
             //var tix = dB.Ticket.Where()
             //var tix = dB.Project.Where(t => t.Id == proj).SelectMany(t => t.Ticket).ToList();
-            
+
             if (project == null)
             {
                 return HttpNotFound();
@@ -202,13 +202,37 @@ namespace BugTracker.Controllers
         [Authorize]
         public ActionResult MyProjects()
         {
+
+            List<ProjectIndexViewModel> vms = new List<ProjectIndexViewModel>();
             var userId = User.Identity.GetUserId();
-            //return View(dB.Users.Find(userId).Ticket.ToList());
+            List<Project> projects = dB.Users.Find(userId).Project.ToList();
 
-            //example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
+            foreach (Project project in projects)
+            {
+                ProjectIndexViewModel vm = new ProjectIndexViewModel()
+                {
+                    Project = project,
+                    ProjectManager = dB.Users.Find(project.PmId),
 
-            return View(dB.Users.Find(userId).Project.ToList());
-        }           
+                    UserId = userId
+                };
+
+                vms.Add(vm);
+            }
+            return View(vms);
+
+            //var tickets = db.Ticket.Where(t => t.Project.PmId == userId).ToList();
+            //return View(tickets.ToList());
+
+
+
+            //var userId = User.Identity.GetUserId();
+            ////return View(dB.Users.Find(userId).Ticket.ToList());
+
+            ////example from assignedProjects controller return View(dB.Users.Find(userId).Project.ToList()); can't figure out why above does not work, need to look at ticket model more compared to project model
+
+            //return View(dB.Users.Find(userId).Project.ToList());
+        }
 
         // Get tickets each project
         public ActionResult TicketsForEachProject()
@@ -242,6 +266,28 @@ namespace BugTracker.Controllers
         {
             var project = dB.Project.Find(model.Id);
             project.PmId = model.PmId;
+
+            //var users = 
+
+            //public Exception AddUserToProject(string userId, int projectId)
+            //{
+            //    try
+            //    {
+            //        var prj = dB.Project.Find(projectId);
+            //        var usr = dB.Users.Find(userId);
+            //        prj.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
+            //        dB.SaveChanges();
+            //        return null;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return ex;
+            //    }
+            //}
+
+
+
+
             dB.SaveChanges();
             var callbackUrl = Url.Action("Details", "Projects", new { id = project.Id }, protocol: Request.Url.Scheme);
 

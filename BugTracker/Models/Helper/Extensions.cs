@@ -12,6 +12,40 @@ namespace BugTracker.Models.Helper
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
 
+        //public static void AddPmAfterAssign(this Project pmAddToProject)
+        //{
+         
+        //    List<Project> users = new List<Project>();
+        //    User currentDbStateProjectPm = db.Project.Find(projectId).Users.ToList();
+
+        //    if (pmAddToProject.PmId != currentDbStateProjectPm.)
+        //    {
+        //        users.Add(new Project()
+
+
+
+        //    }
+
+        //}
+
+
+        //public Exception AddUserToProject(string userId, int projectId)
+        //{
+        //    try
+        //    {
+        //        var prj = dB.Project.Find(projectId);
+        //        var usr = dB.Users.Find(userId);
+        //        prj.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
+        //        dB.SaveChanges();
+        //        return null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ex;
+        //    }
+        //}
+
+
         public static void CreateHistories(this Ticket editedTicket)
         {
             List<TicketHistory> histories = new List<TicketHistory>();

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BugTracker.Models.Project>
+﻿@model IEnumerable<BugTracker.Models.ProjectIndexViewModel>
 
 @{
 	ViewBag.Title = "MyProjects";
@@ -51,39 +51,41 @@
 				<tbody>
 					@foreach (var item in Model)
 					{
-						if (item.IsDeleted == false)
+						if (item.Project.IsDeleted == false)
 						{
 							<tr>
 								<td>
-									@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
+									
+								@Html.DisplayFor(modelItem => item.Project.Name) | PM: @Html.DisplayFor(modelItem => item.ProjectManager.FullName)
 
-									<ul>
-										@foreach (var u in item.Users)
-										{
-											<li>
-												@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-												{
-													@Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Id }, null)
-												}
-											</li>
-										}
-									</ul>
+								<ul>
+									@foreach (var u in item.Project.Users)
+									{
+								<li>
+									@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+									{
+								<text>---</text> @Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Project.Id }, null)
+									}
+								</li>
+									}
+								</ul>
+									
 								</td>
 								<td>
 
 									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 									{
-										@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = item.Id }, null)
+										@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = item.Project.Id }, null)
 
-										@Html.ActionLink("Edit | ", "Edit", new { id = item.Id })
+										@Html.ActionLink("Edit | ", "Edit", new { id = item.Project.Id })
 
 									}
-									@Html.ActionLink("Details", "Details", new { id = item.Id })
+									@Html.ActionLink("Details", "Details", new { id = item.Project.Id })
 
 									@if (User.IsInRole("Admin"))
 									{
 
-										@Html.ActionLink(" | Delete", "Delete", new { id = item.Id })
+										@Html.ActionLink(" | Delete", "Delete", new { id = item.Project.Id })
 									}
 								</td>
 							</tr>
