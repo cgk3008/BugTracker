@@ -264,36 +264,37 @@ namespace BugTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AssignProject(Project model)
         {
+            var proj = dB.Project.Find(model.Id);
+           var oldPm =  proj.PmId;
+                        
+            var callbackUrl = Url.Action("Details", "Projects", new { id = proj.Id }, protocol: Request.Url.Scheme);
+
+            try
+            {
+                EmailService ems = new EmailService();
+                IdentityMessage msg = new IdentityMessage();
+
+                User oldUser = dB.Users.Find(oldPm);
+
+                msg.Body = "Removed from Project." + Environment.NewLine + "Please click the following link to view the details " + "<a href=\"" + callbackUrl + "\">PROJECT REMOVED</a>";
+
+                msg.Destination = oldUser.Email;
+                msg.Subject = "Removed Project";
+                await ems.SendMailAsync(msg);
+
+                proj.Users.Remove(oldUser); 
+                dB.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromResult(0);
+            }
+
+
             var project = dB.Project.Find(model.Id);
             project.PmId = model.PmId;
 
-
-            //try
-            //{
-
-            //    var usr = model.PmId;
-            //        project.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
-            //    dB.SaveChanges();
-            //    return null;
-            //}
-            //catch (Exception ex)
-            //{
-            //    return ex;
-            //}
-
-            // ProjectHelper helper = new ProjectHelper();
-            //AdminProject model2  =new AdminProject()
-            //{
-            //    helper.AddUserToProject(model.PmId, model.Id)
-            //}
-
-            // foreach (var useradd in model.Users)
-            // {
-            //     helper.AddUserToProject(useradd, model.Id);
-            // }
-
-            dB.SaveChanges();
-            var callbackUrl = Url.Action("Details", "Projects", new { id = project.Id }, protocol: Request.Url.Scheme);
+            dB.SaveChanges();           
 
             try
             {
@@ -307,10 +308,8 @@ namespace BugTracker.Controllers
                 msg.Destination = user.Email;
                 msg.Subject = "Assigned Project";
                 await ems.SendMailAsync(msg);
-
-
-                //var usr = model.PmId;
-                project.Users.Add(user); /*why didn't this work with prj.Users.Add(str);*/
+                              
+                project.Users.Add(user); 
                 dB.SaveChanges();
             }
             catch (Exception ex)
