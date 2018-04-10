@@ -17,7 +17,18 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
+			@if (Model.RmvUser.Id == Model.Project.PmId)
 
+
+	{
+		<h3>
+			This is the current project PM. Verify you want to remove this user.
+
+
+		</h3>
+
+
+}
 
 			@using (Html.BeginForm("AdminProjects"))
 	{
@@ -45,8 +56,10 @@
 		<p><input type="submit" class="btn btn-info" /></p>
 
 }
+			<br />
+			<br />
 
-
+			@Html.ActionLink("Back to list", "Index", "Projects")
 			<br />
 
 		</div>
