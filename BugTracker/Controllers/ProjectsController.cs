@@ -267,26 +267,30 @@ namespace BugTracker.Controllers
             var project = dB.Project.Find(model.Id);
             project.PmId = model.PmId;
 
-            //var users = 
 
-            //public Exception AddUserToProject(string userId, int projectId)
+            //try
             //{
-            //    try
-            //    {
-            //        var prj = dB.Project.Find(projectId);
-            //        var usr = dB.Users.Find(userId);
-            //        prj.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
-            //        dB.SaveChanges();
-            //        return null;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return ex;
-            //    }
+
+            //    var usr = model.PmId;
+            //        project.Users.Add(usr); /*why didn't this work with prj.Users.Add(str);*/
+            //    dB.SaveChanges();
+            //    return null;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ex;
             //}
 
+            // ProjectHelper helper = new ProjectHelper();
+            //AdminProject model2  =new AdminProject()
+            //{
+            //    helper.AddUserToProject(model.PmId, model.Id)
+            //}
 
-
+            // foreach (var useradd in model.Users)
+            // {
+            //     helper.AddUserToProject(useradd, model.Id);
+            // }
 
             dB.SaveChanges();
             var callbackUrl = Url.Action("Details", "Projects", new { id = project.Id }, protocol: Request.Url.Scheme);
@@ -303,6 +307,11 @@ namespace BugTracker.Controllers
                 msg.Destination = user.Email;
                 msg.Subject = "Assigned Project";
                 await ems.SendMailAsync(msg);
+
+
+                //var usr = model.PmId;
+                project.Users.Add(user); /*why didn't this work with prj.Users.Add(str);*/
+                dB.SaveChanges();
             }
             catch (Exception ex)
             {

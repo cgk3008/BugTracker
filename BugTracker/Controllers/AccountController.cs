@@ -65,8 +65,8 @@ namespace BugTracker.Controllers
             switch (type)
             {
                 case "Admin9":
-                    Email = "PAdmina@demoemail.com";
-                    Password = "Port123!";
+                    Email = "PDAdmina@email.com";
+                    Password = "Redd152!";
                     break;
                 case "ProjectManager9":
                     Email = "OprahW@demoemail.com";
