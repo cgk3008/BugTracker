@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BugTracker.Models.Ticket>
+
+@{
+	ViewBag.Title = "ProjectTickets";
+}
+
+<h2>ProjectTickets</h2>
+
+<table id="projTickets" class="table">
+
+	<thead>
+		<tr>
+			<th>
+				Project Tickets
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<tr>
+			<td>
+
+				@foreach (var item in Model)
+				{
+					if (item.IsDeleted == false)
+					{
+						@item.Title <text> | </text>@Html.ActionLink("Go to Ticket Details", "Details", "Tickets", new { id = item.Id }, null)
+						<ul>
+							<li>@item.Description</li>
+
+						</ul>
+					}
+				}
+
+			</td>
+		</tr>
+	</tbody>
+</table>
+<script>
+	$('#projTickets').DataTable();
+</script>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

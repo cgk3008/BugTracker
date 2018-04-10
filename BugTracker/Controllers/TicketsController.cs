@@ -338,6 +338,24 @@ namespace BugTracker.Controllers
         }
 
 
+        // GET: Project Tickets
+        [Authorize]
+        public ActionResult ProjectTickets( int id)
+        {
+
+            var project = db.Project.Find(id);
+            var tickets = db.Ticket.Where(t => t.Project == project);
+
+            //I want to be able to show list of tickets if a person is in multiple user roles, right now I can't do that with code below. However, maybe there is a way with a foreach loop encapsulating all the if statements.....
+
+
+            return View(tickets.ToList());
+
+        }
+
+
+
+
         // GET: My Completed Tickets
         [Authorize]
         public ActionResult MyCompletedTix()

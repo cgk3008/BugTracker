@@ -18,16 +18,10 @@
 				<div class="clearfix"></div>
 			</div>
 			@if (Model.RmvUser.Id == Model.Project.PmId)
-
-
 	{
 		<h3>
 			This is the current project PM. Verify you want to remove this user.
-
-
 		</h3>
-
-
 }
 
 			@using (Html.BeginForm("AdminProjects"))
@@ -58,11 +52,12 @@
 }
 			<br />
 			<br />
+			<strong>
+				@Html.ActionLink("Back to list", "Index", "Projects")
+				</strong>
+					<br />
 
-			@Html.ActionLink("Back to list", "Index", "Projects")
-			<br />
-
-		</div>
+</div>
 	</div>
 </div>
 @section Scripts {
