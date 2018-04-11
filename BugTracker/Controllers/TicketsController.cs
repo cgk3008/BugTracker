@@ -58,7 +58,7 @@ namespace BugTracker.Controllers
             var userId = User.Identity.GetUserId();
             ProjectHelper helper = new ProjectHelper();
             var projlist = helper.ListProjectsForUser(userId);
-            
+
             //Ticket.AssignedToUserId = new MultiSelectList(db, "id", "FullName", devlist);
 
             ViewBag.ProjectId = new SelectList(projlist, "Id", "Name");
@@ -138,8 +138,8 @@ namespace BugTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-               
-               model.CreateHistories();
+
+                model.CreateHistories();
                 //ticket.AssignedToUserId = model.AssignedToUserId;
 
 
@@ -194,11 +194,11 @@ namespace BugTracker.Controllers
                 //    //    }
                 //    //}
                 //}
-               
+
                 //db.Entry(model).State = EntityState.Added;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                              
+
                 var callbackUrl = Url.Action("Details", "Tickets", new { id = model.Id }, protocol: Request.Url.Scheme);
 
                 try
@@ -234,7 +234,7 @@ namespace BugTracker.Controllers
             ViewBag.TicketTypeId = new SelectList(db.Type, "Id", "Name", model.TicketTypeId);
             return View(model);
 
-        }        
+        }
 
 
         // GET: Tickets/Delete/5
@@ -340,7 +340,7 @@ namespace BugTracker.Controllers
 
         // GET: Project Tickets
         [Authorize]
-        public ActionResult ProjectTickets( int id)
+        public ActionResult ProjectTickets(int id)
         {
 
             var project = db.Project.Find(id);
@@ -413,16 +413,18 @@ namespace BugTracker.Controllers
         //Post Assign a ticket thru email notification
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AssignTicket(Ticket model)
+        public async Task<ActionResult> AssignTicket([Bind(Include = "Id,Title,Description,Created,Updated,ProjectId,TicketTypeId,TicketPriorityId,TicketStatusId,OwnerUserId, AssignedToUserId, StartDate, DeadlineDate")] Ticket model)
         {
+
             var ticket = db.Ticket.Find(model.Id);
-            ticket.AssignedToUserId = model.AssignedToUserId;
-
-
-
-
-
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                //db.Entry(model).State = EntityState.Modified;
+                ticket.AssignedToUserId = model.AssignedToUserId;
+                ticket.StartDate = model.StartDate;
+                ticket.DeadlineDate = model.DeadlineDate;
+                db.SaveChanges();
+            }
             var callbackUrl = Url.Action("Details", "Tickets", new { id = ticket.Id }, protocol: Request.Url.Scheme);
 
             try
