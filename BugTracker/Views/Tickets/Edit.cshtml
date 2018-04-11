@@ -24,137 +24,139 @@
 
 
 			@using (Html.BeginForm())
-	{
-		@Html.AntiForgeryToken()
+			{
+				@Html.AntiForgeryToken()
 
-		<div class="form-horizontal">
+				<div class="form-horizontal">
 
-			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-			@Html.HiddenFor(model => model.Id)
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					@Html.HiddenFor(model => model.Id)
 
-			@Html.HiddenFor(model => model.AssignedToUserId)
+					@Html.HiddenFor(model => model.AssignedToUserId)
 
-			@*@Html.HiddenFor(model => model.TicketPriorityId)
-		@Html.HiddenFor(model => model.ProjectId)
-		@Html.HiddenFor(model => model.TicketStatusId)
-		@Html.HiddenFor(model => model.TicketTypeId)
-		@Html.HiddenFor(model => model.Title)
-		@Html.HiddenFor(model => model.Description)*@
+					@*@Html.HiddenFor(model => model.TicketPriorityId)
+						@Html.HiddenFor(model => model.ProjectId)
+						@Html.HiddenFor(model => model.TicketStatusId)
+						@Html.HiddenFor(model => model.TicketTypeId)
+						@Html.HiddenFor(model => model.Title)
+						@Html.HiddenFor(model => model.Description)*@
 
-			@Html.HiddenFor(model => model.OwnerUserId)
-			@Html.HiddenFor(model => model.Created, "{0:dd-MMM-yyyy}")
+					@Html.HiddenFor(model => model.OwnerUserId)
+					@Html.HiddenFor(model => model.Created, "{0:dd-MMM-yyyy}")
 
-			<div class="form-group">
-				@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+					<div class="form-group">
+						@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.ProjectId, "Project Id", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.TicketTypeId, "Type", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.TicketTypeId, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.TicketPriorityId, "Priority", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.TicketPriorityId, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+					{
+						<div class="form-group">
+							@Html.LabelFor(model => model.TicketStatusId, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.DropDownList("TicketStatusId", null, htmlAttributes: new { @class = "form-control" })
+								@Html.ValidationMessageFor(model => model.TicketStatusId, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+
+
+					}
+
+					@*
+						Ugh, another view model to get OwnerUserId to FullName, same with Assigned.....
+						<div class="form-group">
+						@Html.LabelFor(model => model.OwnerUserId, "Owner User Id", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Model.OwnerUserId
+							@Html.ValidationMessageFor(model => model.OwnerUserId, "", new { @class = "text-danger" })
+						</div>
+					</div>*@
+
+
+					@*<div class="form-group">
+							@Html.LabelFor(model => model.Updated, "Updated", htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Model.Updated
+								@Html.ValidationMessageFor(model => model.Updated, "", new { @class = "text-danger" })
+							</div>
+						</div>*@
+
+
+					@*@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+
+
+						{*@
+
+
+
+					@*<div class="form-group">
+						@Html.LabelFor(model => model.AssignedToUserId, "Assigned To User Id", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+
+							@Model.AssignedToUserId
+							@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
+						</div>
+					</div>*@
+
+
+					@*}*@
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>
+					</div>
 				</div>
-			</div>
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.ProjectId, "Project Id", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control" })
-					@Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.TicketTypeId, "Type", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.DropDownList("TicketTypeId", null, htmlAttributes: new { @class = "form-control" })
-					@Html.ValidationMessageFor(model => model.TicketTypeId, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.TicketPriorityId, "Priority", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.DropDownList("TicketPriorityId", null, htmlAttributes: new { @class = "form-control" })
-					@Html.ValidationMessageFor(model => model.TicketPriorityId, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-	{
-		<div class="form-group">
-			@Html.LabelFor(model => model.TicketStatusId, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.DropDownList("TicketStatusId", null, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.TicketStatusId, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-
-
-}
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.OwnerUserId, "Owner User Id", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Model.OwnerUserId
-					@Html.ValidationMessageFor(model => model.OwnerUserId, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-
-			@*<div class="form-group">
-			@Html.LabelFor(model => model.Updated, "Updated", htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Model.Updated
-				@Html.ValidationMessageFor(model => model.Updated, "", new { @class = "text-danger" })
-			</div>
-		</div>*@
-
-
-			@*@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-
-
-		{*@
-
-
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.AssignedToUserId, "Assigned To User Id", htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-
-					@Model.AssignedToUserId
-					@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-
-			@*}*@
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<input type="submit" value="Save" class="btn btn-primary" />
-				</div>
-			</div>
-		</div>
-}
+			}
 
 			<h3>Assign user in "Details" page or ticket "Index" page</h3>
 			<br />
 			<br />
 			@if (User.IsInRole("Admin"))
-	{
-		@Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
+			{
+				@Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
 
-}
+			}
 
 			@if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
-	{
-		@Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
-}
+			{
+				@Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
+			}
 
 		</div>
 	</div>

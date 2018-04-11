@@ -20,8 +20,25 @@ namespace BugTracker.Controllers
         // GET: TicketComments
         public ActionResult Index()
         {
-            var ticketComment = db.Comment.Include(t => t.Ticket).Include(t => t.User);
-            return View(ticketComment.ToList());
+
+            if (User.IsInRole("Admin"))
+
+            {
+                var ticketComment = db.Comment.Include(t => t.Ticket).Include(t => t.User);
+                return View(ticketComment.ToList());
+
+            }
+
+            if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+
+            {
+                return RedirectToAction("MyTickets", "Tickets");
+            }
+
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: TicketComments/Details/5
@@ -149,11 +166,11 @@ namespace BugTracker.Controllers
                 ticketComment.Updated = DateTime.Now;
                 db.Entry(ticketComment).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
             }
             ViewBag.TicketId = new SelectList(db.Ticket, "Id", "Body", ticketComment.TicketId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FullName", ticketComment.UserId);
-            return View(ticketComment);
+            return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
 
         }
 
@@ -180,7 +197,7 @@ namespace BugTracker.Controllers
             TicketComment ticketComment = db.Comment.Find(id);
             db.Comment.Remove(ticketComment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
         }
 
         protected override void Dispose(bool disposing)

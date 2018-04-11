@@ -220,7 +220,7 @@ namespace BugTracker.Controllers
                 }
                 if (User.IsInRole("Admin"))
                 {
-                    return RedirectToAction("Index)");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
