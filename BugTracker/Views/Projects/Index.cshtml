@@ -85,7 +85,7 @@
 										</ul>
 									</td>
 									<td>
-										@if (item.ProjectManager.Id == item.UserId || User.IsInRole("Admin"))
+										@if (item.Project.PmId == item.UserId || User.IsInRole("Admin"))
 										{
 											@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Project.Id }, null) <text>|</text>
 										}
@@ -95,7 +95,7 @@
 											@Html.ActionLink("Edit", "Edit", new { id = item.Project.Id }) <text>|</text>
 										}
 
-										@if (item.ProjectManager.Id == item.UserId)
+										@if (item.Project.PmId == item.UserId)
 										{
 											@Html.ActionLink("Edit", "Edit", new { id = item.Project.Id }) <text>|</text>
 										}

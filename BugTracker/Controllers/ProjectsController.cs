@@ -126,12 +126,11 @@ namespace BugTracker.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, PmId")] Project project)
+        public ActionResult Edit([Bind(Include = "Id, Name, PmId, Progress")] Project project)
         {
             if (ModelState.IsValid)
             {
                 dB.Entry(project).State = EntityState.Modified;
-
 
                 dB.SaveChanges();
                 return RedirectToAction("Index");

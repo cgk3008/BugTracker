@@ -14,8 +14,9 @@ namespace BugTracker.Models
         public DateTimeOffset Created { get; set; }
         public string PmId { get; set; }
         public bool IsDeleted { get; set; } //wait was this supposed to be a boolean????
-        //public virtual User User { get; set; } -don't need this, the ICollection does this when we have one ICollections below referenced to User file and ICollection referenceing project in the User file.
-
+                                            //public virtual User User { get; set; } -don't need this, the ICollection does this when we have one ICollections below referenced to User file and ICollection referenceing project in the User file.
+        [Range(0, 100)]
+        public int Progress { get; set; } //restrict to 0-100
         public virtual ICollection<Ticket> Ticket { get; set; }
         public virtual ICollection<User> Users { get; set; }
 
