@@ -39,28 +39,20 @@
 	<!-- Mainbar head ends -->
 
 	<div class="main-content">
-
 		<div class="container">
-
 			<div class="row">
-				<div class="col-md-4">
-
+				<div class="col-md-6">
 					<!-- Project widget -->
 					<div class="widget projects-widget">
-
 						<div class="widget-head br-green">
-							<h3><i class="fa fa-desktop"></i> @Html.ActionLink("My Projects", "MyProjects", "Projects")</h3>
+							<h2><i class="fa fa-desktop"></i> @Html.ActionLink("My Projects", "MyProjects", "Projects")</h2>
 						</div>
 
 						@*<div class="widget-body no-padd scroll">
 
 							<ul>*@
-
 						<div class="widget-body no-padd">
-
 							<ol>
-
-
 								@foreach (var item in Model.Projects.Take(10)) //takes ten, need to specify sort method or order in home controller.
 
 								{
@@ -73,33 +65,24 @@
 								}
 
 							</ol>
-
 						</div>
-
 
 						@*<div class="widget-foot">
 								<span class="pull-left"><i class="fa fa-time"></i> </span>
 								<a href="#" class="btn btn-success btn-xs pull-right">Refresh</a>
 								<div class="clearfix"></div>
 							</div>*@
-
 					</div>
-
 				</div>
 
-				<div class="col-md-4">
-
-					Add Contact/Email us field.  Add that to login View and account controller?????
-
-				</div>
-
-				<div class="col-md-4">
+				
+				<div class="col-md-6">
 
 					<!-- Tasks widget -->
 					<div class="widget projects-widget">
 
 						<div class="widget-head br-lblue">
-							<h3><i class="fa fa-tasks"></i> @Html.ActionLink("My Tickets", "MyTickets", "Tickets")</h3>
+							<h2><i class="fa fa-ticket"></i> @Html.ActionLink("My Tickets", "MyTickets", "Tickets")</h2>
 						</div>
 
 						<div class="widget-body no-padd scroll">

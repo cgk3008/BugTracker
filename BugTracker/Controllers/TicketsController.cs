@@ -403,7 +403,7 @@ namespace BugTracker.Controllers
 
             var users = helper.ListUsersInRole("Developer").ToList();
 
-            var deadline = 
+            //var deadline = 
 
             ViewBag.AssignedToUserId = new SelectList(users, "Id", "FullName", ticket.AssignedToUserId);
 

@@ -64,51 +64,64 @@
 				{
 					@Html.AntiForgeryToken()
 
-					<div class="form-horizontal">
-						<h4>Ticket</h4>
-						<hr />
-						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-						@Html.HiddenFor(model => model.Id)
-						@Html.HiddenFor(model => model.OwnerUserId)
-						@Html.HiddenFor(model => model.Created)
+				<div class="form-horizontal">
+					<h4>Ticket</h4>
+					<hr />
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					@Html.HiddenFor(model => model.Id)
+					@Html.HiddenFor(model => model.OwnerUserId)
+					@Html.HiddenFor(model => model.Created)
 
-						<div class="form-group">
-							@Html.LabelFor(model => model.AssignedToUserId, "Assign Developer", new { @class = "control-label col-md-2" })
-							<div class="col-md-10">
-								@Html.DropDownList("AssignedToUserId", null, new { @class = "form-control" })
-								@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
-							</div>
-						</div>
-
-
-						
-						@*<h4>Date Picker</h4>						
-						<div id="datetimepicker1" class="input-append input-group dtpicker">
-							<input data-format="yyyy-MM-dd" type="text" class="form-control">
-							<span class="input-group-addon add-on">
-								<i data-time-icon="fa fa-times" data-date-icon="fa fa-calendar"></i>
-							</span>
-						</div>
-						<hr />
-
-						
-						<h4>Time Picker</h4>						
-						<div id="datetimepicker2" class="input-append input-group dtpicker">
-							<input data-format="hh:mm:ss" class="form-control" type="text">
-							<span class="input-group-addon add-on">
-								<i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar"></i>
-							</span>
-						</div>*@
-
-						<br />
-						<br />
-
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-10">
-								<input type="submit" value="Save" class="btn btn-info" />
-							</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.AssignedToUserId, "Assign Developer", new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.DropDownList("AssignedToUserId", null, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
 						</div>
 					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.StartDate, "Start Date", new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.DeadlineDate, "Deadline Date", new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.DeadlineDate, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.DeadlineDate, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					@*<h4>Date Picker</h4>
+		<div id="datetimepicker1" class="input-append input-group dtpicker">
+			<input data-format="yyyy-MM-dd" type="text" class="form-control">
+			<span class="input-group-addon add-on">
+				<i data-time-icon="fa fa-times" data-date-icon="fa fa-calendar"></i>
+			</span>
+		</div>
+		<hr />
+
+
+		<h4>Time Picker</h4>
+		<div id="datetimepicker2" class="input-append input-group dtpicker">
+			<input data-format="hh:mm:ss" class="form-control" type="text">
+			<span class="input-group-addon add-on">
+				<i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar"></i>
+			</span>
+		</div>*@
+
+					<br />
+					<br />
+
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<input type="submit" value="Save" class="btn btn-info" />
+						</div>
+					</div>
+				</div>
 				}
 
 					@*<script>
