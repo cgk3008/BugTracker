@@ -1,7 +1,7 @@
 ﻿@model  IEnumerable<BugTracker.Models.Project>
 
 @{
-    ViewBag.Title = "SoftDeleteIndex";
+	ViewBag.Title = "SoftDeleteIndex";
 }
 
 <div class="main-content">
@@ -19,51 +19,55 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-					<table id="mytable" class="table">
-						<thead>
-							<tr>
-								<th>
-									@Html.DisplayNameFor(model => model.Name)
-								</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach (var item in Model)
-							{
-								if (item.IsDeleted == true)
+			<table id="mytable" class="table">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.Name)
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+				{
+					if (item.IsDeleted == true)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
+
+								<ul>
+									@foreach (var u in item.Users)
 								{
-									<tr>
-										<td>
-											@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
-
-											<ul>
-												@foreach (var u in item.Users)
-												{
-													<li>
-														@u.FullName 
-													</li>
-												}
-											</ul>
-										</td>
-										<td>											
-											@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-											@Html.ActionLink("Details", "Details", new { id = item.Id }) |										
-											@*Add link for recover project?  If so should probably just add to edit view and controller and hide the Isdeleted if the value is false and only show if true.  But seems like Edit is modifying the IsDelete to false already........*@
-										</td>
-									</tr>
-								}
+									<li>
+										@u.FullName
+									</li>
 							}
-						</tbody>
-					</table>
+								</ul>
+							</td>
+							<td>
+								@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+								@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+								@*Add link for recover project?  If so should probably just add to edit view and controller and hide the Isdeleted if the value is false and only show if true.  But seems like Edit is modifying the IsDelete to false already........*@
+							</td>
+						</tr>
+				}
+			}
+				</tbody>
+			</table>
 
-					<script>
-						$('#mytable').DataTable();
-					</script>
-				</div>
-			</div>
+			<script>
+				$('#mytable').DataTable();
+			</script>
 		</div>
-		@section Scripts {
-			@Scripts.Render("~/bundles/jqueryval")
-		}
+		<br />
+		<br />
+		@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" }))
+	</div>
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
 

@@ -28,7 +28,7 @@
 
 						<h3>
 							<strong>
-								@Html.ActionLink("Create New Project", "Create")
+								@Html.ActionLink("Create New Project", "Create", null,  new { @class = "btn btn-success" })
 							</strong>
 							<br />
 							<br />
@@ -42,7 +42,7 @@
 
 						<h3>
 							<strong>
-								@Html.ActionLink("See Soft Deleted Projects", "SoftDeleteIndex")
+								@Html.ActionLink("See Soft Deleted Projects", "SoftDeleteIndex", new { @class = "btn btn-warning" })
 							</strong>
 							<br />
 							<br />
@@ -85,7 +85,7 @@
 										</ul>
 									</td>
 									<td>
-										@if (item.ProjectManager.Id == item.UserId)
+										@if (item.ProjectManager.Id == item.UserId || User.IsInRole("Admin"))
 										{
 											@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Project.Id }, null) <text>|</text>
 										}

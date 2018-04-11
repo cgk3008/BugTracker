@@ -47,13 +47,13 @@
 			Are you sure you want to remove this User from the project?
 		</h5>
 		<br />
-		<p><input type="submit" class="btn btn-info" /></p>
+		<p><input type="submit" value="Yes, Remove User" class="btn btn-danger" /></p>
 
 }
 			<br />
 			<br />
 			<strong>
-				@Html.ActionLink("Back to list", "Index", "Projects")
+				@Html.ActionLink("Back to list", "Index", "Projects", null, new { @class = "btn btn-default" })
 				</strong>
 					<br />
 

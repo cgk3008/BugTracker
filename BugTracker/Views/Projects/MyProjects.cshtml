@@ -24,7 +24,7 @@
 			<h3>
 				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 				{
-					@Html.ActionLink("Create New Project", "Create")
+					@Html.ActionLink("Create New Project", "Create", null, new { @class = "btn btn-success" })
 					<br />
 					<br />
 				}
@@ -33,7 +33,7 @@
 			<h3>
 				@if (User.IsInRole("Submitter"))
 				{
-					@Html.ActionLink("Create New Ticket", "Create", "Tickets")
+					@Html.ActionLink("Create New Ticket", "Create", "Tickets", new { @class = "btn btn-success" })
 					<br />
 					<br />
 				}
@@ -75,17 +75,17 @@
 
 									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 									{
-										@Html.ActionLink("Add User to Project | ", "AddToProject", "AdminProjects", new { id = item.Project.Id }, null)
+										@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { id = item.Project.Id }, null) <text>|</text>
 
-										@Html.ActionLink("Edit | ", "Edit", new { id = item.Project.Id })
-
+										@Html.ActionLink("Edit", "Edit", new { id = item.Project.Id })
+										<text> | </text>
 									}
 									@Html.ActionLink("Details", "Details", new { id = item.Project.Id })
 
 									@if (User.IsInRole("Admin"))
 									{
 
-										@Html.ActionLink(" | Delete", "Delete", new { id = item.Project.Id })
+										<text>|</text>@Html.ActionLink("Delete", "Delete", new { id = item.Project.Id })
 									}
 								</td>
 							</tr>

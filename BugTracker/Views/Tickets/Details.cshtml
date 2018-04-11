@@ -19,16 +19,24 @@
 
 
 				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-				{
-					<div class="col-md-4">
-						<h2>
-							<i class="fa fa-ticket green"></i>
-							@Html.ActionLink("Assign This Ticket", "AssignTicket", new { id = Model.Id })
-						</h2>
-					</div>
+		{
+			<div class="col-md-4">
+				<h2>
+					<i class="fa fa-ticket green"></i>
+					@Html.ActionLink("Assign This Ticket", "AssignTicket", new { id = Model.Id }, new { @class = "btn btn-info" })
+				</h2>
+			</div>
 
-				}
-
+}
+				@if (User.IsInRole("Admin") || User.IsInRole("Project Manager") || User.IsInRole("Submitter"))
+		{
+			<div class="col-md-4">
+				<h2>
+					<i class="fa fa-ticket orange"></i>
+					@Html.ActionLink("Edit Ticket", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
+				</h2>
+			</div>
+}
 				<!-- Bread crumbs -->
 				<div class="breads pull-right">
 					@*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
@@ -126,6 +134,7 @@
 							@Html.DisplayFor(model => model.Type.Name)
 						</dd>
 					</dl>
+
 				</div>
 			</div>
 
@@ -167,50 +176,50 @@
 									</thead>
 									<tbody>
 										@foreach (var item in Model.History)
-										{
-											//if (item.Property == "Status" || "Type" || "Priority"
-											//OldNewTicketHelper helper = new OldNewTicketHelper();
-											//if (item.Property == "Status")
-											//{
+								{
+									//if (item.Property == "Status" || "Type" || "Priority"
+									//OldNewTicketHelper helper = new OldNewTicketHelper();
+									//if (item.Property == "Status")
+									//{
 
-											//	//item.OldValue =
-											//}
+									//	//item.OldValue =
+									//}
 
-											<tr>
-												<td>
-													@Html.DisplayFor(modelItem => item.Ticket.Title)
-												</td>
-												<td>
-													@Html.DisplayFor(modelItem => item.User.FullName)
-												</td>
-												<td>
-													@Html.DisplayFor(modelItem => item.Property)
-												</td>
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.Ticket.Title)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.User.FullName)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Property)
+										</td>
 
-												<td>
-													@*.Getuser.Pr.....*@
-													@*@OldNewTicketHelper(modelItem => item.OldValue)*@
+										<td>
+											@*.Getuser.Pr.....*@
+											@*@OldNewTicketHelper(modelItem => item.OldValue)*@
 
 
-													@Html.DisplayFor(modelItem => item.OldValue)
-												</td>
+											@Html.DisplayFor(modelItem => item.OldValue)
+										</td>
 
-												<td>
-													@*@OldNewTicketHelper(modelItem => item.NewdValue)*@
-													@Html.DisplayFor(modelItem => item.NewValue)
-												</td>
+										<td>
+											@*@OldNewTicketHelper(modelItem => item.NewdValue)*@
+											@Html.DisplayFor(modelItem => item.NewValue)
+										</td>
 
-												<td>
-													@Html.DisplayFor(modelItem => item.Changed)
-												</td>
-											</tr>
-										}
+										<td>
+											@Html.DisplayFor(modelItem => item.Changed)
+										</td>
+									</tr>
+						}
 									</tbody>
 								</table>
 
 								@*<script>
-										$('#mytable').DataTable();
-									</script>*@
+								$('#mytable').DataTable();
+							</script>*@
 							</div>
 							<div class="tab-pane" id="tab2">
 
@@ -300,67 +309,78 @@
 				</script>
 
 				@*<script>
-					$(document).ready(function () {
-						$('#table_Comments').DataTable({
-							"scrollX": true
-						});
+				$(document).ready(function () {
+					$('#table_Comments').DataTable({
+						"scrollX": true
 					});
-				</script>*@
+				});
+			</script>*@
 				@*<script>
-					$(function () {
-						$('.tab-header').click(function () {
-							let padLeft = $('tab-header > a').css('padding-left');
-							let shift = 0;
-							if ($(this).is(':nth-child(2)')) {
-								shift = 3;
-							}
-							$('.nav-tabs').css('margin-left', `${shift}px`);
-							$('.tab-header > a').css('padding-left', )
-						});
+				$(function () {
+					$('.tab-header').click(function () {
+						let padLeft = $('tab-header > a').css('padding-left');
+						let shift = 0;
+						if ($(this).is(':nth-child(2)')) {
+							shift = 3;
+						}
+						$('.nav-tabs').css('margin-left', `${shift}px`);
+						$('.tab-header > a').css('padding-left', )
 					});
+				});
 
-				</script>*@
+			</script>*@
 
 				<br />
 				<div>
 					@using (Html.BeginForm("Create", "TicketComments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
-					{
-						@Html.AntiForgeryToken()
-						@*@Html.Hidden("TicketId", Model.Id)*@
-						//already passing the ticketId in Hidden statement above to the below in the input
+			{
+				@Html.AntiForgeryToken()
+				@*@Html.Hidden("TicketId", Model.Id)*@
+		//already passing the ticketId in Hidden statement above to the below in the input
 
-						<input name="TicketId" value="@Model.Id" hidden />
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-12">
+		<input name="TicketId" value="@Model.Id" hidden />
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-12">
 
-								<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
+				<textarea name="Body" id="editor1" rows="10" cols="80" placeholder="Enter Comment" maxlength="5000"></textarea>
 
-								<input name="image" type="file" class="form-control" id="fileUpload" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-md-offset-2 col-md-12">
-								@if (Request.IsAuthenticated)
-								{
-									<input type="submit" value="Submit Comment" class="btn btn-default" />
-								}
-								else
-								{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
-									<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
-								}
-							</div>
-						</div>
-					}
+				<input name="image" type="file" class="form-control" id="fileUpload" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-12">
+				@if (Request.IsAuthenticated)
+		{
+			<input type="submit" value="Submit Comment" class="btn btn-default" />
+}
+else
+{ <h4>LOGIN OR REGISTER TO SUBMIT COMMENTS</h4>
+		<input disabled type="submit" value="Submit Comment" class="btn btn-default" />
+}
+			</div>
+		</div>
+}
 				</div>
 
 
 			</div>
 
+			<br />
+			<br />
+			@if (User.IsInRole("Admin"))
+	{
+		@Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
+
+}
+
+			@if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+	{
+		@Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
+}
 		</div>
-		<p>
-			@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-			@Html.ActionLink("Back to List", "MyTickets")
-		</p>
+
+
+
 	</div>
 </div>
 <!-- Data Tables JS -->
@@ -374,9 +394,6 @@
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
-	$(function(){
-		$().DataTable();
-		});
 
 
 

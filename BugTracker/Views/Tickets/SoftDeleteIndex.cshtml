@@ -132,19 +132,27 @@
 
 
 			<div class="form-actions no-color">
-				<input type="submit" value="Delete" class="btn btn-danger" /> |
-				@Html.ActionLink("Back to List", "MyTickets")
+				<input type="submit" value="Delete" class="btn btn-danger" />
+
 			</div>
 			<script>
 				$('#mytable').DataTable();
 			</script>
 
-			@*<script>
-			// format ALL tables by class selector
-			$('.table').DataTable();
-		</script>*@
+		<br />
+			<br />
+			@if (User.IsInRole("Admin"))
+	{
+		@Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
 
+}
+
+			@if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+	{
+		@Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
+}
 		</div>
+
 	</div>
 </div>
 @section Scripts {

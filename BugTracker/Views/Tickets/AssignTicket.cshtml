@@ -113,7 +113,16 @@
 					</div>
 				}
 				<div>
-					@Html.ActionLink("Back to List", "MyTickets")
+					@if (User.IsInRole("Admin"))
+					{
+						@Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
+
+					}
+
+					@if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+					{
+						@Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
+					}
 				</div>
 			</div>
 		</div>

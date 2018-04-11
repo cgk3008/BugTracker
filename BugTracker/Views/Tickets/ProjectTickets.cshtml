@@ -24,7 +24,7 @@
 				{
 					if (item.IsDeleted == false)
 					{
-						@item.Title <text> | </text>@Html.ActionLink("Go to Ticket Details", "Details", "Tickets", new { id = item.Id }, null)
+						@item.Title <text> | </text>@Html.ActionLink("Go to Ticket Details", "Details", "Tickets", new { id = item.Id }, new { @class = "btn btn-default" }))
 						<ul>
 							<li>@item.Description</li>
 

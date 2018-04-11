@@ -23,17 +23,7 @@
 
 
 			<br />
-			@if (User.IsInRole("Admin") || User.IsInRole("Submitter"))
-		{
 
-			<h3>
-				@Html.ActionLink("Create New Ticket", "Create")
-
-				@*Ok MyTickets not showing my assigned to tickets......Use partial view for each role, will have some redundancies but they will be sorted by role or PM ID.*@
-			</h3>
-			<br />
-
-	}
 
 			<table id="mytable" class="table">
 				<thead>
@@ -142,7 +132,16 @@
 			</table>
 		</div>
 
-		@Html.ActionLink("Back to My Tickets List", "MyTickets")
+		@if (User.IsInRole("Admin"))
+	{
+		@Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
+
+}
+
+		@if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+	{
+		@Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
+}
 	</div>
 </div>
 @section Scripts {

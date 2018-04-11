@@ -59,7 +59,7 @@
 					@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 			{
 
-				<div class="col-md-4">
+				<div class="col-md-8">
 					<strong>
 						@Html.ActionLink("Add User to Project", "AddToProject", "AdminProjects", new { @classs = "btn btn-success", id = Model.Id }, null)  <text> | </text>
 					</strong>
@@ -69,19 +69,19 @@
 					</strong> <text> | To remove a user, go to the project index page or My Projects page.</text>
 				</div>
 	}
-					<br />	<br />
+				
 
 					@if (User.IsInRole("Admin"))
 			{
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<strong>
 
-						@Html.ActionLink("Soft Delete Project", "SoftDelete", new { id = Model.Id })
+						@Html.ActionLink("Soft Delete Project", "SoftDelete", new { id = Model.Id }, new { @class = "btn btn-warning" })
 					</strong>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<strong>
-						@Html.ActionLink("Delete Project", "Delete", new { id = Model.Id })
+						@Html.ActionLink("Delete Project", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
 					</strong>
 				</div>
 	}
@@ -166,7 +166,7 @@
 			<br />
 			<strong>
 
-				@Html.ActionLink("Back to My Projects", "MyProjects")
+				@Html.ActionLink("Back to My Projects", "MyProjects", null, new { @class = "btn btn-default" })
 			</strong>
 		</div>
 		</div>

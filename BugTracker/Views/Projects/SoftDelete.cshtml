@@ -44,8 +44,10 @@
 			@Html.HiddenFor(model => model.PmId)
 			@Html.HiddenFor(model => model.Created)
 			<div class="form-actions no-color">
-				<input type="submit" value="Soft Delete" class="btn btn-default" /> |
-				@Html.ActionLink("Back to List", "Index")
+				<input type="submit" value="Yes, Soft Delete" class="btn btn-warning" />
+				<br />
+				<br />
+				@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 			</div>
 }
 			</div>
