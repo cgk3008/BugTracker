@@ -50,10 +50,10 @@
 						<strong> Created</strong>	@Html.DisplayFor(model => model.Created, "{0:dd-MMM-yyyy}")
 
 					</div>
-					<div class="col-md-4">
+					@*<div class="col-md-4">
 						<strong> Project Manager</strong>	@Html.DisplayFor(model => model.PmId)
 
-					</div>
+					</div>*@
 					<br />	<br />
 
 
@@ -92,7 +92,7 @@
 
 					<ul class="nav nav-tabs">
 						<li class="tab-header active"><a href="#tab1" data-toggle="tab">Assigned Users</a></li>
-						<li class="tab-header"><a href="#tab2" data-toggle="tab">Project Tickets</a></li>
+						@*<li class="tab-header"><a href="#tab2" data-toggle="tab">Project Tickets</a></li>*@
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab1">
@@ -120,7 +120,7 @@
 							</table>
 						</div>
 
-						<div class="tab-pane active" id="tab2">
+						@*<div class="tab-pane" id="tab2">
 							<table id="projTickets" class="table">
 
 								<thead>
@@ -151,7 +151,7 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
+						</div>*@
 					</div>
 					<script>
 						$('#Users, #projTickets').DataTable();
