@@ -2,7 +2,7 @@ body{font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif}h1,h2,h3,h4,h5
 header.masthead {
 	position: relative;
 	background-color: #343a40;
-	background: url(../img/BugTrackerLP.png) no-repeat center center;
+	background: url("../img/track-collage-better.png") center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

@@ -471,10 +471,15 @@
     <Content Include="Assets\LandingPage\img\bg-showcase-2.jpg" />
     <Content Include="Assets\LandingPage\img\bg-showcase-3.jpg" />
     <Content Include="Assets\LandingPage\img\BugTrackerLP.png" />
+    <Content Include="Assets\LandingPage\img\dash222.png" />
+    <Content Include="Assets\LandingPage\img\img66666.png" />
+    <Content Include="Assets\LandingPage\img\imgcreateticket2222.jpg" />
     <Content Include="Assets\LandingPage\img\testimonials-1.jpg" />
     <Content Include="Assets\LandingPage\img\testimonials-2.jpg" />
     <Content Include="Assets\LandingPage\img\testimonials-3.jpg" />
     <None Include="Assets\LandingPage\LP.cshtml" />
+    <Content Include="Assets\LandingPage\img\track-collage-better.png" />
+    <Content Include="Assets\LandingPage\img\Trackercollage-222-w-border33.png" />
     <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Assets\LandingPage\vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -539,6 +544,8 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="private11.config" />
+    <Content Include="private9.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
