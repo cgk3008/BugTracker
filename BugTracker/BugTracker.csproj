@@ -502,6 +502,7 @@
     <Content Include="Assets\SliderDatatable\jquery.dataTables.min.css" />
     <Content Include="Assets\SliderDatatable\jquery.dataTables.min.js" />
     <Content Include="Assets\SliderDatatable\jquery-1.12.4.js" />
+    <Content Include="Assets\Webp.net-resizeimage.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
