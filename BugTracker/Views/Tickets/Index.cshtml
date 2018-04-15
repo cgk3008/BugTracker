@@ -20,164 +20,165 @@
 			</div>
 
 			@if (User.IsInRole("Admin"))
-			{
+	{
 
-				<div class="page-grid">
-					<div class="container">
-						<div class="col-md-4">
+		<div class="page-grid">
+			<div class="container">
+				<div class="col-md-4">
 
-							<h3>
-								<strong>
-									@Html.ActionLink("Create New Ticket", "Create", null, new { @class = "btn btn-success" })
-								</strong>
-							</h3>
+					<h3>
+						<strong>
+							@Html.ActionLink("Create New Ticket", "Create", null, new { @class = "btn btn-success" })
+						</strong>
+					</h3>
+
+					<br />
+
+				</div>
+				<div class="col-md-4">
+
+					<h3>
+						<strong>
+							@Html.ActionLink("See Soft Deleted Tickets", "SoftDeleteIndex", null, new { @class = "btn btn-default" })
 
 							<br />
-
-						</div>
-						<div class="col-md-4">
-
-							<h3>
-								<strong>
-									@Html.ActionLink("See Soft Deleted Tickets", "SoftDeleteIndex", null, new { @class = "btn btn-default" })
-
-									<br />
-									<br />
-								</strong>
-							</h3>
+							<br />
+						</strong>
+					</h3>
 
 
 
-						</div>
-					</div>
 				</div>
-
-			}
-			<table id="mytable" class="dataTables">
-				<thead>
-					<tr>
-						<th>
-							Project Name
-						</th>
-						<th>
-							Ticket Title
-						</th>
-						<th>
-							Description
-						</th>
-
-						<th>
-							Assigned User
-						</th>
-						<th>
-							Ticket Owner
-						</th>
-						<th>
-							Priority
-						</th>
-
-						<th>
-							Status
-						</th>
-						<th>
-							Type
-						</th>
-
-						<th>
-							Created
-						</th>
-						@*<th>
-								Updated
-							</th>*@
-						<th></th>
-					</tr>
-				</thead>
-
-				<tbody>
-
-					@foreach (var item in Model)
-					{
-
-						if (item.IsDeleted == false)
-						{
-							<tr>
-								<td>
-									@Html.DisplayFor(modelItem => item.Project.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Title)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Description)
-
-									@*@string.Join("", item.Description.Take(30))...
-										@Html.Hidden("FullDesc", item.Description)*@
-								</td>
-
-								<td>
-									@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Priority.Name)
-								</td>
-
-								<td>
-									@Html.DisplayFor(modelItem => item.Status.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Type.Name)
-								</td>
-
-								<td>
-									@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
-								</td>
-								@*<td>
-										@Html.DisplayFor(modelItem => item.Updated)
-									</td>*@
-								<td>
-									@Html.ActionLink("Details ", "Details", new { id = item.Id })
-
-
-									@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-									{
-										@Html.ActionLink("Edit ", "Edit", new { id = item.Id })
-
-										@Html.ActionLink("Assign", "AssignTicket", new { id = item.Id })
-
-									}
-
-
-
-									@if (User.IsInRole("Admin"))
-									{
-										@Html.ActionLink("Soft Delete", "SoftDelete", new { id = item.Id })
-										<br />
-										<br />
-
-										@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-									}
-
-								</td>
-							</tr>
-						}
-					}
-				</tbody>
-			</table>
-
-			<script>
-				$('#mytable').DataTable();
-			</script>
-
-			@*<script>
-					// format ALL tables by class selector
-					$('.table').DataTable();
-				</script>*@
-
+			</div>
 		</div>
-	</div>
+
+}
+			<div class="table-responsive">
+				<table id="mytable" class="dataTables">
+					<thead>
+						<tr>
+							<th>
+								Project Name
+							</th>
+							<th>
+								Ticket Title
+							</th>
+							<th>
+								Description
+							</th>
+
+							<th>
+								Assigned User
+							</th>
+							<th>
+								Ticket Owner
+							</th>
+							<th>
+								Priority
+							</th>
+
+							<th>
+								Status
+							</th>
+							<th>
+								Type
+							</th>
+
+							<th>
+								Created
+							</th>
+							@*<th>
+							Updated
+						</th>*@
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						@foreach (var item in Model)
+				{
+
+					if (item.IsDeleted == false)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Project.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Title)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Description)
+
+								@*@string.Join("", item.Description.Take(30))...
+							@Html.Hidden("FullDesc", item.Description)*@
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Priority.Name)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.Status.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Type.Name)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
+							</td>
+							@*<td>
+							@Html.DisplayFor(modelItem => item.Updated)
+						</td>*@
+							<td>
+								@Html.ActionLink("Details ", "Details", new { id = item.Id })
+
+
+								@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+						{
+							@Html.ActionLink("Edit ", "Edit", new { id = item.Id })
+
+							@Html.ActionLink("Assign", "AssignTicket", new { id = item.Id })
+
+				}
+
+
+
+								@if (User.IsInRole("Admin"))
+						{
+							@Html.ActionLink("Soft Delete", "SoftDelete", new { id = item.Id })
+							<br />
+							<br />
+
+							@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+				}
+
+							</td>
+						</tr>
+			}
+		}
+					</tbody>
+				</table>
+				</div>
+				<script>
+					$('#mytable').DataTable();
+				</script>
+
+				@*<script>
+				// format ALL tables by class selector
+				$('.table').DataTable();
+			</script>*@
+
+			</div>
+		</div>
 </div>
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")

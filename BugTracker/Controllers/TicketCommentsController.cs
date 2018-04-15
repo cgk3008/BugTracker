@@ -108,12 +108,7 @@ namespace BugTracker.Controllers
                 {
                     await Task.FromResult(0);
                 }
-
-
-
-
-
-
+                
                 return RedirectToAction("Details", "Tickets", new { id = ticketComment.TicketId });
                 //return RedirectToAction("Index");
             }

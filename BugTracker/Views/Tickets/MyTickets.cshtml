@@ -31,114 +31,115 @@
 				<br />
 
 			}
+			<div class="table-responsive">
+				<table id="mytable" class="dataTables">
+					<thead>
+						<tr>
+							<th>
+								Assigned User
+							</th>
+							<th>
+								Ticket Owner
+							</th>
+							<th>
+								Priority
+							</th>
+							<th>
+								Project
+							</th>
+							<th>
+								Status
+							</th>
+							<th>
+								Type
+							</th>
+							<th>
+								Title
+							</th>
+							<th>
+								Description
+							</th>
+							<th>
+								Created
+							</th>
 
-			<table id="mytable" class="dataTables">
-				<thead>
-					<tr>
-						<th>
-							Assigned User
-						</th>
-						<th>
-							Ticket Owner
-						</th>
-						<th>
-							Priority
-						</th>
-						<th>
-							Project
-						</th>
-						<th>
-							Status
-						</th>
-						<th>
-							Type
-						</th>
-						<th>
-							Title
-						</th>
-						<th>
-							Description
-						</th>
-						<th>
-							Created
-						</th>
+							<th>Links</th>
+						</tr>
+					</thead>
 
-						<th>Links</th>
-					</tr>
-				</thead>
+					<tbody>
 
-				<tbody>
-
-					@foreach (var item in Model)
-					{
-
-						if (item.IsDeleted == false || item.Status.Name != "Completed")
-
+						@foreach (var item in Model)
 						{
 
-							<tr>
-								<td>
-									@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Priority.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Project.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Status.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Type.Name)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Title)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Description)
-								</td>
-								<td>
-									@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
-								</td>
+							if (item.IsDeleted == false || item.Status.Name != "Completed")
 
-								<td>
+							{
 
-									@Html.ActionLink("Details ", "Details", new { id = item.Id })
+								<tr>
+									<td>
+										@Html.DisplayFor(modelItem => item.AssignedToUser.FullName)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.OwnerUser.FullName)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Priority.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Project.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Status.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Type.Name)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Title)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Description)
+									</td>
+									<td>
+										@Html.DisplayFor(modelItem => item.Created, "{0:dd-MMM-yyyy}")
+									</td>
 
+									<td>
 
-									@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
-									{
-										<text> | </text>
-										@Html.ActionLink(" Edit ", "Edit", new { id = item.Id })
-										<text> | </text>
-									}
+										@Html.ActionLink("Details ", "Details", new { id = item.Id })
 
 
-									@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
-									{
-										@Html.ActionLink(" Assign ", "AssignTicket", new { id = item.Id })
-										<text> | </text>
-										<br />
-										@Html.ActionLink(" Soft Delete ", "SoftDelete", new { id = item.Id })
-										<text> | </text>
-									}
+										@if (User.IsInRole("Admin") || User.IsInRole("Submitter") || User.IsInRole("Project Manager"))
+										{
+											<text> | </text>
+											@Html.ActionLink(" Edit ", "Edit", new { id = item.Id })
+											<text> | </text>
+										}
 
-									@if (User.IsInRole("Admin"))
-									{
 
-										@Html.ActionLink(" Delete ", "Delete", new { id = item.Id })
-									}
+										@if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+										{
+											@Html.ActionLink(" Assign ", "AssignTicket", new { id = item.Id })
+											<text> | </text>
+											<br />
+											@Html.ActionLink(" Soft Delete ", "SoftDelete", new { id = item.Id })
+											<text> | </text>
+										}
 
-								</td>
-							</tr>
+										@if (User.IsInRole("Admin"))
+										{
+
+											@Html.ActionLink(" Delete ", "Delete", new { id = item.Id })
+										}
+
+									</td>
+								</tr>
+							}
 						}
-					}
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
