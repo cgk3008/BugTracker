@@ -19,6 +19,7 @@
 			</div>
 			@if (Model.RmvUser.Id == Model.Project.PmId)
 	{
+		@Html.HiddenFor(m => m.RmvUser.Id)
 		<h3>
 			This is the current project PM. Verify you want to remove this user.
 		</h3>
@@ -54,10 +55,10 @@
 			<br />
 			<strong>
 				@Html.ActionLink("Back to list", "Index", "Projects", null, new { @class = "btn btn-default" })
-				</strong>
-					<br />
+			</strong>
+			<br />
 
-</div>
+		</div>
 	</div>
 </div>
 @section Scripts {

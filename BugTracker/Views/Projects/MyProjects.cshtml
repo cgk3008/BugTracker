@@ -64,7 +64,7 @@
 								<li>
 									@u.FullName  @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
 									{
-								<text>---</text> @Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Project.Id }, null)
+								<text>---</text> @Html.ActionLink("Remove User from Project", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = item.UserId }, null)
 									}
 								</li>
 									}
