@@ -31,12 +31,12 @@
 		@Html.HiddenFor(m => m.Project.Id)
 		@Html.HiddenFor(m => m.RmvUser.Id)
 
-		@Html.DisplayFor(model => model.Project.Name)
+		<h3>Project Name: @Html.DisplayFor(model => model.Project.Name) </h3>
 		@*@Html.DisplayFor(model => model.Project.Id)*@
 		<br />
 		<br />
 
-		@Html.DisplayFor(model => model.RmvUser.FullName)
+		<h3>User Name: @Html.DisplayFor(model => model.RmvUser.FullName)</h3>
 
 
 		@*@Html.Display(m => m.RmvUser)*@
@@ -44,9 +44,9 @@
 		<br />
 		<br />
 		<br />
-		<h5>
-			Are you sure you want to remove this User from the project?
-		</h5>
+		<h4>
+			Are you sure you want to remove this "User" from the project?
+		</h4>
 		<br />
 		<p><input type="submit" value="Yes, Remove User" class="btn btn-danger" /></p>
 

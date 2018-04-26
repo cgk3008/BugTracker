@@ -57,7 +57,7 @@
 							<th>
 								@Html.DisplayNameFor(model => model.Project.Name)
 							</th>
-							<th></th>
+							<th>Project Action Links</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,7 +78,7 @@
 												<li>
 													@u.FullName
 
-													@Html.ActionLink(" -- Remove User", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = u.Id }, null)
+													@Html.ActionLink("Remove User", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = u.Id }, new { @class = "btn-xs btn-warning", type = "button" })
 
 												</li>
 											}
