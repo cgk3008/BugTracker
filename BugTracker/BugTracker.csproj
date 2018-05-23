@@ -782,6 +782,7 @@
     <Content Include="Views\Tickets\MyCompletedTix.cshtml" />
     <Content Include="Views\Shared\_TicketDetails.cshtml" />
     <Content Include="Views\Tickets\ProjectTickets.cshtml" />
+    <Content Include="Views\Tickets\DatePickerTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

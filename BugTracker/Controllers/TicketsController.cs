@@ -26,6 +26,13 @@ namespace BugTracker.Controllers
             return View(tickets.ToList());
         }
 
+        // GET: All Tickets
+        public ActionResult DatePickerTest()
+        {
+            return View();
+        }
+
+
         // GET: Soft Delete Tickets
         public ActionResult SoftDeleteIndex()
         {

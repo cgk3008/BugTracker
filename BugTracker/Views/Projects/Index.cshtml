@@ -75,12 +75,13 @@
 										<ul>
 											@foreach (var u in item.Project.Users)
 											{
-												<li>
-													@u.FullName
-
-													@Html.ActionLink("Remove User", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = u.Id }, new { @class = "btn-xs btn-warning", type = "button" })
-
-												</li>
+                                            <li>
+                                                @u.FullName
+                                                @if (item.Project.PmId == item.UserId)
+                                                {
+                                            @Html.ActionLink("Remove User", "RemoveUser", "AdminProjects", new { id = item.Project.Id, userId = u.Id }, new { @class = "btn-xs btn-warning", type = "button" })
+                                                }
+                                            </li>
 											}
 										</ul>
 									</td>

@@ -35,7 +35,7 @@
 					{
 						<tr>
 							<td>
-								@Html.DisplayFor(modelItem => item.Name) | PM: @Html.DisplayFor(modelItem => item.PmId)
+								@Html.DisplayFor(modelItem => item.Name) @*| PM: @Html.DisplayFor(modelItem => item.PmId)*@
 
 								<ul>
 									@foreach (var u in item.Users)
@@ -46,11 +46,14 @@
 							}
 								</ul>
 							</td>
-							<td>
-								@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-								@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-								@*Add link for recover project?  If so should probably just add to edit view and controller and hide the Isdeleted if the value is false and only show if true.  But seems like Edit is modifying the IsDelete to false already........*@
-							</td>
+                            <td>
+                                @*@if (item.Project.PmId == item.UserId)
+                                {*@
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                                                                   @*}*@
+@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @*Add link for recover project?  If so should probably just add to edit view and controller and hide the Isdeleted if the value is false and only show if true.  But seems like Edit is modifying the IsDelete to false already........*@
+                            </td>
 						</tr>
 				}
 			}
@@ -63,7 +66,7 @@
 		</div>
 		<br />
 		<br />
-		@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" }))
+		@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 	</div>
 	</div>
 </div>
