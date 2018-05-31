@@ -6,8 +6,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Bug Tracker</title>
+   
+
+    
+
+    <!-- Styles -->
+    <!-- Bootstrap CSS -->
+    <link href="~/Assets/bug-temp/theme/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font awesome CSS -->
+    <link href="~/Assets/bug-temp/theme/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Color CSS -->
+    <link href="~/Assets/bug-temp/theme/css/less-style.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Assets/bug-temp/theme/css/style.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="#">
+
+
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -24,215 +49,338 @@
 
 <body>
 
-    <div class="main-content">
+    <!-- Sidebar starts -->
+    <div class="sidebar">
 
+        <div class="sidey">
 
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker1').datetimepicker();
-                    });
-                </script>
-            </div>
-        </div>
+            <!-- Logo -->
+            @*<div class="logo">
+                    <h1><a href="~/Assets/bug-temp/theme/index.html"><i class="fa fa-desktop br-red"></i> Barnie <span>It's Legendary</span></a></h1>
+                </div>*@
 
+            <!-- Sidebar navigation starts -->
+            <!-- Responsive dropdown -->
+            <div class="sidebar-dropdown"><a href="#" class="br-red"><i class="fa fa-bars"></i></a></div>
 
+            <div class="side-nav">
 
-        <div class="container">
+                <div class="side-nav-block">
+                    <!-- Sidebar heading -->
+                    <h2>
 
-            <div class="page-content">
+                        <a href="https://cliffsportfolio.azurewebsites.net/"><font color="white"><img src="~/Assets/Webp.net-resizeimage.png" /> Portfolio</font></a>
+                    </h2>
+                    <br />
 
-                <!-- Heading -->
-                <div class="single-head">
-                    <!-- Heading -->
-                    <h2 class="pull-left"><i class="fa fa-ticket green"></i> Assign Ticket</h2>
-                    <!-- Bread crumbs -->
-                    <div class="breads pull-right">
-                        @*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
-                    </div>
-                    <div class="clearfix"></div>
+                    <h4>Main</h4>
+                    <!-- Sidebar links -->
+                    <ul class="list-unstyled">
+                        <li>
+                            <a>
+                                <i class="fa fa-desktop">
+                                </i>   @Html.ActionLink("Dashboard", "Index", "Home")
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
-                @using (Html.BeginForm("AssignTicket", "Tickets", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
+                <div class="side-nav-block">
+                    <h4>Menu</h4>
+                    <ul class="list-unstyled">
+                        <li>
 
-                    <div class="form-horizontal">
-                        <h4>Ticket</h4>
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Id)
-                        @Html.HiddenFor(model => model.OwnerUserId)
-                        @Html.HiddenFor(model => model.Created)
+                            <a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <i class="fa fa-desktop">
+                                    </i>
+                                    @Html.ActionLink("Admin User View", "Index", "Admin")
+                                }
+                            </a>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AssignedToUserId, "Assign Developer", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("AssignedToUserId", null, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        </li>
+                        <li>
 
+                            <a>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Project Manager"))
+                                {
+                                    <i class="fa fa-desktop">
+                                    </i>
+                                    @Html.ActionLink("All Projects", "Index", "Projects")
+                                }
 
-                        <div class="form-group">
-                         
-                                @Html.LabelFor(model => model.StartDate, "Start Date", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </a>
 
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-desktop">
+                                </i>   @*@Html.ActionLink("Assigned Projects", "Index", "AssignedProjects")
+                                    <br />*@
 
-                                <div class='input-group date' id='datetimepicker2'>
-
-                                    <input type='text' class="form-control" name="StartDate" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-
-
-                                <script type="text/javascript">
-                                    $(function () {
-                                        $('#datetimepicker2').datetimepicker();
-                                    });
-                                </script>
+                                @Html.ActionLink("My Projects", "MyProjects", "Projects")
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Assets/bug-temp/theme/login.html">
 
 
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <i class="fa fa-ticket">
+                                    </i>
+                                    @Html.ActionLink("All Tickets", "Index", "Tickets")
+                                }
+                            </a>
 
-                                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        </li>
+                        <li>
+                            <a>
+                                @if (User.IsInRole("Submitter") || User.IsInRole("Project Manager") || User.IsInRole("Developer"))
+                                {
+                                    <i class="fa fa-ticket"></i>
 
-
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DeadlineDate, "Deadline Date", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @*@Html.EditorFor(model => model.DeadlineDate, new { htmlAttributes = new { @class = "form-control" } })*@
-
-
-                                <div class='input-group date' id='datetimepicker3'>
-
-                                    <input type='text' class="form-control" name="DeadlineDate" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-
-
-                                <script type="text/javascript">
-                                    $(function () {
-                                        $('#datetimepicker3').datetimepicker();
-                                    });
-                                </script>
-
-
-                                @Html.ValidationMessageFor(model => model.DeadlineDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                    @Html.ActionLink("My Tickets", "MyTickets", "Tickets")
+                                }
 
 
 
-
-
-
-
-
-
-
-                        <br />
-                        <br />
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-info" />
-                            </div>
-                        </div>
-                    </div>
-                }
-
-
-
-
-
-
-                <div>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
-
-                    }
-
-                    @if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
-                    {
-                        @Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
-                    }
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    @*@section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
 
-        <!-- Javascript files -->
-        <!-- jQuery -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.js"></script>
-        <!-- jQuery UI -->
-        <script src="~/Assets/bug-temp/theme/js/jquery-ui.min.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="~/Assets/bug-temp/theme/js/bootstrap.min.js"></script>
-        <!-- Date Time Picker JS -->
-        <script src="~/Assets/bug-temp/theme/js/bootstrap-datetimepicker.min.js"></script>
-        <!-- Bootstrap wysihtml5 JS -->
-        <script src="~/Assets/bug-temp/theme/js/wysihtml5-0.3.0.js"></script>
-        <script src="~/Assets/bug-temp/theme/js/prettify.js"></script>
-        <script src="~/Assets/bug-temp/theme/js/bootstrap-wysihtml5.min.js"></script>
-        <!-- Validate JS -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.validate.js"></script>
-        <!-- Form wizard steps  JS -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.steps.min.js"></script>
-        <!-- jQuery Knob -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.knob.js"></script>
-        <!-- jQuery slim scroll -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.slimscroll.min.js"></script>
-        <!-- Data Tables JS -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.dataTables.min.js"></script>
-        <!-- Pretty Photo JS -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.prettyPhoto.js"></script>
-        <!-- Rate It JS -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.rateit.min.js"></script>
-        <!-- Full calendar -->
-        <script src="~/Assets/bug-temp/theme/js/moment.min.js"></script>
-        <script src="~/Assets/bug-temp/theme/js/fullcalendar.min.js"></script>
-        <!-- jQuery gritter -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.gritter.min.js"></script>
-        <!-- On Off Switch JS -->
-        <script src="~/Assets/bug-temp/theme/js/jquery.onoff.min.js"></script>
-        <!-- Respond JS for IE8 -->
-        <script src="~/Assets/bug-temp/theme/js/respond.min.js"></script>
-        <!-- HTML5 Support for IE -->
-        <script src="~/Assets/bug-temp/theme/js/html5shiv.js"></script>
-        <!-- Custom JS -->
-        <script src="~/Assets/bug-temp/theme/js/custom.js"></script>
-        <!-- jQuery gritter notification -->
-        <script src="~/Assets/bug-temp/theme/js/custom.notification.js"></script>
+    <!-- Sidebar navigation ends -->
+    <!-- Mainbar starts -->
+    <div class="mainbar">
+        <!-- Mainbar head starts -->
+        <div class="main-head">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 ">
+                        <!-- Page title -->
+                        <h2><i class="fa fa-desktop lblue"></i> @Html.ActionLink("Dashboard", "Index", "Home")</h2>
+                    </div>
+                    <div class="col-md-4 col-sm-4 ">
+                        <!-- Page title -->
+                        <h2>@*<i class="fa fa-desktop lblue"></i>*@ @Html.Partial("_LoginPartial")</h2>
+                    </div>
+                    <div class="col-md-3 hidden-sm hidden-xs">
+                        <!-- Head user -->
+                        <div class="head-user dropdown pull-right">
+                            <a href="#" data-toggle="dropdown" id="profile">
+                                <!-- Icon
+                                <i class="fa fa-user"></i>  -->
+                                @*<img src="~/Assets/bug-temp/theme/img/user2.png" alt="" class="img-responsive img-circle" />*@
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.checkboxes').onoff();
-            });
-        </script>*@
+                                <!-- User name -->
+                                @*<span class="label label-danger">5</span>
+                                    <i class="fa fa-caret-down"></i>*@
+                            </a>
+                            <!-- Dropdown -->
+                            <ul class="dropdown-menu" aria-labelledby="profile">
+                                <li><a href="#">View/Edit Profile <span class="badge badge-info pull-right">6</span></a></li>
+                                <li><a href="#">Change Settings</a></li>
+                                <li><a href="#">Messages <span class="badge badge-danger pull-right">5</span></a></li>
+                                <li><a href="#">Sign Out</a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="main-content">
+            <div class="container">
+                <div class="page-content">
+
+                    <!-- Heading -->
+                    <div class="single-head">
+                        <!-- Heading -->
+                        <h2 class="pull-left"><i class="fa fa-ticket green"></i> Assign Ticket</h2>
+                        <!-- Bread crumbs -->
+                        <div class="breads pull-right">
+                            @*<strong>Nav</strong> : <a href="#">Home</a> / <a href="#">Sign</a> / Home*@
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    @using (Html.BeginForm("AssignTicket", "Tickets", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Ticket</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.OwnerUserId)
+                            @Html.HiddenFor(model => model.Created)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AssignedToUserId, "Assign Developer", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("AssignedToUserId", null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AssignedToUserId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.StartDate, "Start Date", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @*@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+                                    <div class='input-group date' id='datetimepicker2'>
+
+                                        <input type='text' class="form-control" name="StartDate" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $('#datetimepicker2').datetimepicker();
+                                        });
+                                    </script>
+
+
+
+                                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DeadlineDate, "Deadline Date", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @*@Html.EditorFor(model => model.DeadlineDate, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+                                    <div class='input-group date' id='datetimepicker3'>
+
+                                        <input type='text' class="form-control" name="DeadlineDate" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $('#datetimepicker3').datetimepicker();
+                                        });
+                                    </script>
+
+
+                                    @Html.ValidationMessageFor(model => model.DeadlineDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <br />
+                            <br />
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-info" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+
+
+
+                    <div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Back to All Tickets Index", "Index", null, new { @class = "btn btn-default" })
+
+                        }
+
+                        @if (User.IsInRole("Project Manager") || User.IsInRole("Submitter") || User.IsInRole("Developer"))
+                        {
+                            @Html.ActionLink("Back to List", "MyTickets", null, new { @class = "btn btn-default" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*@section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+
+            <!-- Javascript files -->
+            <!-- jQuery -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.js"></script>
+            <!-- jQuery UI -->
+            <script src="~/Assets/bug-temp/theme/js/jquery-ui.min.js"></script>
+            <!-- Bootstrap JS -->
+            <script src="~/Assets/bug-temp/theme/js/bootstrap.min.js"></script>
+            <!-- Date Time Picker JS -->
+            <script src="~/Assets/bug-temp/theme/js/bootstrap-datetimepicker.min.js"></script>
+            <!-- Bootstrap wysihtml5 JS -->
+            <script src="~/Assets/bug-temp/theme/js/wysihtml5-0.3.0.js"></script>
+            <script src="~/Assets/bug-temp/theme/js/prettify.js"></script>
+            <script src="~/Assets/bug-temp/theme/js/bootstrap-wysihtml5.min.js"></script>
+            <!-- Validate JS -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.validate.js"></script>
+            <!-- Form wizard steps  JS -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.steps.min.js"></script>
+            <!-- jQuery Knob -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.knob.js"></script>
+            <!-- jQuery slim scroll -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.slimscroll.min.js"></script>
+            <!-- Data Tables JS -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.dataTables.min.js"></script>
+            <!-- Pretty Photo JS -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.prettyPhoto.js"></script>
+            <!-- Rate It JS -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.rateit.min.js"></script>
+            <!-- Full calendar -->
+            <script src="~/Assets/bug-temp/theme/js/moment.min.js"></script>
+            <script src="~/Assets/bug-temp/theme/js/fullcalendar.min.js"></script>
+            <!-- jQuery gritter -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.gritter.min.js"></script>
+            <!-- On Off Switch JS -->
+            <script src="~/Assets/bug-temp/theme/js/jquery.onoff.min.js"></script>
+            <!-- Respond JS for IE8 -->
+            <script src="~/Assets/bug-temp/theme/js/respond.min.js"></script>
+            <!-- HTML5 Support for IE -->
+            <script src="~/Assets/bug-temp/theme/js/html5shiv.js"></script>
+            <!-- Custom JS -->
+            <script src="~/Assets/bug-temp/theme/js/custom.js"></script>
+            <!-- jQuery gritter notification -->
+            <script src="~/Assets/bug-temp/theme/js/custom.notification.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.checkboxes').onoff();
+                });
+            </script>*@
 
 </body>
 </html>
