@@ -44,11 +44,12 @@ namespace BugTracker.Models.Helper
         //        return ex;
         //    }
         //}
-        public static void PmIdToName(this Project project)
-        {
+        //public static void PmIdToName(th
+        //    is Project project)
+        //{
 
 
-        }
+        //}
 
         public static void CreateHistories(this Ticket editedTicket)
         {

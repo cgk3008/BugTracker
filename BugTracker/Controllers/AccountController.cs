@@ -64,6 +64,8 @@ namespace BugTracker.Controllers
 
             switch (type)
             {
+
+                //should put these into a private config file
                 case "Admin9":
                     Email = "PDAdmina@email.com";
                     Password = "Redd152!";
