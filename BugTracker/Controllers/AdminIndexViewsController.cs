@@ -13,10 +13,6 @@ namespace BugTracker.Controllers
         public ActionResult Index()
         {
 
-
-
-
-            //var blogComments = dB.Comments.Include(b => b.Author).Include(b => b.Post);
             return View();
         }
 
